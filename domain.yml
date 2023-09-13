@@ -1,0 +1,140 @@
+version: '3.1'
+intents:
+- affirm
+- ask_contact_info
+- ask_eventdate_by_name
+- ask_eventlocation_by_name
+- ask_list_events_category
+- ask_list_events_city
+- ask_more_info
+- bot_challenge
+- deny
+- greet
+- inform
+- stop
+entities:
+- event_category
+- event_name
+- event_city
+- events_city
+- event_location
+- event_date
+- event_link
+- event_email
+- event_phonenumber
+slots:
+  event_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_name
+  event_date:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_date
+  event_city:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_city
+  event_phonenumber:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_phonenumber
+  event_email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_email
+  event_link:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_link
+  event_location:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_location
+responses:
+  utter_greet:
+  - text: Hey! It's great to see you. 😊 How can I assist you today?
+  - text: Hi! Ready to have a fantastic chat with me?
+  - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book a venue📖 for yourself ping me. 🌟
+  utter_did_that_help:
+  - text: Did I answer your question? 😊
+  - text: I hope that was helpful. Is there anything else I can assist you with?
+  - text: If you have more questions, feel free to ask. I'm here to help!
+  utter_iamabot:
+  - text: I'm your friendly neighbourhood chatbot, here to make your day brighter! 😄
+  - text: Just a heads up, I'm a bot, but I'm a bot with personality! How can I assist you?
+  - text: I'm your virtual assistant, powered by Habeebi Global. Ask me anything!
+  utter_location_by_name:
+  - text: You're in luck! {event_name} is happening at the fabulous {event_location}. 🌟
+  - text: Guess what? {event_name} is taking place at {event_location}. Enjoy!
+  - text: The awesome {event_name} event is at {event_location}. Have a blast!
+  utter_date_by_name:
+  - text: Mark your calendar! {event_name} is scheduled for {event_date}. 🗓️
+  - text: Save the date! {event_name} is happening on {event_date}. Don't miss it! 🗓️
+  - text: 'Circle this on your calendar: {event_name} on {event_date}. Enjoy the event! 🗓️'
+  utter_give_moreinfo:
+  - text: Exciting news! You can find more details about {event_name} at {event_link}. 🌐
+  - text: For more information about {event_name}, head over to {event_link}. It's all there!
+  - text: 'Want to dive deeper into {event_name}? Click here: {event_link}. 📖'
+  utter_give_contactinfo:
+  - text: Got questions? You can reach out to {event_name} at {event_email} or {event_phonenumber}. We're here to help! 📞📧
+  - text: Need to get in touch with {event_name}? Contact them at {event_email} 📧 or {event_phonenumber} 📞. Happy to assist!
+  - text: Questions? Feel free to contact {event_name} at {event_email} or {event_phonenumber}. We're just a message or call away! 📞📧
+  utter_list_events_city:
+  - text: Wondering what's happening in {event_city}? Check out these exciting events! 🎉
+  - text: Let's explore {event_city} together! Here are some fantastic events you might like. 😃
+  - text: Events galore in {event_city}! Discover the latest happenings right here. 🏙️
+  utter_list_events_category:
+  - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
+  - text: Love {event_category} events? So do we! Check out what's coming up. 😍
+  - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
+  utter_give_list_all:
+  - buttons: 
+    - payload: ask_more_info
+      title: ask_more_info
+    - payload: ask_contact_info
+      title: ask_contact_info        
+    text: Here is the list based on your criteria
+  
+  # - custom:
+  #     payload:
+  #       elements:
+  #       - title: Event Title 1
+  #         subtitle: Event Category 1
+  #         image_url: https://example.com/image1.jpg
+  #         buttons:
+  #         - title: Event Date 1
+  #           payload: "/inform{'event_name': 'Event Title 1'}"
+  #       - title: Event Title 2
+  #         subtitle: Event Category 2
+  #         image_url: https://example.com/image2.jpg
+  #         buttons:
+  #         - title: Event Date 2
+  #           payload: "/inform{'event_name': 'Event Title 2'}"
+  #     text: 'Here are some upcoming events:'
+actions:
+- action_list_all_events
+- utter_give_list_all
+- action_get_event_link
+- action_get_event_location
+- action_get_event_date
+- action_get_event_contact_info
+- utter_greet
+- action_send_html_response
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

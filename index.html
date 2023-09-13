@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatbot</title>
+    
+    <style>
+
+      body, p, h1, h2, h3, h4, h5, h6 {color: #001129;}
+      body {background-color: #001129;}
+      /* .rw-messages-container {background-color: #001129 !important;}  */
+      .rw-group-message.rw-from-response span.rw-message-date{color: #001129 !important;}
+      .rw-group-message.rw-from-client span.rw-message-date{color: #001129 !important;}
+      .rw-conversation-container .rw-header{background-color:#daa520 !important;}
+      .rw-conversation-container .rw-messages-container .rw-message .rw-client{background-color: #daa520;}
+      .rw-launcher{background-color: #daa520 !important;}
+      .rw-conversation-container .rw-reply{background-color: #daa520 !important; border: 1px solid #daa520 !important;}
+      .rw-carousel-buttons-container .rw-reply{background-color: #daa520; border: 1px solid #daa520;}
+  </style>
+</head>
+<body>
+    <script>
+        !(function () {
+          let e = document.createElement("script"),
+            t = document.head || document.getElementsByTagName("head")[0];
+          (e.src =
+            "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
+            // Replace 1.x.x with the version that you want
+            (e.async = !0),
+            (e.onload = () => {
+              window.WebChat.default(
+                {
+                    customData: { language: "en" },
+                    socketUrl: "http://localhost:5005/",
+                    title: 'Chat Mate',
+                    subtitle: 'Say hi and get started!',
+                    profileAvatar: "./assets/chatbot2.svg",
+                    openLauncherImage: "./assets/infinity.svg",
+                    closeImage: "./assets/close.svg",
+                    showMessageDate: true,
+                    inputTextFieldHint: "What's in your mind?...",
+                    // customMessageDelay: (message) => {
+                    //   let delay = message.length * 40;
+                    //   if (delay > 3 * 1000) delay = 3 * 1000;
+                    //   if (delay < 800) delay = 800;
+                    //   return delay;
+                    // }
+                },
+                null
+              );
+            }),
+            
+            t.insertBefore(e, t.firstChild);
+            
+        })
+        ();
+        
+    </script>
+</body>
+</html>

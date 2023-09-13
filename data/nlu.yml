@@ -1,0 +1,249 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - yo
+    - hello world
+    - hi there
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - /affirm
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: stop
+  examples: |
+    - stop
+    - nevermind
+    - please stop
+    - i want to stop
+    - stop the form
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - by the way, are you a human?
+- intent: looking_event
+  examples: |
+    - I am looking for an event
+    - i want to book an event
+    - what events are happening
+    - where can I find events
+- intent: ask_how_to_book
+  examples: |
+    - How can I book a ticket for an event?
+    - where do i register?
+- intent: ask_eventlocation_by_name
+  examples: |
+    - Where is [Abu Dhabi International Boat Show 2023](event_name) happening
+    - Where is [Global Village](event_name) happening
+    - Where can I joing [Global Village](event_name)
+    - What is the venue of [Global Village](event_name)
+    - [Global Village](event_name) venue
+    - [Global Village](event_name) location
+    - [Abu Dhabi International Boat Show 2023](event_name) where
+    - where [Abu Dhabi International Boat Show 2023](event_name)
+    - location of [Abu Dhabi International Boat Show 2023](event_name)
+    - location of [Global Village](event_name)
+    - [Kerala Blasters vs Al Wasl FC](event_name) whereabouts?
+    - whereabouts of [Kerala Blasters vs Al Wasl FC](event_name)
+    - [Abu Dhabi International Boat Show 2023](event_name) location?
+    - [Abu Dhabi International Boat Show 2023](event_name) venue?
+    - Where is [Abu Dhabi International Boat Show 2023](event_name) taking place?
+    - Tell me the venue for [Abu Dhabi International Boat Show 2023](event_name)
+    - What's the location of [Abu Dhabi International Boat Show 2023](event_name)?
+    - What's the venue of [Global Village](event_name)?
+    - Can you tell me where [Global Village](event_name) is located?
+    - Where can I find [Global Village](event_name)?
+    - [Global Village](event_name) venue details?
+    - Venue information for [Global Village](event_name)?
+    - [Global Village](event_name) location details?
+    - where is [global village]{"entity": "event_name", "value": "Global Village"}
+    - where is [Global Village](event_name)
+    - where is [Disney On Ice: 100 Years of Wonder Abu Dhabi 2023]{"entity": "event_name", "value": "Disney On Ice : 100 Year of Wonder Abu Dhabi 2023"} happening?
+    - where is [techspo](event_name) [dubai](event_city)
+    - where is [Kerala Blasters vs Al Wasl FC](event_name)
+    - where is Trevor [Noah](event_name) Live Comedy
+    - where is [International Trade And Services Expo](event_name)
+    - where is the forex happening
+    - where is [the forex](event_name)
+    - where is [kerala blasters](event_name)
+    - where is [forex expo](event_name)
+    - where is [Disney On Ice](event_name): [100 Years of Wonder Abu Dhabi 2023](event_name)
+    - where is [Disney On Ice](event_name)
+- intent: ask_eventdate_by_name
+  examples: |
+    - When is [Abu Dhabi International Boat Show 2023](event_name) happening
+    - When is [Global Village](event_name) happening
+    - When can I join [Global Village](event_name)
+    - What is the date of [Global Village](event_name)
+    - [Global Village](event_name) date
+    - [Global Village](event_name) schedule
+    - [Abu Dhabi International Boat Show 2023](event_name) when
+    - when is [Abu Dhabi International Boat Show 2023](event_name)
+    - date of [Abu Dhabi International Boat Show 2023](event_name)
+    - date of [Global Village](event_name)
+    - [Kerala Blasters vs Al Wasl FC](event_name) date?
+    - date of [Kerala Blasters vs Al Wasl FC](event_name)
+    - [Abu Dhabi International Boat Show 2023](event_name) date?
+    - [Abu Dhabi International Boat Show 2023](event_name) schedule?
+    - When is [Abu Dhabi International Boat Show 2023](event_name) taking place?
+    - Tell me the date for [Abu Dhabi International Boat Show 2023](event_name)
+    - What's the date of [Abu Dhabi International Boat Show 2023](event_name)?
+    - What's the schedule of [Global Village](event_name)?
+    - Can you tell me when [Global Village](event_name) is happening?
+    - When can I attend [Global Village](event_name)?
+    - [Global Village](event_name) date details?
+    - Event date for [Global Village](event_name)?
+    - [Global Village](event_name) schedule details?
+    - when is [global village]{"entity": "event_name", "value": "Global Village"}
+    - when is [global village]{"entity": "event_name", "value": "Global Village"} happening?
+    - when is [Kerala Blasters vs Al Wasl FC](event_name) happening
+    - when is [techspo dubai 2023]{"entity": "event_name", "value": "TECHSPO Dubai 2023"}
+    - when is [techspo](event_name) [dubai](event_city)
+    - when is [Kerala Blasters vs Al Wasl FC](event_name)
+    - when is [The Forex Expo Dubai](event_name)
+    - when is [the forex](event_name) happening
+    - when is [forex expo](event_name)
+    - when is [the forex](event_name)?
+    - when is the [kerala blasters](event_name) happening
+    - when is [Disney On Ice](event_name)
+- intent: ask_more_info
+  examples: |
+    - can you give me more information about [Global Village](event_name)
+    - more info about [Global Village](event_name)
+    - where can i get more info about [Global Village](event_name)
+    - more information [Global Village](event_name)
+    - [Global Village](event_name) more info
+    - more info about [Kerala Blasters vs Al Wasl FC](event_name)
+    - can you tell me more about [International Trade And Services Expo](event_name)?
+    - I'd like to learn more about [International Trade And Services Expo](event_name).
+    - What can you tell me about [International Trade And Services Expo](event_name)?
+    - How can I get more details about [International Trade And Services Expo](event_name)?
+    - Give me additional information on [International Trade And Services Expo](event_name).
+    - Tell me more about [Kerala Blasters vs Al Wasl FC](event_name).
+    - I'm interested in knowing more about [Kerala Blasters vs Al Wasl FC](event_name).
+    - Please provide more information about [Kerala Blasters vs Al Wasl FC](event_name).
+    - Can you elaborate on [Kerala Blasters vs Al Wasl FC](event_name)?
+    - [Kerala Blasters vs Al Wasl FC](event_name) - I need more details.
+    - can you give me more information about [global village]{"entity": "event_name", "value": "Global Village"}
+    - where can i find more information about [techspo](event_name) [dubai](event_city)
+    - where is [International Trade And Services Expo](event_name)
+    - how to get more information about [forex expo](event_name)
+    - where can I find more info about [Disney On Ice](event_name)
+- intent: ask_contact_info
+  examples: |
+    - how can I contact [Global Village](event_name)
+    - contact information of [Global Village](event_name) team
+    - I want to contact [The Forex Expo Dubai](event_name)
+    - how do I get in touch with [TECHSPO Dubai 2023](event_name)?
+    - what's the contact information for [TECHSPO Dubai 2023](event_name)?
+    - can you provide me with contact details for [TECHSPO Dubai 2023](event_name)?
+    - I need to contact the organizers of [TECHSPO Dubai 2023](event_name).
+    - how can I reach out to [The Forex Expo Dubai](event_name)?
+    - I'm looking for contact information for [The Forex Expo Dubai](event_name).
+    - Please give me the contact details for [Global Village](event_name).
+    - How can I contact the team behind [Global Village](event_name)?
+    - I want to get in touch with the organizers of [Kerala Blasters vs Al Wasl FC](event_name).
+    - Can you provide me with contact information for [Kerala Blasters vs Al Wasl FC](event_name)?
+    - how can i contact [global village]{"entity": "event_name", "value": "Global Village"}
+    - how can i contact [global village]{"entity": "event_name", "value": "Global Village"}?
+    - how can I contact [TECHSPO Dubai 2023](event_name)
+    - how can i contact [techspo](event_name) [dubai](event_city)
+    - how can i contact the [kerala blasters](event_name)
+
+
+- intent: event_inform
+  examples: |
+    - list me (sports)(event_category) events happening in [dubai](event_city)
+    - List me [concerts](event_category) happening in [Dubai](event_city).
+    - Can you provide more information about [Kerala Blasters vs Al Wasl FC](event_name) in [Abu Dhabi](event_city)?
+    - How can I contact the organizers of [TECHSPO Dubai 2023](event_name) in [Dubai](event_city)?
+    - Tell me about [food](event_category) festivals in [Sharjah](event_city).
+    - List all [theatre](event_category) events near [Ras Al Khaimah](event_city).
+    - Where is [Disney On Ice: 100 Years of Wonder Abu Dhabi 2023](event_name) happening, and when?
+    - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
+    - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
+
+- intent: ask_list_all
+  examples: |
+    - list me all [food](event_category) events
+    - list me all [sports](event_category) events
+    - show me [concert](event_category) events
+    - list [museums](event_category) events near me
+    - what are the [cinema](event_category) events this weekend?
+    - find [experiences](event_category) in my area
+    - I'm interested in [theatre](event_category) events.
+    - show [camping](event_category) events happening soon
+    - list [food](event_category) festivals in my city
+    - tell me about upcoming [sports](event_category) events
+    - what [food](event_category) events are there this month?
+    - list [museums](event_category) exhibitions
+    - list me [sports](event_category) events
+    - list me events happening in [dubai](event_city)
+    - events happening in [dubai](event_city)
+    - [dubai](event_city) events
+    - [sharj ah](events_city)
+    - events in [sharjah](events_city)
+    - list events in [abu dhabi](event_city)
+    - show me events in [Ras Al Khaimah](event_city)
+    - list events happening in [Fujairah](event_city)
+    - what's going on in [Ajman](event_city)?
+    - tell me about events in [umm al quwain](event_city)
+    - events in [Al Ain](event_city)
+    - I'd like to see events in [sharjah](event_city).
+    - find events in [Abu Dhabi](event_city)
+    - list me events taking place in [Dubai](event_city).
+    - show events in [ras al khaimah](event_city)
+    - what's happening in [fujairah](event_city)?
+    - list events happening in [sharjah](events_city)
+    - list me [sports](event_category) events happening in [fujairah](event_city)
+    - [sports](event_category) events happening in [fujairah](event_city)
+    - [museums](event_category) in [dubai](event_city)
+    - list events happening in [sharjah](events_city) related to [theatre](event_category)
+    - [theatre](event_category) in [sharjah](events_city)
+
+- intent: ask_html
+  examples: |
+    - show me the html tag
+    - give me the html taf
+    - html give me
+    - html tag
+    - give me html
+
+- synonym: Global Village
+  examples: |
+    - global village
+- synonym: 'Disney On Ice : 100 Year of Wonder Abu Dhabi 2023'
+  examples: |
+    - Disney On Ice: 100 Years of Wonder Abu Dhabi 2023
+- synonym: TECHSPO Dubai 2023
+  examples: |
+    - techspo dubai 2023

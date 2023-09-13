@@ -1,0 +1,486 @@
+version: "3.1"
+
+stories:
+
+- story: Get event location by name
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_eventlocation_by_name
+    - action: action_get_event_location
+
+- story: Get event date by name
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_eventdate_by_name
+    - action: action_get_event_date
+
+
+- story: interactive_story_1  # Give this story a unique name
+  steps:
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+
+- story: interactive_story_2  # Give this story a unique name
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+
+
+- story: Get both
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_eventdate_by_name
+    - slot_was_set:
+        - event_name: "Global Village"
+    - action: action_get_event_date
+    - intent: ask_eventlocation_by_name
+    - action: action_get_event_location
+      
+
+
+
+
+
+
+
+# - story: interactive_story_2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: buy_fancy_pizza
+#   - action: fancy_pizza_form
+#   - active_loop: fancy_pizza_form
+#   - slot_was_set:
+#     - requested_slot: vegetarian
+#   - slot_was_set:
+#     - vegetarian: true
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - slot_was_set:
+#     - pizza_size: large
+#   - slot_was_set:
+#     - requested_slot: pizza_type
+#   - slot_was_set:
+#     - pizza_type: pepperoni
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_submit
+#   - action: utter_pizza_slots
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: interactive_story_3
+#   steps:
+#   - intent: inform
+#     entities:
+#     - pizza_type: mozerella
+#   - slot_was_set:
+#     - pizza_type: mozerella
+#   - action: simple_pizza_form
+#   - active_loop: simple_pizza_form
+#   - slot_was_set:
+#     - pizza_type: null
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - intent: inform
+#     entities:
+#     - pizza_size: large
+#   - action: simple_pizza_form
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - intent: inform
+#     entities:
+#     - pizza_size: large
+
+- story: interactive_story_10
+  steps:
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+
+
+- story: interactive_story_12
+  steps:
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_date
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_date
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Global Village
+  - action: action_get_event_location
+
+
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Ice
+    - event_name: 100 Years
+    - event_name: Abu Dhabi 2023
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: 'Disney On Ice : 100 Year of Wonder Abu Dhabi 2023'
+  - action: action_get_event_location
+
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: Global Village
+  - slot_was_set:
+    - event_name: Global Village
+  - action: action_get_event_date
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - slot_was_set:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - action: action_get_event_date
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_contact_info
+    entities:
+    - event_name: Global Village
+  - slot_was_set:
+    - event_name: Global Village
+  - action: action_get_event_contact_info
+  - slot_was_set:
+    - event_email: info@globalvillage.ae
+  - slot_was_set:
+    - event_phonenumber: +971 4 362 4114
+  - intent: ask_more_info
+    entities:
+    - event_name: Global Village
+  - slot_was_set:
+    - event_name: Global Village
+  - action: action_get_event_link
+  - slot_was_set:
+    - event_link: https://www.globalvillage.ae/en/
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_more_info
+    entities:
+    - event_name: Global Village
+  - slot_was_set:
+    - event_name: Global Village
+  - action: action_get_event_link
+  - slot_was_set:
+    - event_link: https://www.globalvillage.ae/en/
+  - intent: ask_contact_info
+    entities:
+    - event_name: Global Village
+  - slot_was_set:
+    - event_name: Global Village
+  - action: action_get_event_contact_info
+  - slot_was_set:
+    - event_email: info@globalvillage.ae
+  - slot_was_set:
+    - event_phonenumber: +971 4 362 4114
+  - intent: ask_list_events_city
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: action_default_fallback
+  - intent: ask_contact_info
+    entities:
+    - event_name: TECHSPO Dubai 2023
+  - slot_was_set:
+    - event_name: TECHSPO Dubai 2023
+  - action: action_get_event_contact_info
+  - slot_was_set:
+    - event_email: aaron@techspo.co
+  - slot_was_set:
+    - event_phonenumber: null
+  - intent: stop
+
+- story: interactive_story_1
+  steps:
+  - intent: nlu_fallback
+    entities:
+    - event_name: TECHSPO Dubai 2023
+  - slot_was_set:
+    - event_name: TECHSPO Dubai 2023
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: TECHSPO Dubai 2023
+  - action: action_get_event_date
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: techspo
+    - event_city: dubai
+  - slot_was_set:
+    - event_name: techspo
+  - slot_was_set:
+    - event_city: dubai
+  - action: action_get_event_date
+  - intent: ask_contact_info
+    entities:
+    - event_name: techspo
+    - event_city: dubai
+  - slot_was_set:
+    - event_name: techspo
+  - slot_was_set:
+    - event_city: dubai
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: techspo
+    - event_city: dubai
+  - action: action_get_event_location
+  - intent: ask_contact_info
+    entities:
+    - event_name: techspo
+    - event_city: dubai
+  - slot_was_set:
+    - event_name: techspo
+  - slot_was_set:
+    - event_city: dubai
+  - action: action_get_event_contact_info
+  - slot_was_set:
+    - event_email: aaron@techspo.co
+  - slot_was_set:
+    - event_phonenumber: null
+  - intent: ask_more_info
+    entities:
+    - event_name: techspo
+    - event_city: dubai
+  - slot_was_set:
+    - event_name: techspo
+  - slot_was_set:
+    - event_city: dubai
+  - action: action_get_event_link
+  - slot_was_set:
+    - event_link: https://techspodubai.ae/
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - slot_was_set:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - slot_was_set:
+    - event_name: Kerala Blasters vs Al Wasl FC
+  - action: action_get_event_date
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_list_events_city
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: action_list_all_events
+  - intent: ask_list_events_city
+    entities:
+    - events_city: sharjah
+  - action: action_list_all_events
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_more_info
+    entities:
+    - event_name: International Trade And Services Expo
+  - slot_was_set:
+    - event_name: International Trade And Services Expo
+  - action: action_get_event_link
+  - slot_was_set:
+    - event_link: https://www.ctw.global/
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: Noah
+  - slot_was_set:
+    - event_name: Noah
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: The Forex Expo Dubai
+  - slot_was_set:
+    - event_name: The Forex Expo Dubai
+  - action: action_get_event_date
+  - intent: ask_more_info
+    entities:
+    - event_name: International Trade And Services Expo
+  - slot_was_set:
+    - event_name: International Trade And Services Expo
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: International Trade And Services Expo
+  - action: action_get_event_location
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - intent: ask_eventlocation_by_name
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: the forex
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: the forex
+  - action: action_get_event_date
+  - intent: ask_eventdate_by_name
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: forex expo
+  - action: action_get_event_date
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: the forex
+  - slot_was_set:
+    - event_name: the forex
+  - action: action_get_event_date
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: forex expo
+  - slot_was_set:
+    - event_name: forex expo
+  - action: action_get_event_date
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: the forex
+  - slot_was_set:
+    - event_name: the forex
+  - action: action_get_event_location
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: the forex
+  - slot_was_set:
+    - event_name: the forex
+  - action: action_get_event_location
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: kerala blasters
+  - slot_was_set:
+    - event_name: kerala blasters
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+    entities:
+    - event_name: kerala blasters
+  - slot_was_set:
+    - event_name: kerala blasters
+  - action: action_get_event_date
+  - intent: ask_contact_info
+    entities:
+    - event_name: kerala blasters
+  - slot_was_set:
+    - event_name: kerala blasters
+  - action: action_get_event_contact_info
+  - slot_was_set:
+    - event_email: halablastersae@gmail.com
+  - slot_was_set:
+    - event_phonenumber: '00971548889848'
+  - intent: ask_more_info
+    entities:
+    - event_name: forex expo
+  - slot_was_set:
+    - event_name: forex expo
+  - action: action_get_event_link
+  - slot_was_set:
+    - event_link: https://theforexexpo.com/dubai2023/
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_eventlocation_by_name
+    entities:
+    - event_name: forex expo
+  - slot_was_set:
+    - event_name: forex expo
+  - action: action_get_event_location
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_eventlocation_by_name
+#     entities:
+#     - event_name: Disney On Ice
+#     - event_name: 100 Years of Wonder Abu Dhabi 2023
+#   - slot_was_set:
+#     - event_name: 100 Years of Wonder Abu Dhabi 2023
+#   - action: action_get_event_location
+#   - intent: ask_eventlocation_by_name
+#     entities:
+#     - event_name: Disney On Ice
+#   - slot_was_set:
+#     - event_name: Disney On Ice
+#   - action: action_get_event_location
+#   - intent: ask_eventdate_by_name
+#     entities:
+#     - event_name: Disney On Ice
+#   - slot_was_set:
+#     - event_name: Disney On Ice
+#   - action: action_get_event_date
+#   - intent: ask_more_info
+#     entities:
+#     - event_name: Disney On Ice
+#   - slot_was_set:
+#     - event_name: Disney On Ice
+#   - action: action_get_event_link
+#   - slot_was_set:
+#     - event_link: https://bit.ly/3DE4V36
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_list_all
+    entities:
+    - event_category: sports
+  - action: action_list_all_events
+  - intent: ask_list_all
+    entities:
+    - event_category: sports
+  - action: action_list_all_events
+
+- story: give_coursel
+  steps:
+  - intent: ask_list_all
+  - action: action_list_all_events
+
+- story: give_list
+  steps:
+  - intent: ask_list_all
+  - action: action_list_all_events
+
+- story: test_story_forhtml
+  steps:
+  - intent: ask_html
+  - action: action_send_html_response
