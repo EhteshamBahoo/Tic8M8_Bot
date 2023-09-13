@@ -257,9 +257,6 @@ stories:
   - slot_was_set:
     - event_city: dubai
   - intent: ask_eventlocation_by_name
-    entities:
-    - event_name: techspo
-    - event_city: dubai
   - action: action_get_event_location
   - intent: ask_contact_info
     entities:
@@ -281,10 +278,8 @@ stories:
   - slot_was_set:
     - event_name: techspo
   - slot_was_set:
-    - event_city: dubai
+    - event_city: sharjah
   - action: action_get_event_link
-  - slot_was_set:
-    - event_link: https://techspodubai.ae/
   - intent: ask_eventlocation_by_name
     entities:
     - event_name: Kerala Blasters vs Al Wasl FC
@@ -301,10 +296,6 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: ask_list_events_city
-    entities:
-    - event_city: dubai
-  - slot_was_set:
-    - event_city: dubai
   - action: action_list_all_events
   - intent: ask_list_events_city
     entities:
@@ -465,22 +456,58 @@ stories:
     entities:
     - event_category: sports
   - action: action_list_all_events
+  - action: action_clear_event_filters
   - intent: ask_list_all
     entities:
     - event_category: sports
   - action: action_list_all_events
+  - action: action_clear_event_filters
 
 - story: give_coursel
   steps:
   - intent: ask_list_all
   - action: action_list_all_events
+  - action: action_clear_event_filters
 
 - story: give_list
   steps:
   - intent: ask_list_all
   - action: action_list_all_events
+  - action: action_clear_event_filters
 
-- story: test_story_forhtml
+
+- story: interactive_story_1
   steps:
-  - intent: ask_html
-  - action: action_send_html_response
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: action_list_all_events
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - event_artists: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+    - event_city: Abu Dhabi
+  - slot_was_set:
+    - event_city: Abu Dhabi
+  - slot_was_set:
+    - event_category: sport
+  - action: action_list_all_events
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - event_artists: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null

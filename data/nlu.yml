@@ -178,8 +178,6 @@ nlu:
     - how can I contact [TECHSPO Dubai 2023](event_name)
     - how can i contact [techspo](event_name) [dubai](event_city)
     - how can i contact the [kerala blasters](event_name)
-
-
 - intent: event_inform
   examples: |
     - list me (sports)(event_category) events happening in [dubai](event_city)
@@ -191,7 +189,6 @@ nlu:
     - Where is [Disney On Ice: 100 Years of Wonder Abu Dhabi 2023](event_name) happening, and when?
     - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
     - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
-
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -229,7 +226,8 @@ nlu:
     - [museums](event_category) in [dubai](event_city)
     - list events happening in [sharjah](events_city) related to [theatre](event_category)
     - [theatre](event_category) in [sharjah](events_city)
-
+    - list me [sport](event_category) events
+    - list me [sport](event_category) events in [abu dhabi]{"entity": "event_city", "value": "Abu Dhabi"}
 - intent: ask_html
   examples: |
     - show me the html tag
@@ -237,7 +235,6 @@ nlu:
     - html give me
     - html tag
     - give me html
-
 - synonym: Global Village
   examples: |
     - global village

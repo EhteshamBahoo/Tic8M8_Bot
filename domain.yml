@@ -4,6 +4,7 @@ intents:
 - ask_contact_info
 - ask_eventdate_by_name
 - ask_eventlocation_by_name
+- ask_list_all
 - ask_list_events_category
 - ask_list_events_city
 - ask_more_info
@@ -13,9 +14,9 @@ intents:
 - inform
 - stop
 entities:
+- event_city
 - event_category
 - event_name
-- event_city
 - events_city
 - event_location
 - event_date
@@ -65,10 +66,15 @@ slots:
     mappings:
     - type: from_entity
       entity: event_location
+  event_category:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_category
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?
-  - text: Hi! Ready to have a fantastic chat with me?
   - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book a venue📖 for yourself ping me. 🌟
   utter_did_that_help:
   - text: Did I answer your question? 😊
@@ -103,31 +109,15 @@ responses:
   - text: Love {event_category} events? So do we! Check out what's coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
   utter_give_list_all:
-  - buttons: 
+  - buttons:
     - payload: ask_more_info
       title: ask_more_info
     - payload: ask_contact_info
-      title: ask_contact_info        
+      title: ask_contact_info
     text: Here is the list based on your criteria
-  
-  # - custom:
-  #     payload:
-  #       elements:
-  #       - title: Event Title 1
-  #         subtitle: Event Category 1
-  #         image_url: https://example.com/image1.jpg
-  #         buttons:
-  #         - title: Event Date 1
-  #           payload: "/inform{'event_name': 'Event Title 1'}"
-  #       - title: Event Title 2
-  #         subtitle: Event Category 2
-  #         image_url: https://example.com/image2.jpg
-  #         buttons:
-  #         - title: Event Date 2
-  #           payload: "/inform{'event_name': 'Event Title 2'}"
-  #     text: 'Here are some upcoming events:'
 actions:
 - action_list_all_events
+- action_clear_event_filters
 - utter_give_list_all
 - action_get_event_link
 - action_get_event_location

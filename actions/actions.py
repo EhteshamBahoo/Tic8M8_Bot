@@ -36,6 +36,19 @@ class YourCustomAction(Action):
         return []
 ### -end
 
+###  empty all slots action
+class ActionClearEventFilters(Action):
+    def name(self) -> Text:
+        return "action_clear_event_filters"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        slots_to_reset = ["event_city", "event_artists", "event_date", "event_category"]
+
+        slot_resets = [SlotSet(slot, None) for slot in slots_to_reset]
+        
+        return slot_resets
+
+###empty all slot action end
 
 
 ### -- Coursel Code begin
