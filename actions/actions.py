@@ -71,7 +71,6 @@ class ActionListAllEvents(Action):
 
         event_api = EventAPI()
         events = event_api.get_events(params)
-
         if events:
             event_list = []
             for event in events:
@@ -80,15 +79,86 @@ class ActionListAllEvents(Action):
                 image_name = event.get("image_name", "N/A")
                 externallink = event.get("externallink", "N/A")
 
-                event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
-                event_list.append(event_info)
+                # event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
+                # event_list.append(event_info)s
+                message = {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": event_name,
+                                "subtitle": event_location,
+                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                                "buttons": [ 
+                                    {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                    },
+                                    {
+                                    "title": "More Info",
+                                    "payload": f"More Information of {event_name}",
+                                    "type": "postback"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": event_name,
+                                "subtitle": event_location,
+                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                                "buttons": [ 
+                                    {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                    }
+                                ]
+                            }
+                        ]
+                        }
+                }
+                dispatcher.utter_message(attachment=message)
 
-            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
-            dispatcher.utter_message(response_message)
-        else:
-            dispatcher.utter_message("I couldn't find any events matching your criteria.")
 
-        return []
+
+# class ActionListAllEvents(Action):
+#     def name(self) -> Text:
+#         return "action_list_all_events"
+
+#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         event_city = tracker.get_slot("event_city")
+#         event_artists = tracker.get_slot("event_artists")
+#         event_date = tracker.get_slot("event_date")
+#         event_category = tracker.get_slot("event_category")
+
+#         params = {
+#             "city": event_city or "",  
+#             "artists": event_artists or "",
+#             "startdate": event_date or "",
+#             "category": event_category or ""
+#         }
+
+#         event_api = EventAPI()
+#         events = event_api.get_events(params)
+
+#         if events:
+#             event_list = []
+#             for event in events:
+#                 event_name = event.get("event_name", "N/A")
+#                 event_location = event.get("street", "N/A")
+#                 image_name = event.get("image_name", "N/A")
+#                 externallink = event.get("externallink", "N/A")
+
+#                 event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
+#                 event_list.append(event_info)
+
+#             response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
+#             dispatcher.utter_message(response_message)
+#         else:
+#             dispatcher.utter_message("I couldn't find any events matching your criteria.")
+
+#         return []
 
 
 # class ActionListCoursel(Action):

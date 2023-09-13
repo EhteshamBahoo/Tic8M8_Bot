@@ -72,6 +72,12 @@ slots:
     mappings:
     - type: from_entity
       entity: event_category
+  event_artists:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: event_artists
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?

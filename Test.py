@@ -22,100 +22,158 @@ class EventAPI:
         else:
             return []
 
-
-class ListEventsAction(Action):
+class ActionListAllEvents(Action):
     def name(self) -> Text:
-        return "action_list_events"
+        return "action_list_all_events"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        event_api = EventAPI()
-        
         event_city = tracker.get_slot("event_city")
+        event_artists = tracker.get_slot("event_artists")
+        event_date = tracker.get_slot("event_date")
         event_category = tracker.get_slot("event_category")
-        ImageURL = "https://tic8m8.com/uploads/events/"
 
-        if event_city and event_category:
-            params = {"city": event_city, "category": event_category}
-            events = event_api.get_events(params)
-            if events:
-                carousel_elements = []
+        params = {
+            "city": event_city or "",  
+            "artists": event_artists or "",
+            "startdate": event_date or "",
+            "category": event_category or ""
+        }
 
-                for event in events:
-                    event_name = event.get('name', 'Event Name N/A')
-                    event_city = f"{event_name} in {event_city}"
-                    image_url = event.get(f'{ImageURL}image_name', '')
+        event_api = EventAPI()
+        events = event_api.get_events(params)
 
-                    carousel_elements.append({
-                        "title": event_name,
-                        "subtitle": event_city,
-                        "image_url": image_url,
-                        "buttons": [
-                            {
-                                "title": "More Details",
-                                "url": event.get('url', ''),
-                                "type": "web_url"
-                            }
-                        ]
-                    })
+        if events:
+            event_list = []
+            for event in events:
+                event_name = event.get("event_name", "N/A")
+                event_location = event.get("street", "N/A")
+                image_name = event.get("image_name", "N/A")
+                externallink = event.get("externallink", "N/A")
 
-                message = {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": carousel_elements
-                    }
-                }
+                event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
+                event_list.append(event_info)
 
-                dispatcher.utter_message(attachment=message)
-            else:
-                dispatcher.utter_message(f"No events found in {event_city} in the {event_category} category.")
+            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
+            dispatcher.utter_message(response_message)
         else:
-            dispatcher.utter_message("Please specify both a city and a category.")
+            dispatcher.utter_message("I couldn't find any events matching your criteria.")
 
         return []
 
 
 
-# class ActionListCoursel(Action):
-#     def name(self) -> Text:
-#         return "action_carousels"
+#####################
+
+
+class ActionListCoursel(Action):
+    def name(self) -> Text:
+        return "action_carousels"
     
-#     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         message = {
-#             "type": "template",
-#             "payload": {
-#                 "template_type": "generic",
-#                 "elements": [
-#                     {
-#                         "title": "Global Village",
-#                         "subtitle": "AED 25",
-#                         "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqhmyBRCngkU_OKSL6gBQxCSH-cufgmZwb2w&usqp=CAU",
-#                         "buttons": [ 
-#                             {
-#                             "title": "Contact Information",
-#                             "payload": "Contact Information",
-#                             "type": "postback"
-#                             },
-#                             {
-#                             "title": "More Info",
-#                             "payload": "More Info",
-#                             "type": "postback"
-#                             }
-#                         ]
-#                     },
-#                     {
-#                         "title": "The Forex Expo Dubai",
-#                         "subtitle": "free",
-#                         "image_url": "https://tic8m8.com/uploads/events/64bdd270c1514354124634.png",
-#                         "buttons": [ 
-#                             {
-#                             "title": "More Details",
-#                             "url": "https://tic8m8.com/en/event/the-forex-expo-dubai",
-#                             "type": "web_url"
-#                             }
-#                         ]
-#                     }
-#                 ]
-#                 }
-#         }
-#         dispatcher.utter_message(attachment=message)
+    def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        message = {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Global Village",
+                        "subtitle": "AED 25",
+                        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqhmyBRCngkU_OKSL6gBQxCSH-cufgmZwb2w&usqp=CAU",
+                        "buttons": [ 
+                            {
+                            "title": "Contact Information",
+                            "payload": "Contact Information",
+                            "type": "postback"
+                            },
+                            {
+                            "title": "More Info",
+                            "payload": "More Info",
+                            "type": "postback"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "The Forex Expo Dubai",
+                        "subtitle": "free",
+                        "image_url": "https://tic8m8.com/uploads/events/64bdd270c1514354124634.png",
+                        "buttons": [ 
+                            {
+                            "title": "More Details",
+                            "url": "https://tic8m8.com/en/event/the-forex-expo-dubai",
+                            "type": "web_url"
+                            }
+                        ]
+                    }
+                ]
+                }
+        }
+        dispatcher.utter_message(attachment=message)
+
+
+class ActionListAllEvents(Action):
+    def name(self) -> Text:
+        return "action_list_all_events"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        event_city = tracker.get_slot("event_city")
+        event_artists = tracker.get_slot("event_artists")
+        event_date = tracker.get_slot("event_date")
+        event_category = tracker.get_slot("event_category")
+
+        params = {
+            "city": event_city or "",  
+            "artists": event_artists or "",
+            "startdate": event_date or "",
+            "category": event_category or ""
+        }
+
+        event_api = EventAPI()
+        events = event_api.get_events(params)
+        if events:
+            event_list = []
+            for event in events:
+                event_name = event.get("event_name", "N/A")
+                event_location = event.get("street", "N/A")
+                image_name = event.get("image_name", "N/A")
+                externallink = event.get("externallink", "N/A")
+
+                # event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
+                # event_list.append(event_info)
+                message = {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": event_name,
+                                "subtitle": event_location,
+                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                                "buttons": [ 
+                                    {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                    },
+                                    {
+                                    "title": "More Info",
+                                    "payload": f"More Information of {event_name}",
+                                    "type": "postback"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "The Forex Expo Dubai",
+                                "subtitle": "free",
+                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                                "buttons": [ 
+                                    {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                    }
+                                ]
+                            }
+                        ]
+                        }
+                }
+                dispatcher.utter_message(attachment=message)
