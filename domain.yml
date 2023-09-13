@@ -15,6 +15,7 @@ intents:
 - stop
 entities:
 - event_city
+- event_artists
 - event_category
 - event_name
 - events_city
