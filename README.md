@@ -11,13 +11,17 @@ using botfront webchat cdn
 
 
 ## Bot Functionality
-Even information
-List events 
-Event Forms
+Event information
+List events based on:
+    1. event category
+    2. event city
+
+Event Forms: not applicable
 
 
 ## Actions.py
 contains backend functionality
+for list events and event information
 
 ## NLP pipeline
 Default for now

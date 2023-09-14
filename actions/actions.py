@@ -36,6 +36,32 @@ class MyCustomAction(Action):
         return []
 ### -end
 
+### DATE PICKER CODE
+
+class ActionAskDate(Action):
+    def name(self) -> Text:
+        return "action_ask_date"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message("Please select a date using the date picker.")
+        return []
+
+class ActionProcessDate(Action):
+    def name(self) -> Text:
+        return "action_process_date"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        selected_date = tracker.latest_message.get('text')
+        dispatcher.utter_message(f"You have selected the date: {selected_date}")
+        return []
+
+###
+
+
 ###  empty all slots action
 class ActionClearEventFilters(Action):
     def name(self) -> Text:

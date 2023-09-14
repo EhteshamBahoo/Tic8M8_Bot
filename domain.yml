@@ -9,10 +9,12 @@ intents:
 - ask_list_events_city
 - ask_more_info
 - bot_challenge
+- ask_date
 - deny
 - greet
 - inform
 - stop
+- ask_create_an_account
 entities:
 - event_city
 - event_artists
@@ -115,15 +117,12 @@ responses:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
   - text: Love {event_category} events? So do we! Check out what's coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
-  utter_give_list_all:
-  - buttons:
-    - payload: ask_more_info
-      title: ask_more_info
-    - payload: ask_contact_info
-      title: ask_contact_info
-    text: Here is the list based on your criteria
+  utter_sign_UP:
+  - text: [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_ask_date
 - action_list_all_events
+- action_process_date
 - action_clear_event_filters
 - utter_give_list_all
 - action_get_event_link

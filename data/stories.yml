@@ -476,7 +476,7 @@ stories:
   - action: action_clear_event_filters
 
 
-- story: interactive_story_1
+- story: longstory_1
   steps:
   - intent: ask_list_all
     entities:
@@ -511,4 +511,44 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
+  - intent: ask_contact_info
+  - action: action_get_event_contact_info
+  - action: action_clear_event_filters
 
+- story: longstory_2
+  steps:
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+    - event_city: Abu Dhabi
+  - slot_was_set:
+    - event_city: Abu Dhabi
+  - slot_was_set:
+    - event_category: sport
+  - action: action_list_all_events
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - event_artists: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - intent: ask_contact_info
+  - action: action_get_event_contact_info
+  - action: action_clear_event_filters
+
+
+
+- story: User requests date selection
+  steps:
+  - intent: ask_date
+  - action: action_ask_date
+  - action: action_process_date
+
+
+  - story: Sign up
+  steps:
+  - intent: ask_create_an_account
+  - action: utter_sign_UP

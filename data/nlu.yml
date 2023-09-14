@@ -244,3 +244,19 @@ nlu:
 - synonym: TECHSPO Dubai 2023
   examples: |
     - techspo dubai 2023
+
+- intent: ask_date
+  examples: |
+    - I want to choose a date
+    - Please show me the date picker
+    - How do I select a date?
+
+- intent: ask_create_an_account
+  examples: |
+    - Where do I create an account
+    - account
+    - account create
+    - sign up account
+    - sign up
+    - how do i sign up
+    - create account
