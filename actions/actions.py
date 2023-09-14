@@ -24,7 +24,7 @@ class EventAPI:
 
 ### -remove this or comment
 
-class YourCustomAction(Action):
+class MyCustomAction(Action):
     def name(self):
         return "action_send_html_response"
 
@@ -70,56 +70,57 @@ class ActionListAllEvents(Action):
         }
 
         event_api = EventAPI()
-        events = event_api.get_events(params)
+        events = event_api.get_events(params)   
+
         if events:
             event_list = []
+            coursel_elements = []
+
             for event in events:
                 event_name = event.get("event_name", "N/A")
                 event_location = event.get("street", "N/A")
                 image_name = event.get("image_name", "N/A")
                 externallink = event.get("externallink", "N/A")
 
-                # event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
-                # event_list.append(event_info)s
-                message = {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [
-                            {
-                                "title": event_name,
-                                "subtitle": event_location,
-                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                coursel_element = {
+                            "title": event_name,
+                            "subtitle": event_location, 
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
                                 "buttons": [ 
                                     {
                                     "title": "Contact Information",
-                                    "payload": f"Contact Information for {event_name}",
+                                    "payload": f"Contact Information for {event_name}", 
                                     "type": "postback"
                                     },
                                     {
                                     "title": "More Info",
-                                    "payload": f"More Information of {event_name}",
+                                    "payload": f"More Information of {event_name}", 
                                     "type": "postback"
-                                    }
-                                ]
-                            },
-                            {
-                                "title": event_name,
-                                "subtitle": event_location,
-                                "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
-                                "buttons": [ 
+                                    },
                                     {
                                     "title": "More Details",
-                                    "url": externallink,
-                                    "type": "web_url"
+                                    "url": externallink, 
+                                    "type": "web_url" 
                                     }
                                 ]
-                            }
-                        ]
-                        }
                 }
-                dispatcher.utter_message(attachment=message)
+                coursel_elements.append(coursel_element) # putting a single element into a collection of elements
 
+            response_message = "Here is the list of events \n\n" + "\n".join(event_list)
+                
+            coursel_message = {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": coursel_elements
+                        }  
+                } 
+            dispatcher.utter_message(response_message)
+            dispatcher.utter_message(attachment=coursel_message)
+        else:
+                dispatcher.utter_message("There arent any events based on your criteria why dont you check our events page we have a whole catalog of events there! 😀") 
+
+        return []
 
 
 # class ActionListAllEvents(Action):
