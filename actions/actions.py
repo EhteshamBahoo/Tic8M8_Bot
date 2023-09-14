@@ -22,6 +22,9 @@ class EventAPI:
         else:
             return []
 
+    def get_login(self, params: Dict[Text, Any]) -> List[Dict[Text, Any]]:   
+        return  self.base_url 
+
 ### -remove this or comment
 
 class MyCustomAction(Action):
@@ -76,6 +79,10 @@ class ActionClearEventFilters(Action):
 
 ###empty all slot action end
 
+
+'''
+Logic for sign up page if php passed the certain id then dont send
+'''
 
 ### -- Coursel Code begin
 class ActionListAllEvents(Action):

@@ -118,7 +118,7 @@ responses:
   - text: Love {event_category} events? So do we! Check out what's coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
   utter_sign_UP:
-  - text: [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
+  - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
 - action_ask_date
 - action_list_all_events

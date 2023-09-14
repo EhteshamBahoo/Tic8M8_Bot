@@ -548,7 +548,7 @@ stories:
   - action: action_process_date
 
 
-  - story: Sign up
+- story: Sign up
   steps:
   - intent: ask_create_an_account
   - action: utter_sign_UP
