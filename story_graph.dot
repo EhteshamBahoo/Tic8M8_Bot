@@ -2,9 +2,9 @@ digraph  {
 0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
 "-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
 1 [class=active, fontsize=12, label=action_session_start];
-2 [class=active, fontsize=12, label=action_ask_date];
+2 [class=active, fontsize=12, label=action_list_events_by_maxprice];
 3 [class="intent dashed active", label="  ?  ", shape=rect];
-4 [class="intent active", fillcolor=lightblue, label="/ask_date", shape=rect, style=filled];
+4 [class="intent active", fillcolor=lightblue, label="/get_events_by_maxprice", shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
 0 -> 1  [class=active, key=NONE, label=""];
 1 -> 4  [class=active, key=0];

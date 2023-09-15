@@ -2,20 +2,22 @@ version: '3.1'
 intents:
 - affirm
 - ask_contact_info
+- ask_create_an_account
+- ask_date
 - ask_eventdate_by_name
 - ask_eventlocation_by_name
 - ask_list_all
 - ask_list_events_category
 - ask_list_events_city
 - ask_more_info
-- bot_challenge 
-- ask_date
+- bot_challenge
 - deny
+- get_events_by_maxprice
 - greet
 - inform
 - stop
-- ask_create_an_account 
 entities:
+- max_price
 - event_city
 - event_artists
 - event_category
@@ -26,6 +28,7 @@ entities:
 - event_link
 - event_email
 - event_phonenumber
+- min_price
 slots:
   event_name:
     type: text
@@ -81,6 +84,18 @@ slots:
     mappings:
     - type: from_entity
       entity: event_artists
+  min_price:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: min_price
+  max_price:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: max_price
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?
@@ -120,9 +135,10 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_list_events_by_maxprice
 - action_list_all_events
 - action_clear_event_filters
-- utter_give_list_all
+- action_list_events_by_price
 - action_get_event_link
 - action_get_event_location
 - action_get_event_date

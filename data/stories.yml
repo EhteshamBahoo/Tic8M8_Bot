@@ -543,3 +543,31 @@ stories:
   steps:
   - intent: ask_create_an_account
   - action: utter_sign_UP
+
+# - story: Story price 1
+#   steps:
+#   - intent: get_events_by_minprice
+#   - action: action_list_events_by_price
+
+- story: Story price 1
+  steps:
+  - intent: get_events_by_maxprice
+  - action: action_list_events_by_maxprice
+
+- story: Story price 2
+  steps:
+  - intent: get_events_by_maxprice
+  - action: action_list_events_by_maxprice
+
+- story: Story price 3
+  steps:
+  - intent: get_events_by_maxprice
+  - action: action_list_events_by_maxprice
+- story: interactive_story_1
+  steps:
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '75'
+  - slot_was_set:
+    - max_price: '75'
+  - action: action_list_events_by_maxprice

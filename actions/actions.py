@@ -79,12 +79,13 @@ class ActionClearEventFilters(Action):
 
 ###empty all slot action end
 
-
 '''
 Logic for sign up page if php passed the certain id then dont send
 '''
 
-### -- Coursel Code begin
+#### combined coursel version 2
+#### List events city and category
+
 class ActionListAllEvents(Action):
     def name(self) -> Text:
         return "action_list_all_events"
@@ -155,93 +156,43 @@ class ActionListAllEvents(Action):
 
         return []
 
+# Event List with MAX Price
+class ActionListEventsByMaxPrice(Action):
+    def name(self) -> Text:
+        return "action_list_events_by_maxprice"
 
-# class ActionListAllEvents(Action):
-#     def name(self) -> Text:
-#         return "action_list_all_events"
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        max_price = tracker.get_slot("max_price")  # Extract the maximum price from the slot
 
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         event_city = tracker.get_slot("event_city")
-#         event_artists = tracker.get_slot("event_artists")
-#         event_date = tracker.get_slot("event_date")
-#         event_category = tracker.get_slot("event_category")
+        if max_price is not None:
+            event_api = EventAPI()  # Create an instance of your EventAPI class
+            params = {"maxprice": max_price}
+            events = event_api.get_events(params)
 
-#         params = {
-#             "city": event_city or "",  
-#             "artists": event_artists or "",
-#             "startdate": event_date or "",
-#             "category": event_category or ""
-#         }
+            if events:
+                event_list = []
 
-#         event_api = EventAPI()
-#         events = event_api.get_events(params)
+                for event in events:
+                    event_name = event.get("event_name", "N/A")
+                    event_location = event.get("street", "N/A")
 
-#         if events:
-#             event_list = []
-#             for event in events:
-#                 event_name = event.get("event_name", "N/A")
-#                 event_location = event.get("street", "N/A")
-#                 image_name = event.get("image_name", "N/A")
-#                 externallink = event.get("externallink", "N/A")
+                    event_info = f"Event: {event_name}, Location: {event_location}"
+                    event_list.append(event_info)
 
-#                 event_info = f"Event Name: {event_name}\nLocation: {event_location}\nImage: {image_name}\nLink: {externallink}\n"
-#                 event_list.append(event_info)
+                response_message = "Here are the events that cost less than your specified price:\n\n" + "\n".join(event_list)
+                dispatcher.utter_message(response_message)
+            else:
+                dispatcher.utter_message("No events found within the specified price range.")
+        else:
+            dispatcher.utter_message("I couldn't find a maximum price. Please provide a valid maximum price.")
 
-#             response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
-#             dispatcher.utter_message(response_message)
-#         else:
-#             dispatcher.utter_message("I couldn't find any events matching your criteria.")
-
-#         return []
-
-
-# class ActionListCoursel(Action):
-#     def name(self) -> Text:
-#         return "action_carousels"
-    
-#     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         message = {
-#             "type": "template",
-#             "payload": {
-#                 "template_type": "generic",
-#                 "elements": [
-#                     {
-#                         "title": "Global Village",
-#                         "subtitle": "AED 25",
-#                         "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqhmyBRCngkU_OKSL6gBQxCSH-cufgmZwb2w&usqp=CAU",
-#                         "buttons": [ 
-#                             {
-#                             "title": "Contact Information",
-#                             "payload": "Contact Information",
-#                             "type": "postback"
-#                             },
-#                             {
-#                             "title": "More Info",
-#                             "payload": "More Info",
-#                             "type": "postback"
-#                             }
-#                         ]
-#                     },
-#                     {
-#                         "title": "The Forex Expo Dubai",
-#                         "subtitle": "free",
-#                         "image_url": "https://tic8m8.com/uploads/events/64bdd270c1514354124634.png",
-#                         "buttons": [ 
-#                             {
-#                             "title": "More Details",
-#                             "url": "https://tic8m8.com/en/event/the-forex-expo-dubai",
-#                             "type": "web_url"
-#                             }
-#                         ]
-#                     }
-#                 ]
-#                 }
-#         }
-#         dispatcher.utter_message(attachment=message)
+        return []
 
 ### -- COursel Code end
 
-### -- debug begin
+# Get Event Information
 
 class ActionGetEventLocation(Action):
     def name(self) -> Text:
