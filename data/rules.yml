@@ -12,17 +12,6 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: give chatbot html when asked
-  steps:
-  - intent: ask_html
-  - action: action_send_html_response
-
-- rule: User requests date selection
-  steps:
-  - intent: ask_date
-  - action: action_ask_date
-  - action: action_process_date
-
 
 - rule: Sign up rule
   steps:

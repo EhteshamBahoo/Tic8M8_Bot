@@ -539,15 +539,6 @@ stories:
   - action: action_get_event_contact_info
   - action: action_clear_event_filters
 
-
-
-- story: User requests date selection
-  steps:
-  - intent: ask_date
-  - action: action_ask_date
-  - action: action_process_date
-
-
 - story: Sign up
   steps:
   - intent: ask_create_an_account

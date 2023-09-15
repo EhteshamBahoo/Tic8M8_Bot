@@ -25,44 +25,44 @@ class EventAPI:
     def get_login(self, params: Dict[Text, Any]) -> List[Dict[Text, Any]]:   
         return  self.base_url 
 
-### -remove this or comment
+# ### -remove this or comment
 
-class MyCustomAction(Action):
-    def name(self):
-        return "action_send_html_response"
+# class MyCustomAction(Action):
+#     def name(self):
+#         return "action_send_html_response"
 
-    def run(self, dispatcher, tracker, domain):
-        html_message = "<b>This is a bold message</b> <a href='https://tic8m8.com'>Click here</a>"
+#     def run(self, dispatcher, tracker, domain):
+#         html_message = "<b>This is a bold message</b> <a href='https://tic8m8.com'>Click here</a>"
         
-        dispatcher.utter_message(text=html_message, html=True)
+#         dispatcher.utter_message(text=html_message, html=True)
 
-        return []
-### -end
+#         return []
+# ### -end
 
-### DATE PICKER CODE
+# ### DATE PICKER CODE
 
-class ActionAskDate(Action):
-    def name(self) -> Text:
-        return "action_ask_date"
+# class ActionAskDate(Action):
+#     def name(self) -> Text:
+#         return "action_ask_date"
 
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
-    ) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message("Please select a date using the date picker.")
-        return []
+#     def run(
+#         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+#     ) -> List[Dict[Text, Any]]:
+#         dispatcher.utter_message("Please select a date using the date picker.")
+#         return []
 
-class ActionProcessDate(Action):
-    def name(self) -> Text:
-        return "action_process_date"
+# class ActionProcessDate(Action):
+#     def name(self) -> Text:
+#         return "action_process_date"
 
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
-    ) -> List[Dict[Text, Any]]:
-        selected_date = tracker.latest_message.get('text')
-        dispatcher.utter_message(f"You have selected the date: {selected_date}")
-        return []
+#     def run(
+#         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+#     ) -> List[Dict[Text, Any]]:
+#         selected_date = tracker.latest_message.get('text')
+#         dispatcher.utter_message(f"You have selected the date: {selected_date}")
+#         return []
 
-###
+# ###
 
 
 ###  empty all slots action

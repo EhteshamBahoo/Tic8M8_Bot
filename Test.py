@@ -22,6 +22,8 @@ class EventAPI:
         else:
             return []
 
+            
+
 class ActionListAllEvents(Action):
     def name(self) -> Text:
         return "action_list_all_events"

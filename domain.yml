@@ -8,13 +8,13 @@ intents:
 - ask_list_events_category
 - ask_list_events_city
 - ask_more_info
-- bot_challenge
+- bot_challenge 
 - ask_date
 - deny
 - greet
 - inform
 - stop
-- ask_create_an_account
+- ask_create_an_account 
 entities:
 - event_city
 - event_artists
@@ -120,9 +120,7 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- action_ask_date
 - action_list_all_events
-- action_process_date
 - action_clear_event_filters
 - utter_give_list_all
 - action_get_event_link
@@ -130,7 +128,6 @@ actions:
 - action_get_event_date
 - action_get_event_contact_info
 - utter_greet
-- action_send_html_response
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
