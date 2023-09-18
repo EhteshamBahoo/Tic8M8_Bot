@@ -13,6 +13,8 @@ intents:
 - bot_challenge
 - deny
 - get_events_by_maxprice
+- get_events_by_eventrange
+- get_events_by_minprice
 - greet
 - inform
 - stop
@@ -137,6 +139,7 @@ responses:
 actions:
 - action_list_events_by_maxprice
 - action_list_events_by_minprice
+- action_list_events_by_price_range
 - action_list_all_events
 - action_clear_event_filters
 - action_list_events_by_price

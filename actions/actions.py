@@ -172,17 +172,46 @@ class ActionListEventsByMaxPrice(Action):
             events = event_api.get_events(params)
 
             if events:
-                event_list = []
+                coursel_elements = []
 
                 for event in events:
                     event_name = event.get("event_name", "N/A")
                     event_location = event.get("street", "N/A")
+                    image_name = event.get("image_name", "N/A")
+                    externallink = event.get("externallink", "N/A")
 
-                    event_info = f"Event: {event_name}, Location: {event_location}"
-                    event_list.append(event_info)
+                    coursel_element = {
+                        "title": event_name,
+                        "subtitle": event_location,
+                        "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                        "buttons": [
+                            {
+                                "title": "Contact Information",
+                                "payload": f"Contact Information for {event_name}",
+                                "type": "postback"
+                            },
+                            {
+                                "title": "More Info",
+                                "payload": f"More Information of {event_name}",
+                                "type": "postback"
+                            },
+                            {
+                                "title": "More Details",
+                                "url": externallink,
+                                "type": "web_url"
+                            }
+                        ]
+                    }
+                    coursel_elements.append(coursel_element)  # putting a single element into a collection of elements
 
-                response_message = "Here are the events that cost less than your specified price:\n\n" + "\n".join(event_list)
-                dispatcher.utter_message(response_message)
+                coursel_message = {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": coursel_elements
+                    }
+                }
+                dispatcher.utter_message(attachment=coursel_message)
             else:
                 dispatcher.utter_message("No events found within the specified price range.")
         else:
@@ -191,6 +220,8 @@ class ActionListEventsByMaxPrice(Action):
         return []
 
 ## adding coode for min price value search
+
+
 class ActionListEventsByMinPrice(Action):
     def name(self) -> Text:
         return "action_list_events_by_minprice"
@@ -198,11 +229,84 @@ class ActionListEventsByMinPrice(Action):
     def run(self, dispatcher: "CollectingDispatcher", 
             tracker: Tracker, domain: List[Dict[Text, Any]]
             ) -> List[Dict[Text, Any]]:
-            min_price = tracker.get_slot("min_price") #extracting the value min [price from slot]
+            min_price = tracker.get_slot("min_price")  # Extract the minimum price from the slot
 
             if min_price is not None:
                 event_api = EventAPI()
                 params = {"minprice": min_price}
+                events = event_api.get_events(params)
+
+                if events:
+                    event_list = []
+                    coursel_elements = []
+
+                    for event in events:
+                        event_name = event.get("event_name", "N/A")
+                        event_location = event.get("street", "N/A")
+                        image_name = event.get("image_name", "N/A")
+                        externallink = event.get("externallink", "N/A")
+
+                        coursel_element = {
+                            "title": event_name,
+                            "subtitle": event_location,
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                            "buttons": [
+                                {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Info",
+                                    "payload": f"More Information of {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                }
+                            ]
+                        }
+                        coursel_elements.append(coursel_element)  # Append to carousel elements
+
+                        event_info = f"Event: {event_name} at address: {event_location}"
+                        event_list.append(event_info)
+
+                    response_message = "Here are the events that cost less than your specified price:\n\n" + "\n".join(event_list)
+                    dispatcher.utter_message(response_message)
+
+                    coursel_message = {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": coursel_elements
+                        }
+                    }
+                    dispatcher.utter_message(attachment=coursel_message)
+                else:
+                    dispatcher.utter_message("No events found within the specified price range.")
+            else:
+                dispatcher.utter_message("I couldn't find a maximum price. Please provide a valid maximum price.")
+                   
+            return []
+        
+## price range code
+
+
+class ActionListEventsByPriceRange(Action):
+    def name(self) -> Text:
+        return "action_list_events_by_price_range"
+
+    def run(self, dispatcher: "CollectingDispatcher", 
+            tracker: Tracker, domain: List[Dict[Text, Any]]
+            ) -> List[Dict[Text, Any]]:
+            min_price = tracker.get_slot("min_price")  # Extract the minimum price from the slot
+            max_price = tracker.get_slot("max_price")  # Extract the maximum price from the slot
+
+            if min_price is not None and max_price is not None:
+                event_api = EventAPI()
+                params = {"minprice": min_price, "maxprice": max_price}
                 events = event_api.get_events(params)
 
                 if events:
@@ -214,25 +318,85 @@ class ActionListEventsByMinPrice(Action):
 
                         event_info = f"Event: {event_name} at address: {event_location}"
                         event_list.append(event_info)
-                    
-                    response_message = "Here are the events that cost less than your specified price:\n\n" + "\n".join(event_list)
+
+                    response_message = "Here are the events within your specified price range:\n\n" + "\n".join(event_list)
                     dispatcher.utter_message(response_message)
                 else:
                     dispatcher.utter_message("No events found within the specified price range.")
             else:
-                dispatcher.utter_message("I couldn't find a maximum price. Please provide a valid maximum price.")
-                   
-            return[] 
-        
-## price range code
+                dispatcher.utter_message("Please provide both a valid minimum and maximum price.")
 
+            return []
 
+# class ActionListEventsByPriceRange(Action):
+#     def name(self) -> Text:
+#         return "action_list_events_by_price_range"
 
-class GetEventsByPriceRange(Action):
-    def name(Self) -> Text:
-        return "action_list_events_by_price_range"
+#     def run(self, dispatcher: "CollectingDispatcher", 
+#             tracker: Tracker, domain: List[Dict[Text, Any]]
+#             ) -> List[Dict[Text, Any]]:
+#             min_price = tracker.get_slot("min_price")  # Extract the minimum price from the slot
+#             max_price = tracker.get_slot("max_price")  # Extract the maximum price from the slot
 
+#             if min_price is not None and max_price is not None:
+#                 event_api = EventAPI()
+#                 params = {"minprice": min_price, "maxprice": max_price}
+#                 events = event_api.get_events(params)
 
+#                 if events:
+#                     event_list = []
+#                     coursel_elements = []
+
+#                     for event in events:
+#                         event_name = event.get("event_name", "N/A")
+#                         event_location = event.get("street", "N/A")
+#                         image_name = event.get("image_name", "N/A")
+#                         externallink = event.get("externallink", "N/A")
+
+#                         coursel_element = {
+#                             "title": event_name,
+#                             "subtitle": event_location,
+#                             "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+#                             "buttons": [
+#                                 {
+#                                     "title": "Contact Information",
+#                                     "payload": f"Contact Information for {event_name}",
+#                                     "type": "postback"
+#                                 },
+#                                 {
+#                                     "title": "More Info",
+#                                     "payload": f"More Information of {event_name}",
+#                                     "type": "postback"
+#                                 },
+#                                 {
+#                                     "title": "More Details",
+#                                     "url": externallink,
+#                                     "type": "web_url"
+#                                 }
+#                             ]
+#                         }
+#                         coursel_elements.append(coursel_element)  # Append to carousel elements
+
+#                         event_info = f"Event: {event_name} at address: {event_location}"
+#                         event_list.append(event_info)
+
+#                     response_message = "Here are the events within your specified price range:\n\n" + "\n".join(event_list)
+#                     dispatcher.utter_message(response_message)
+
+#                     coursel_message = {
+#                         "type": "template",
+#                         "payload": {
+#                             "template_type": "generic",
+#                             "elements": coursel_elements
+#                         }
+#                     }
+#                     dispatcher.utter_message(attachment=coursel_message)
+#                 else:
+#                     dispatcher.utter_message("No events found within the specified price range.")
+#             else:
+#                 dispatcher.utter_message("Please provide both a valid minimum and maximum price.")
+
+#             return []
 
 ### -- COursel Code end
 

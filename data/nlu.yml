@@ -233,8 +233,8 @@ nlu:
     - show me events that cost more then [50](min_price) aed?
     - list events more then [20](min_price)?
     - events more then [20](min_price)?
-    - Find events with prices starting from [50 AED](min_price).
-    - Show me events that cost more than [20 dirhams](min_price).
+    - Find events with prices starting from [50](min_price) aed.
+    - Show me events that cost more than [20](min_price) dirhams.
     - List events priced above [100](min_price) aed.
     - What are the events with a minimum price of [75](min_price) dirhams?
     - Find events starting at [30](min_price) or higher AED.
@@ -250,6 +250,16 @@ nlu:
     - Find events below [50 dirhams](max_price).
     - List events priced lower than [85](max_price) aed.
     - Find events that cost less than [75](max_price) dirhams
+
+- intent: get_events_by_eventrange
+  examples: |
+    - Show me events between [30](min_price) and [100](max_price) AED.
+    - List events in the price range of [50](min_price) to [200](max_price) dirhams.
+    - Find events priced between [10](min_price) and [50](max_price) dirhams.
+    - What events are there with ticket prices from [25](min_price) to [75](max_price) AED?
+    - events within the price range of [30](min_price) to [60](max_price) AED.
+    - List events between [40](min_price) and [120](max_price) dirhams.
+
 - intent: ask_html
   examples: |
     - show me the html tag

@@ -581,3 +581,13 @@ stories:
   steps:
   - intent: get_events_by_minprice
   - action: action_list_events_by_minprice
+
+- story: story range 1
+  steps:
+  - intent: get_events_by_eventrange
+  - action: action_list_events_by_price_range
+
+- story: story range 2
+  steps:
+  - intent: get_events_by_eventrange
+  - action: action_list_events_by_price_range

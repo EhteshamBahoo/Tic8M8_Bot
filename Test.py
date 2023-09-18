@@ -256,3 +256,49 @@ class ActionListAllEvents(Action):
             dispatcher.utter_message("There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀")
 
         return []
+
+
+
+## Range  code
+
+class ActionListEventsByPriceRange(Action):
+    def name(self) -> Text:
+        return "action_list_events_by_price_range"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        min_price = tracker.get_slot("min_price")  # Extract the minimum price from the slot
+        max_price = tracker.get_slot("max_price")  # Extract the maximum price from the slot
+
+        if min_price is not None and max_price is not None:
+            event_api = EventAPI()  # Create an instance of your EventAPI class
+            params = {"minprice": min_price, "maxprice": max_price}
+            events = event_api.get_events(params)
+
+            if events:
+                event_list = []
+
+                for event in events:
+                    event_name = event.get("event_name", "N/A")
+                    event_location = event.get("street", "N/A")
+
+                    event_info = f"Event: {event_name}, Location: {event_location}"
+                    event_list.append(event_info)
+
+                response_message = "Here are the events within the specified price range:\n\n" + "\n".join(event_list)
+                dispatcher.utter_message(response_message)
+            else:
+                dispatcher.utter_message("No events found within the specified price range.")
+        else:
+            dispatcher.utter_message("Please provide both a minimum and maximum price to search for events.")
+
+        return []
+
+
+
+#### search by DATE
+
+
+### code for relative date
+
