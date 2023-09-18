@@ -12,14 +12,15 @@ intents:
 - ask_more_info
 - bot_challenge
 - deny
-- get_events_by_maxprice
 - get_events_by_eventrange
+- get_events_by_maxprice
 - get_events_by_minprice
 - greet
 - inform
 - stop
 entities:
 - max_price
+- min_price
 - event_city
 - event_artists
 - event_category
@@ -30,7 +31,6 @@ entities:
 - event_link
 - event_email
 - event_phonenumber
-- min_price
 slots:
   event_name:
     type: text
@@ -137,9 +137,9 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_list_events_by_price_range
 - action_list_events_by_maxprice
 - action_list_events_by_minprice
-- action_list_events_by_price_range
 - action_list_all_events
 - action_clear_event_filters
 - action_list_events_by_price

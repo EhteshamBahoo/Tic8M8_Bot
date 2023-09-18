@@ -591,3 +591,16 @@ stories:
   steps:
   - intent: get_events_by_eventrange
   - action: action_list_events_by_price_range
+- story: interactive_story_1
+  steps:
+  - intent: get_events_by_eventrange
+    entities:
+    - max_price: '20'
+    - max_price: '50'
+  - slot_was_set:
+    - max_price: '50'
+  - intent: get events by evetrange
+    entities:
+    - min_price: '20'
+    - max_price: '50'
+  - action: action_list_events_by_price_range
