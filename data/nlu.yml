@@ -259,6 +259,12 @@ nlu:
     - events within the price range of [30](min_price) to [60](max_price) AED.
     - List events between [40](min_price) and [120](max_price) dirhams.
     - list me events that cost between [20](min_price) and [50](max_price) dirhamsm
+
+- intent: get_event_by_start_date
+  examples: |
+    - Show me events happening on [12 AUG](date)
+## connect to relative DATE
+
 - intent: ask_html
   examples: |
     - show me the html tag
