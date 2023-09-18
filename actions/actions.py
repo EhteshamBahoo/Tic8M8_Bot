@@ -190,6 +190,50 @@ class ActionListEventsByMaxPrice(Action):
 
         return []
 
+## adding coode for min price value search
+class ActionListEventsByMinPrice(Action):
+    def name(self) -> Text:
+        return "action_list_events_by_minprice"
+
+    def run(self, dispatcher: "CollectingDispatcher", 
+            tracker: Tracker, domain: List[Dict[Text, Any]]
+            ) -> List[Dict[Text, Any]]:
+            min_price = tracker.get_slot("min_price") #extracting the value min [price from slot]
+
+            if min_price is not None:
+                event_api = EventAPI()
+                params = {"minprice": min_price}
+                events = event_api.get_events(params)
+
+                if events:
+                    event_list = []
+
+                    for event in events:
+                        event_name = event.get("event_name", "N/A")
+                        event_location = event.get("street", "N/A")
+
+                        event_info = f"Event: {event_name} at address: {event_location}"
+                        event_list.append(event_info)
+                    
+                    response_message = "Here are the events that cost less than your specified price:\n\n" + "\n".join(event_list)
+                    dispatcher.utter_message(response_message)
+                else:
+                    dispatcher.utter_message("No events found within the specified price range.")
+            else:
+                dispatcher.utter_message("I couldn't find a maximum price. Please provide a valid maximum price.")
+                   
+            return[] 
+        
+## price range code
+
+
+
+class GetEventsByPriceRange(Action):
+    def name(Self) -> Text:
+        return "action_list_events_by_price_range"
+
+
+
 ### -- COursel Code end
 
 # Get Event Information

@@ -505,7 +505,7 @@ stories:
   - action: action_clear_event_filters
   - slot_was_set:
     - event_city: null
-  - slot_was_set:
+  - slot_was_set: 
     - event_artists: null
   - slot_was_set:
     - event_date: null
@@ -571,3 +571,13 @@ stories:
   - slot_was_set:
     - max_price: '75'
   - action: action_list_events_by_maxprice
+
+- story: story min price 1
+  steps:
+  - intent: get_events_by_minprice
+  - action: action_list_events_by_minprice
+
+- story: story min price 2
+  steps:
+  - intent: get_events_by_minprice
+  - action: action_list_events_by_minprice

@@ -136,6 +136,7 @@ responses:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
 - action_list_events_by_maxprice
+- action_list_events_by_minprice
 - action_list_all_events
 - action_clear_event_filters
 - action_list_events_by_price
