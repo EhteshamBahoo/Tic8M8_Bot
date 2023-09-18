@@ -292,7 +292,7 @@ class ActionListEventsByMinPrice(Action):
             return []
         
 ## price range code
-
+## NO RANGE ADD DATE & then checkout
 
 class ActionListEventsByPriceRange(Action):
     def name(self) -> Text:
