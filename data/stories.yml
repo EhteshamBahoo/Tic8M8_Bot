@@ -610,14 +610,14 @@ stories:
 
 ######################################################
 
-- story: Set Start Date
-  steps:
-  - intent: get_event_by_start_date
-    entities:
-    - date_type: start_date
-    - date: "2023-09-15"
-      role: custom
-  - action: action_set_start_date
+# - story: Set Start Date
+#   steps:
+#   - intent: get_event_by_start_date
+#     entities:
+#     - date_type: start_date
+#     - date: "2023-09-15"
+#       role: custom
+#   - action: action_set_start_date
 
 - story: Set Start Date 2
   steps:
@@ -642,9 +642,7 @@ stories:
 #     - invalid_date: "invalid"
 #       role: custom
 #   - action: action_set_date
-- story: interactive_story_1
-  steps:
-  - intent: affirm
+
 
 - story: interactive_story_2
   steps:
@@ -657,3 +655,13 @@ stories:
     entities:
     - start_date: '2023-09-26'
   - action: action_set_start_date
+
+- story: Give alery
+  steps:
+  - intent: give_alert
+  - action: action_give_alert
+
+- story: Give alery2
+  steps:
+  - intent: give_alert
+  - action: action_give_alert

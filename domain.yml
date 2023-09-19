@@ -148,7 +148,7 @@ responses:
   - text: Events galore in {event_city}! Discover the latest happenings right here. 🏙️
   utter_list_events_category:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
-  - text: Love {event_category} events? So do we! Check out what's coming up. 😍
+  - text: Love {event_category} events? So do we! Check out what's   coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
 
   utter_do_you_need_help:
@@ -190,6 +190,7 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_give_alert
 - action_set_start_date
 - action_list_events_by_price_range
 - action_list_events_by_maxprice

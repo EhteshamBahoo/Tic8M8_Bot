@@ -38,6 +38,17 @@ class ActionClearEventFilters(Action):
         
         return slot_resets
 
+### PAssing js
+class ActionShowAlert(Action):
+    def name(self):
+        return "action_give_alert"
+
+    def run(self, dispatcher, tracker, domain):
+        # Send a message to trigger the JavaScript alert
+        dispatcher.utter_message(text="show_alert")
+        return []
+
+
 ###empty all slot action end
 
 '''
