@@ -150,6 +150,43 @@ responses:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
   - text: Love {event_category} events? So do we! Check out what's coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
+
+  utter_do_you_need_help:
+  - text: Do you want me to help you find an event?
+
+  utter_which_emirate:
+  - text: Which emirate are you looking to book the event?
+
+  utter_which_type:
+  - text: Which type of event are you looking for?
+    buttons:
+    - title: "Concert"
+      payload: "" #Payload of event type
+    - title: "Sport/Fitness"
+      payload: ""
+
+  utter_asking_event_name:
+  - text: What is the name of the event you are looking for
+  - text: give me the name of the event
+
+  utter_whatinfo_need:
+  - text: what information do you need
+    buttons:
+    - title: "Location"
+      payload: "/ask_eventlocation_by_name"
+    - title: "timing"
+      payload: "/ask_eventdate_by_name"
+
+  utter_buy_ticket:
+  - text: Do you want to buy tickets for {event_name}?
+    buttons:
+    - title: "Yes"
+      payload: "/ask_to_buy_ticket" #buy ticket intent
+    - title: "No"
+      payload: "/deny"
+
+
+
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
