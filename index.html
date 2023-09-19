@@ -168,7 +168,7 @@
 
 // Function to handle Rasa's response to "give alert"
 function showAlert(message) {
-    if (message.type === "bot" && message.content === "show_alert") {
+    if (message.type === "message" && message.content === "show_alert") {
         // Display an alert message when the desired message is received
         alert("This is an alert message!");
     }

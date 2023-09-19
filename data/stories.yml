@@ -659,9 +659,9 @@ stories:
 - story: Give alery
   steps:
   - intent: give_alert
-  - action: action_give_alert
+  - action: action_show_alert
 
 - story: Give alery2
   steps:
   - intent: give_alert
-  - action: action_give_alert
+  - action: action_show_alert

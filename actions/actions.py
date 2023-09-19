@@ -41,7 +41,7 @@ class ActionClearEventFilters(Action):
 ### PAssing js
 class ActionShowAlert(Action):
     def name(self):
-        return "action_give_alert"
+        return "action_show_alert"
 
     def run(self, dispatcher, tracker, domain):
         # Send a message to trigger the JavaScript alert
