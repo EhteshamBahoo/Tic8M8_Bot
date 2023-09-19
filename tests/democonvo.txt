@@ -10,3 +10,18 @@ User: That sounds amazing! Can you also recommend some [catering](service_name) 
 Bot: Certainly, I can provide you with a list of [catering](service_name) services in [Dubai](event_city). When is the party?(asking_forDate)
 User: It's on (August 15th)(date).
 Bot: I'll find some available caterers for that date. Anything else you'd like to add to the party plan?
+
+
+
+USING the actions.py domain.yml and nlu.yml create a main form that would ask user to fill in slots to make an event search based on requirements this is what the flow should look like
+
+are you looking for an event buttons: yes no
+if yes form activate
+bot: which emirate are you looking for
+user: dubai
+what type of event (show  buttons of current event categories)
+GIVE me date range (show two date pickers for stardate and end date for range)
+whats your price range (free to maxprice)
+
+$unhappy path
+looking for free events

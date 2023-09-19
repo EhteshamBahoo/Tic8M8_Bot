@@ -12,13 +12,16 @@ intents:
 - ask_more_info
 - bot_challenge
 - deny
+- get_event_by_start_date
 - get_events_by_eventrange
 - get_events_by_maxprice
 - get_events_by_minprice
 - greet
 - inform
+- list_events_by_date
 - stop
 entities:
+- start_date
 - max_price
 - min_price
 - event_city
@@ -28,6 +31,7 @@ entities:
 - events_city
 - event_location
 - event_date
+- end_date
 - event_link
 - event_email
 - event_phonenumber
@@ -44,6 +48,18 @@ slots:
     mappings:
     - type: from_entity
       entity: event_date
+  start_date:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: start_date
+  end_date:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: end_date
   event_city:
     type: text
     influence_conversation: true
@@ -137,9 +153,13 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_set_start_date
 - action_list_events_by_price_range
 - action_list_events_by_maxprice
 - action_list_events_by_minprice
+- action_set_date
+- action_list_events_by_startdate
+- action_set_end_date
 - action_list_all_events
 - action_clear_event_filters
 - action_list_events_by_price

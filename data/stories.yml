@@ -604,3 +604,56 @@ stories:
     - min_price: '20'
     - max_price: '50'
   - action: action_list_events_by_price_range
+
+
+
+
+######################################################
+
+- story: Set Start Date
+  steps:
+  - intent: get_event_by_start_date
+    entities:
+    - date_type: start_date
+    - date: "2023-09-15"
+      role: custom
+  - action: action_set_start_date
+
+- story: Set Start Date 2
+  steps:
+  - intent: get_event_by_start_date
+  - action: action_list_events_by_startdate
+
+# - story: Set End Date
+#   steps:
+#   - intent: set_date
+#     entities:
+#     - date_type: end_date
+#       role: custom
+#       value: "end"
+#     - date: "2023-09-20"
+#       role: custom
+#   - action: action_set_end_date
+
+# - story: Invalid Date Format
+#   steps:
+#   - intent: set_date
+#     entities:
+#     - invalid_date: "invalid"
+#       role: custom
+#   - action: action_set_date
+- story: interactive_story_1
+  steps:
+  - intent: affirm
+
+- story: interactive_story_2
+  steps:
+  - intent: get_event_by_start_date
+    entities:
+    - min_price: '2023-09-26'
+  - slot_was_set:
+    - min_price: '2023-09-26'
+  - intent: get_event_by_start_date
+    entities:
+    - start_date: '2023-09-26'
+  - action: action_set_start_date

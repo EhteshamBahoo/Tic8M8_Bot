@@ -27,6 +27,7 @@ nlu:
     - that sounds good
     - correct
     - /affirm
+    - \
 - intent: deny
   examples: |
     - no
@@ -259,12 +260,13 @@ nlu:
     - events within the price range of [30](min_price) to [60](max_price) AED.
     - List events between [40](min_price) and [120](max_price) dirhams.
     - list me events that cost between [20](min_price) and [50](max_price) dirhamsm
-
 - intent: get_event_by_start_date
   examples: |
-    - Show me events happening on [12 AUG](date)
-## connect to relative DATE
-
+    - List events happening from (2023-01-01)[start_date]
+    - Show events between (2023-09-01)[start_date]
+    - Show me events from (2023-01-01)[start_date]
+    - List events on (2023-09-01)[start_date]
+    - list event happening on [2023-09-26](start_date)
 - intent: ask_html
   examples: |
     - show me the html tag
@@ -298,6 +300,3 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
-
-
-#j s  nk jnkasnkn 

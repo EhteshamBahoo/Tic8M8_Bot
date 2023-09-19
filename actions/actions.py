@@ -5,6 +5,7 @@ from typing import (
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from dateutil import parser
 
 class EventAPI:
     def __init__(self):
@@ -24,46 +25,6 @@ class EventAPI:
 
     def get_login(self, params: Dict[Text, Any]) -> List[Dict[Text, Any]]:   
         return  self.base_url 
-
-# ### -remove this or comment
-
-# class MyCustomAction(Action):
-#     def name(self):
-#         return "action_send_html_response"
-
-#     def run(self, dispatcher, tracker, domain):
-#         html_message = "<b>This is a bold message</b> <a href='https://tic8m8.com'>Click here</a>"
-        
-#         dispatcher.utter_message(text=html_message, html=True)
-
-#         return []
-# ### -end
-
-# ### DATE PICKER CODE
-
-# class ActionAskDate(Action):
-#     def name(self) -> Text:
-#         return "action_ask_date"
-
-#     def run(
-#         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
-#     ) -> List[Dict[Text, Any]]:
-#         dispatcher.utter_message("Please select a date using the date picker.")
-#         return []
-
-# class ActionProcessDate(Action):
-#     def name(self) -> Text:
-#         return "action_process_date"
-
-#     def run(
-#         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
-#     ) -> List[Dict[Text, Any]]:
-#         selected_date = tracker.latest_message.get('text')
-#         dispatcher.utter_message(f"You have selected the date: {selected_date}")
-#         return []
-
-# ###
-
 
 ###  empty all slots action
 class ActionClearEventFilters(Action):
@@ -328,77 +289,40 @@ class ActionListEventsByPriceRange(Action):
 
             return []
 
-# class ActionListEventsByPriceRange(Action):
-#     def name(self) -> Text:
-#         return "action_list_events_by_price_range"
 
-#     def run(self, dispatcher: "CollectingDispatcher", 
-#             tracker: Tracker, domain: List[Dict[Text, Any]]
-#             ) -> List[Dict[Text, Any]]:
-#             min_price = tracker.get_slot("min_price")  # Extract the minimum price from the slot
-#             max_price = tracker.get_slot("max_price")  # Extract the maximum price from the slot
+## Date coursel code
+class ActionListEventsByStartDate(Action):
+    def name(self) -> Text:
+        return "action_list_events_by_startdate"
 
-#             if min_price is not None and max_price is not None:
-#                 event_api = EventAPI()
-#                 params = {"minprice": min_price, "maxprice": max_price}
-#                 events = event_api.get_events(params)
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        start_date = tracker.get_slot("start_date")  # Extract the start_date from the slot
 
-#                 if events:
-#                     event_list = []
-#                     coursel_elements = []
+        if start_date is not None:
+            event_api = EventAPI()  # Create an instance of your EventAPI class
+            params = {"start_date": start_date}
+            events = event_api.get_events(params)
 
-#                     for event in events:
-#                         event_name = event.get("event_name", "N/A")
-#                         event_location = event.get("street", "N/A")
-#                         image_name = event.get("image_name", "N/A")
-#                         externallink = event.get("externallink", "N/A")
+            if events:
+                message = "Events on the specified start date:\n"
+                for event in events:
+                    event_name = event.get("event_name", "N/A")
+                    event_location = event.get("street", "N/A")
 
-#                         coursel_element = {
-#                             "title": event_name,
-#                             "subtitle": event_location,
-#                             "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
-#                             "buttons": [
-#                                 {
-#                                     "title": "Contact Information",
-#                                     "payload": f"Contact Information for {event_name}",
-#                                     "type": "postback"
-#                                 },
-#                                 {
-#                                     "title": "More Info",
-#                                     "payload": f"More Information of {event_name}",
-#                                     "type": "postback"
-#                                 },
-#                                 {
-#                                     "title": "More Details",
-#                                     "url": externallink,
-#                                     "type": "web_url"
-#                                 }
-#                             ]
-#                         }
-#                         coursel_elements.append(coursel_element)  # Append to carousel elements
+                    message += f"- {event_name} at {event_location}\n"
 
-#                         event_info = f"Event: {event_name} at address: {event_location}"
-#                         event_list.append(event_info)
+                dispatcher.utter_message(message)
+            else:
+                dispatcher.utter_message("No events found for the specified start date.")
+        else:
+            dispatcher.utter_message("Please provide a valid start date.")
 
-#                     response_message = "Here are the events within your specified price range:\n\n" + "\n".join(event_list)
-#                     dispatcher.utter_message(response_message)
+        return []
 
-#                     coursel_message = {
-#                         "type": "template",
-#                         "payload": {
-#                             "template_type": "generic",
-#                             "elements": coursel_elements
-#                         }
-#                     }
-#                     dispatcher.utter_message(attachment=coursel_message)
-#                 else:
-#                     dispatcher.utter_message("No events found within the specified price range.")
-#             else:
-#                 dispatcher.utter_message("Please provide both a valid minimum and maximum price.")
 
-#             return []
-
-### -- COursel Code end
+""" -- COursel Code end """
 
 # Get Event Information
 
