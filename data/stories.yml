@@ -669,43 +669,27 @@ stories:
 
 # Stories for Forms
 
-stories:
-- story: Initiate event booking
-  steps:
-  - intent: looking_event
-  - action: event_booking_form
-  - active_loop: event_booking_form
 
-- story: Provide event details and submit
-  steps:
-  - intent: ask_event_name
-  - action: event_booking_form
-  - active_loop: event_booking_form
-  - slot_was_set:
-    - event_name: "Global Village"
-  - intent: ask_event_date
-  - action: event_booking_form
-  - active_loop: event_booking_form
-  - slot_was_set:
-    - event_date: "2023-09-20"
-  - intent: ask_event_location
-  - action: event_booking_form
-  - active_loop: event_booking_form
-  - slot_was_set:
-    - event_location: "Abu Dhabi"
-  - intent: ask_event_category
-  - action: event_booking_form
-  - active_loop: event_booking_form
-  - slot_was_set:
-    - event_category: "Concert"
-  - action: utter_slots_values  # You can create a custom action to confirm the user's input
-  - action: event_booking_form
-  - active_loop: null
-  - action: action_submit_event_booking
 
-- story: User cancels event booking
+- story: FInal criteria form
   steps:
-  - intent: deny
-  - action: event_booking_form
+  - intent: ask_looking_for_event
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - slot_was_set:
+    - event_city: dubai
+  - slot_was_set:
+    - requested_slot: event_category
+  - slot_was_set:
+    - event_city: sport
+  - slot_was_set:
+    - requested_slot: max_price
+  - slot_was_set:
+    - event_city: '200'
+  - slot_was_set:
+    - requested_slot: null
   - active_loop: null
-  - action: action_cancel_event_booking
+  - action: event_search_criteria
+  - action: utter_did_that_help

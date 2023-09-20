@@ -277,6 +277,14 @@ nlu:
     - I want to buy tickets of [TECHSPO Dubai 2023](event_name)
 
 
+### Add intents for form activation
+- intent: ask_looking_for_event
+  examples: |
+    - I want to buy tickets
+    - I am looking for an event
+    - I am loking to book an event
+    - event booking
+    - booking tickets
 
 - intent: ask_html
   examples: |

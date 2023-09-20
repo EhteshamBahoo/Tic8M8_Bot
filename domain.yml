@@ -1,6 +1,7 @@
 version: '3.1'
 intents:
 - affirm
+- ask_looking_for_event
 - ask_contact_info
 - ask_create_an_account
 - ask_date
@@ -28,13 +29,22 @@ entities:
 - event_artists
 - event_category
 - event_name
-- events_city
 - event_location
 - event_date
 - end_date
 - event_link
 - event_email
 - event_phonenumber
+
+forms:
+  list_events_form:
+    required_slots:
+    - event_city
+    - event_category
+    # - start_date
+    # - end_date
+    - max_price
+
 slots:
   event_name:
     type: text
@@ -66,6 +76,9 @@ slots:
     mappings:
     - type: from_entity
       entity: event_city
+      conditions:
+      - active_loop: list_events_form
+        requested_slot: event_city
   event_phonenumber:
     type: text
     influence_conversation: true
@@ -96,6 +109,9 @@ slots:
     mappings:
     - type: from_entity
       entity: event_category
+      conditions:
+      - active_loop: list_events_form
+        requested_slot: event_category
   event_artists:
     type: text
     influence_conversation: true
@@ -114,22 +130,11 @@ slots:
     mappings:
     - type: from_entity
       entity: max_price
-# FORMS
+      conditions:
+      - active_loop: list_events_form
+        requested_slot: max_price
 
-forms:
-  event_booking_form:
-    event_name:
-    - type: from_entity
-      entity: event_name
-    event_date:
-    - type: from_entity
-      entity: event_date
-    event_location:
-    - type: from_entity
-      entity: event_location
-    event_category:
-    - type: from_entity
-      entity: event_category
+
 
 
 
@@ -210,6 +215,7 @@ responses:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
 - action_show_alert
+- event_search_criteria
 - action_set_start_date
 - action_list_events_by_price_range
 - action_list_events_by_maxprice

@@ -19,6 +19,15 @@ rules:
   - action: utter_sign_UP
 
 
+# - rule: Activate event booking form
+#   steps:
+#   - intent: ask_looking_for_event
+#   - action: list_events_form
+
+
+
+
+
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza
