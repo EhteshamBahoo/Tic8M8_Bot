@@ -64,7 +64,15 @@ class ActionEventSearch(FormValidationAction):
     def name(self) -> Text:
         return "event_search_criteria"
 
-    def validate_pizza_size(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any], ) -> Dict[Text, Any]:
+    def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pass
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
         event_city = tracker.get_slot("event_city")
         event_category = tracker.get_slot("event_category")
         max_price = tracker.get_slot("max_price")
@@ -89,12 +97,14 @@ class ActionEventSearch(FormValidationAction):
                 event_list.append(event_info)
 
             response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
-                
             dispatcher.utter_message(response_message)
         else:
-            dispatcher.utter_message("There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀") 
+            dispatcher.utter_message(
+                "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+            )
 
         return []
+
 
 """ end """
 

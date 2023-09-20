@@ -191,6 +191,7 @@ nlu:
     - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
     - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
     - [dubai](event_city)
+    - [dubai](event_city)
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -232,6 +233,7 @@ nlu:
     - list me [sport](event_category) events in [abu dhabi]{"entity": "event_city", "value": "Abu Dhabi"}
     - [sport](event_category)
     - [dubai](event_city) [sport](event_category)
+    - [sport](event_category)
 - intent: get_events_by_minprice
   examples: |
     - show me events that cost more then [50](min_price) aed?
@@ -255,6 +257,7 @@ nlu:
     - List events priced lower than [85](max_price) aed.
     - Find events that cost less than [75](max_price) dirhams
     - [500](max_price)
+    - [500](max_price) aed
     - [500](max_price) aed
 - intent: get_events_by_eventrange
   examples: |
@@ -285,6 +288,8 @@ nlu:
     - I am loking to book an event
     - event booking
     - booking tickets
+    - i want to buy a ticket
+    - I want to buy a ticket
 - intent: ask_html
   examples: |
     - show me the html tag

@@ -23,8 +23,8 @@ intents:
 - list_events_by_date
 - stop
 entities:
-- event_city
 - event_category
+- event_city
 - max_price
 - start_date
 - min_price
@@ -197,9 +197,9 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- action_list_events_by_maxprice
 - event_search_criteria
 - utter_did_that_help
+- action_list_events_by_maxprice
 - action_show_alert
 - action_set_start_date
 - action_list_events_by_price_range
