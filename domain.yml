@@ -202,9 +202,9 @@ responses:
 actions:
 - utter_which_category
 - utter_which_emirate
-- utter_did_that_help
 - utter_max_price
 - event_search_criteria
+- utter_did_that_help
 - action_list_events_by_maxprice
 - action_show_alert
 - action_set_start_date

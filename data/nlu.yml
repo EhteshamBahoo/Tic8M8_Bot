@@ -259,7 +259,7 @@ nlu:
     - [500](max_price)
     - [500](max_price) aed
     - [10000](max_price)
-    - [500](max_price) aed
+    - [1000](max_price) aed
 - intent: get_events_by_eventrange
   examples: |
     - Show me events between [30](min_price) and [100](max_price) AED.

@@ -689,23 +689,23 @@ stories:
         - event_city: dubai
 
     # User provides the event category
+    - action: utter_max_price
     - intent: ask_list_all
       entities:
-        - event_category: sport
-    - action: utter_max_price  # Bot asks for the maximum price the user is willing to pay
+        - event_category: sport  # Bot asks for the maximum price the user is willing to pay
     - action: list_events_form
     - slot_was_set:
         - event_category: sport
 
     # User provides the max price
+    - action: utter_max_price
     - intent: get_events_by_maxprice
+    - intent: ask_list_all
       entities:
-        - max_price: '500'
+        - max_price: '1000'  # Bot asks for the maximum price the user is willing to pay
     - action: list_events_form
-    - action: event_search_criteria  # Bot performs the event search
-    - action: utter_did_that_help  # Bot asks if the user needs further assistance
     - slot_was_set:
-        - max_price: '500'
+        - max_price: '1000'
 
     # User ends the interaction
     - action: list_events_form
@@ -716,91 +716,172 @@ stories:
     - action: utter_did_that_help 
     
 # Story for event search
-- story: Event search interaction
+# - story: Event search interaction
+#   steps:
+#     # User initiates an event search
+#     - intent: ask_looking_for_event
+#     - action: utter_which_emirate  # Bot asks which emirate the user wants to book an event in
+#     - action: list_events_form  # Bot starts the event search form
+#     - active_loop: list_events_form
+
+#     # User provides the event city
+#     - intent: event_inform
+#       entities:
+#         - event_city: dubai
+#     - action: utter_which_category  # Bot asks which category of event the user is interested in
+#     - action: list_events_form
+#     - slot_was_set:
+#         - event_city: dubai
+
+#     # User provides the event category
+#     - action: utter_max_price
+#     - intent: ask_list_all
+#       entities:
+#         - event_category: sport  # Bot asks for the maximum price the user is willing to pay
+#     - action: list_events_form
+#     - slot_was_set:
+#         - event_category: sport
+
+#     # User provides the max price
+#     - action: utter_max_price
+#     - intent: get_events_by_maxprice
+#     - intent: ask_list_all
+#       entities:
+#         - max_price: '1000'  # Bot asks for the maximum price the user is willing to pay
+#     - action: list_events_form
+#     - slot_was_set:
+#         - max_price: '1000'
+
+#     # User ends the interaction
+#     - action: list_events_form
+#     - slot_was_set:
+#         - requested_slot: null
+#     - active_loop: null
+#     - action: event_search_criteria
+#     - action: utter_did_that_help 
+- story: interactive_story_1
   steps:
-    # User initiates an event search
-    - intent: ask_looking_for_event
-    - action: utter_which_emirate  # Bot asks which emirate the user wants to book an event in
-    - action: list_events_form  # Bot starts the event search form
-    - active_loop: list_events_form
+  - intent: ask_looking_for_event
+  - action: utter_which_emirate
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: utter_which_category
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: utter_max_price
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1000'
+  - slot_was_set:
+    - max_price: '1000'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: event_search_criteria
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: stop
 
-    # User provides the event city
-    - intent: event_inform
-      entities:
-        - event_city: dubai
-    - action: utter_which_category  # Bot asks which category of event the user is interested in
-    - action: list_events_form
-    - slot_was_set:
-        - event_city: dubai
-
-    # User provides the event category
-    - intent: ask_list_all
-      entities:
-        - event_category: sport
-    - action: utter_max_price  # Bot asks for the maximum price the user is willing to pay
-    - action: list_events_form
-    - slot_was_set:
-        - event_category: sport
-
-    # User provides the max price
-    - intent: get_events_by_maxprice
-      entities:
-        - max_price: '500'
-    - action: list_events_form
-    - action: event_search_criteria  # Bot performs the event search
-    - action: utter_did_that_help  # Bot asks if the user needs further assistance
-    - slot_was_set:
-        - max_price: '500'
-
-    # User ends the interaction
-    - action: list_events_form
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: event_search_criteria
-    - action: utter_did_that_help 
-
-# Story for event search
-- story: Event search interaction
+- story: interactive_story_1
   steps:
-    # User initiates an event search
-    - intent: ask_looking_for_event
-    - action: utter_which_emirate  # Bot asks which emirate the user wants to book an event in
-    - action: list_events_form  # Bot starts the event search form
-    - active_loop: list_events_form
+  - intent: ask_looking_for_event
+  - action: utter_which_emirate
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: utter_which_category
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: utter_max_price
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1000'
+  - slot_was_set:
+    - max_price: '1000'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: event_search_criteria
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: stop
 
-    # User provides the event city
-    - intent: event_inform
-      entities:
-        - event_city: dubai
-    - action: utter_which_category  # Bot asks which category of event the user is interested in
-    - action: list_events_form
-    - slot_was_set:
-        - event_city: dubai
 
-    # User provides the event category
-    - intent: ask_list_all
-      entities:
-        - event_category: sport
-    - action: utter_max_price  # Bot asks for the maximum price the user is willing to pay
-    - action: list_events_form
-    - slot_was_set:
-        - event_category: sport
-
-    # User provides the max price
-    - intent: get_events_by_maxprice
-      entities:
-        - max_price: '500'
-    - action: list_events_form
-    - action: event_search_criteria  # Bot performs the event search
-    - action: utter_did_that_help  # Bot asks if the user needs further assistance
-    - slot_was_set:
-        - max_price: '500'
-
-    # User ends the interaction
-    - action: list_events_form
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: event_search_criteria
-    - action: utter_did_that_help 
+- story: interactive_story_1
+  steps:
+  - intent: ask_looking_for_event
+  - action: utter_which_emirate
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: utter_which_category
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: utter_max_price
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1000'
+  - slot_was_set:
+    - max_price: '1000'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: event_search_criteria
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: stop
