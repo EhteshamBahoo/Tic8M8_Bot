@@ -693,3 +693,75 @@ stories:
   - active_loop: null
   - action: event_search_criteria
   - action: utter_did_that_help
+- story: interactive_story_1
+  steps:
+  - intent: ask_looking_for_event
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - event_name: '500'
+  - slot_was_set:
+    - event_name: '500'
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '500'
+  - action: action_list_events_by_maxprice
+
+- story: interactive_story_2
+  steps:
+  - intent: ask_looking_for_event
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: ask_list_all
+    entities:
+    - event_city: dubai
+    - event_category: sport
+  - slot_was_set:
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - action: action_default_fallback
+  - intent: ask_list_all
+    entities:
+    - event_category: sport
+  - slot_was_set:
+    - event_category: sport
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '500'
+  - slot_was_set:
+    - max_price: '500'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: event_search_criteria
+  - action: utter_did_that_help

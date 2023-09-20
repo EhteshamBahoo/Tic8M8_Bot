@@ -1,7 +1,6 @@
 version: '3.1'
 intents:
 - affirm
-- ask_looking_for_event
 - ask_contact_info
 - ask_create_an_account
 - ask_date
@@ -10,9 +9,11 @@ intents:
 - ask_list_all
 - ask_list_events_category
 - ask_list_events_city
+- ask_looking_for_event
 - ask_more_info
 - bot_challenge
 - deny
+- event_inform
 - get_event_by_start_date
 - get_events_by_eventrange
 - get_events_by_maxprice
@@ -22,12 +23,12 @@ intents:
 - list_events_by_date
 - stop
 entities:
-- start_date
-- max_price
-- min_price
 - event_city
-- event_artists
 - event_category
+- max_price
+- start_date
+- min_price
+- event_artists
 - event_name
 - event_location
 - event_date
@@ -35,16 +36,12 @@ entities:
 - event_link
 - event_email
 - event_phonenumber
-
 forms:
   list_events_form:
     required_slots:
     - event_city
     - event_category
-    # - start_date
-    # - end_date
     - max_price
-
 slots:
   event_name:
     type: text
@@ -133,11 +130,6 @@ slots:
       conditions:
       - active_loop: list_events_form
         requested_slot: max_price
-
-
-
-
-
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?
@@ -174,51 +166,43 @@ responses:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
   - text: Love {event_category} events? So do we! Check out what's   coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
-
   utter_do_you_need_help:
   - text: Do you want me to help you find an event?
-
   utter_which_emirate:
   - text: Which emirate are you looking to book the event?
-
   utter_which_type:
   - text: Which type of event are you looking for?
     buttons:
-    - title: "Concert"
-      payload: "" #Payload of event type
-    - title: "Sport/Fitness"
-      payload: ""
-
+    - title: Concert
+      payload: ''
+    - title: Sport/Fitness
+      payload: ''
   utter_asking_event_name:
   - text: What is the name of the event you are looking for
   - text: give me the name of the event
-
   utter_whatinfo_need:
   - text: what information do you need
     buttons:
-    - title: "Location"
-      payload: "/ask_eventlocation_by_name"
-    - title: "timing"
-      payload: "/ask_eventdate_by_name"
-
+    - title: Location
+      payload: /ask_eventlocation_by_name
+    - title: timing
+      payload: /ask_eventdate_by_name
   utter_buy_ticket:
   - text: Do you want to buy tickets for {event_name}?
     buttons:
-    - title: "Yes"
-      payload: "/ask_to_buy_ticket" #buy ticket intent
-    - title: "No"
-      payload: "/deny"
-
-
-
+    - title: Yes
+      payload: /ask_to_buy_ticket
+    - title: No
+      payload: /deny
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- action_show_alert
+- action_list_events_by_maxprice
 - event_search_criteria
+- utter_did_that_help
+- action_show_alert
 - action_set_start_date
 - action_list_events_by_price_range
-- action_list_events_by_maxprice
 - action_list_events_by_minprice
 - action_set_date
 - action_list_events_by_startdate

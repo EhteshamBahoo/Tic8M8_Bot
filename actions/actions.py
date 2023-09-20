@@ -1,10 +1,9 @@
 import requests
 from typing import (
-    Any, Text, Dict, List, Union
+    Any, Text, Dict, List,
     )
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
-from rasa_sdk.forms import FormAction
 from rasa_sdk.executor import CollectingDispatcher
 from dateutil import parser
 
@@ -59,47 +58,20 @@ Logic for sign up page if php passed the certain id then dont send
 
 """ List events Based on combined criteria using FORMS """
 
+
 # Define a custom form to gather the required slots
-class EventSearchForm(FormAction):
+class ActionEventSearch(FormValidationAction):
     def name(self) -> Text:
         return "event_search_criteria"
 
-    @staticmethod
-    def required_slots(tracker: Tracker) -> List[Text]:
-        return ["event_city", "event_category", "max_price"]  # add "start_date", "end_date", "min_price",
-
-    # Customize slot validation if needed
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
-        return {
-            "event_city": self.from_text(),
-            "event_category": self.from_text(),
-            # "start_date": self.from_text(),
-            # "end_date": self.from_text(),
-            # "min_price": self.from_text(),
-            "max_price": self.from_text(),
-        }
-
-    # Implement the submit method to fetch and display data
-    def submit(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any],
-    ) -> List[Dict[Text, Any]]:
+    def validate_pizza_size(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any], ) -> Dict[Text, Any]:
         event_city = tracker.get_slot("event_city")
         event_category = tracker.get_slot("event_category")
-        # start_date = tracker.get_slot("start_date")
-        # end_date = tracker.get_slot("end_date")
-        # min_price = tracker.get_slot("min_price")
         max_price = tracker.get_slot("max_price")
 
-        # Prepare parameters for the API call based on the slots
         params = {
             "city": event_city,
             "category": event_category,
-            # "startdate": start_date,
-            # "enddate": end_date,
-            # "minprice": min_price,
             "maxprice": max_price,
         }
 
@@ -116,17 +88,14 @@ class EventSearchForm(FormAction):
                 event_info = f"Event: {event_name} at address: {event_location}"
                 event_list.append(event_info)
 
-            response_message = "Here are the events based on your criteria:\n\n" + "\n".join(
-                event_list
-            )
-
+            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
+                
             dispatcher.utter_message(response_message)
         else:
-            dispatcher.utter_message(
-                "There are no events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
-            )
+            dispatcher.utter_message("There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀") 
 
         return []
+
 """ end """
 
 #### combined coursel version 2

@@ -190,6 +190,7 @@ nlu:
     - Where is [Disney On Ice: 100 Years of Wonder Abu Dhabi 2023](event_name) happening, and when?
     - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
     - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
+    - [dubai](event_city)
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -229,6 +230,8 @@ nlu:
     - [theatre](event_category) in [sharjah](events_city)
     - list me [sport](event_category) events
     - list me [sport](event_category) events in [abu dhabi]{"entity": "event_city", "value": "Abu Dhabi"}
+    - [sport](event_category)
+    - [dubai](event_city) [sport](event_category)
 - intent: get_events_by_minprice
   examples: |
     - show me events that cost more then [50](min_price) aed?
@@ -251,6 +254,8 @@ nlu:
     - Find events below [50 dirhams](max_price).
     - List events priced lower than [85](max_price) aed.
     - Find events that cost less than [75](max_price) dirhams
+    - [500](max_price)
+    - [500](max_price) aed
 - intent: get_events_by_eventrange
   examples: |
     - Show me events between [30](min_price) and [100](max_price) AED.
@@ -267,17 +272,12 @@ nlu:
     - Show me events from (2023-01-01)[start_date]
     - List events on (2023-09-01)[start_date]
     - list event happening on [2023-09-26](start_date)
-
-
 - intent: ask_to_buy_ticket
   examples: |
     - I want to buy tickets for [Global Village](event_name)
     - buy tickets of [Global Village](event_name)
     - buy tickets [Global Village](event_name)
     - I want to buy tickets of [TECHSPO Dubai 2023](event_name)
-
-
-### Add intents for form activation
 - intent: ask_looking_for_event
   examples: |
     - I want to buy tickets
@@ -285,7 +285,6 @@ nlu:
     - I am loking to book an event
     - event booking
     - booking tickets
-
 - intent: ask_html
   examples: |
     - show me the html tag
@@ -307,6 +306,12 @@ nlu:
     - sign up
     - how do i sign up
     - create account
+- intent: give_alert
+  examples: |
+    - Give me an alert
+    - Show an alert
+    - Trigger alert
+    - Display an alert
 - synonym: Global Village
   examples: |
     - global village
@@ -319,10 +324,3 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
-
-- intent: give_alert
-  examples: |
-    - Give me an alert
-    - Show an alert
-    - Trigger alert
-    - Display an alert
