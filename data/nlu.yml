@@ -258,6 +258,7 @@ nlu:
     - Find events that cost less than [75](max_price) dirhams
     - [500](max_price)
     - [500](max_price) aed
+    - [10000](max_price)
     - [500](max_price) aed
 - intent: get_events_by_eventrange
   examples: |
@@ -317,6 +318,9 @@ nlu:
     - Show an alert
     - Trigger alert
     - Display an alert
+- intent: nlu_fallback
+  examples: |
+    - [abu dhabi]{"entity": "event_city", "value": "Abu Dhabi"}
 - synonym: Global Village
   examples: |
     - global village

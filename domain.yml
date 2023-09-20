@@ -21,11 +21,12 @@ intents:
 - greet
 - inform
 - list_events_by_date
+- nlu_fallback
 - stop
 entities:
-- event_category
 - event_city
 - max_price
+- event_category
 - start_date
 - min_price
 - event_artists
@@ -170,13 +171,15 @@ responses:
   - text: Do you want me to help you find an event?
   utter_which_emirate:
   - text: Which emirate are you looking to book the event?
-  utter_which_type:
+  utter_which_category:
   - text: Which type of event are you looking for?
     buttons:
     - title: Concert
-      payload: ''
+      payload: concert
     - title: Sport/Fitness
-      payload: ''
+      payload: sport
+  utter_max_price:
+  - text: What is your maximum price range?
   utter_asking_event_name:
   - text: What is the name of the event you are looking for
   - text: give me the name of the event
@@ -197,8 +200,11 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- event_search_criteria
+- utter_which_category
+- utter_which_emirate
 - utter_did_that_help
+- utter_max_price
+- event_search_criteria
 - action_list_events_by_maxprice
 - action_show_alert
 - action_set_start_date
