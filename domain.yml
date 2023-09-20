@@ -114,6 +114,25 @@ slots:
     mappings:
     - type: from_entity
       entity: max_price
+# FORMS
+
+forms:
+  event_booking_form:
+    event_name:
+    - type: from_entity
+      entity: event_name
+    event_date:
+    - type: from_entity
+      entity: event_date
+    event_location:
+    - type: from_entity
+      entity: event_location
+    event_category:
+    - type: from_entity
+      entity: event_category
+
+
+
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?

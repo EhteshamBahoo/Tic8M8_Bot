@@ -665,3 +665,47 @@ stories:
   steps:
   - intent: give_alert
   - action: action_show_alert
+
+
+# Stories for Forms
+
+stories:
+- story: Initiate event booking
+  steps:
+  - intent: looking_event
+  - action: event_booking_form
+  - active_loop: event_booking_form
+
+- story: Provide event details and submit
+  steps:
+  - intent: ask_event_name
+  - action: event_booking_form
+  - active_loop: event_booking_form
+  - slot_was_set:
+    - event_name: "Global Village"
+  - intent: ask_event_date
+  - action: event_booking_form
+  - active_loop: event_booking_form
+  - slot_was_set:
+    - event_date: "2023-09-20"
+  - intent: ask_event_location
+  - action: event_booking_form
+  - active_loop: event_booking_form
+  - slot_was_set:
+    - event_location: "Abu Dhabi"
+  - intent: ask_event_category
+  - action: event_booking_form
+  - active_loop: event_booking_form
+  - slot_was_set:
+    - event_category: "Concert"
+  - action: utter_slots_values  # You can create a custom action to confirm the user's input
+  - action: event_booking_form
+  - active_loop: null
+  - action: action_submit_event_booking
+
+- story: User cancels event booking
+  steps:
+  - intent: deny
+  - action: event_booking_form
+  - active_loop: null
+  - action: action_cancel_event_booking
