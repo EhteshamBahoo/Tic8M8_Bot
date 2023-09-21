@@ -375,43 +375,42 @@ stories:
 ######################################################|OOOOOOOOOOOOO) FORMS
 
 
-- story: User wants to book an event with all slots filled
+- story: User provides all information
   steps:
-    - intent: affirm
-    - action: action_event_search
-    - action: action_listen
-- story: User wants to book an event with all slots filled
-  steps:
-    - intent: event_inform
-    - action: action_event_search
-    - action: action_listen
-- story: User provides event criteria step by step
-  steps:
-    - intent: affirm
-    - action: action_event_search
-    - active_loop: event_search_criteria
-    - slot_was_set:
-        - requested_slot: event_city
+  - intent: inform
+    entities:
+    - event_city: Dubai
+    - event_category: Music
+    - max_price: 100
+  - action: event_search_form
+  - active_loop: event_search_form
+  - slot_was_set:
+    - event_city: Dubai
+    - event_category: Music
+    - max_price: 100
+  - action: action_event_search
+  - active_loop: null
 
-- story: User provides event criteria step by step
+- story: User provides information step by step
   steps:
-    - intent: event_inform
-    - action: action_event_search
-    - active_loop: event_search_criteria
-    - slot_was_set:
-        - requested_slot: event_category
-
-- story: User provides event criteria step by step
-  steps:
-    - intent: inform
-    - action: action_event_search
-    - active_loop: event_search_criteria
-    - slot_was_set:
-        - requested_slot: max_price
-
-- story: All event criteria slots filled, trigger event search
-  steps:
-    - action: event_search_criteria
-    - active_loop: null
-    - action: action_event_search
-    - action: action_listen
+  - intent: inform
+    entities:
+    - event_city: Dubai
+  - action: event_search_form
+  - active_loop: event_search_form
+  - slot_was_set:
+    - event_city: Dubai
+  - intent: inform
+    entities:
+    - event_category: Music
+  - active_loop: event_search_form
+  - slot_was_set:
+    - event_category: Music
+  - intent: inform
+    entities:
+    - max_price: 100
+  - active_loop: event_search_form
+  - slot_was_set:
+    - max_price: 100
+  - action: action_event_search
+  - active_loop: null

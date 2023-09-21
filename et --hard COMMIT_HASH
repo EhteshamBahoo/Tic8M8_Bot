@@ -1,0 +1,248 @@
+[33mcommit 052a43252338f917c588611ae353f87ae9283539[m[33m ([m[1;36mHEAD -> [m[1;32mTrying-Forms[m[33m, [m[1;31morigin/Trying-Forms[m[33m)[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 21 17:46:14 2023 +0400
+
+    Commit test
+
+[33mcommit 8fe8c325db1162ec6e9eda71af7652d2a5b7e66e[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 21 17:26:26 2023 +0400
+
+    Forms Not working
+
+[33mcommit c3b7fa45f4a922f852ef1bb8f5bbc9e059e713ed[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 18:57:48 2023 +0400
+
+    So the Form is working
+    
+    Need to add coursel and date picker other then that done
+    need to connect to other convos do something about unhappy paths
+
+[33mcommit 5acf72e5c91acbb88cfddbf29dc295003c99ff97[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 18:10:47 2023 +0400
+
+    Need to modify more but working KIND OF
+
+[33mcommit 8d64f8cb228515332e47f9700d190360ff58f077[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 16:47:09 2023 +0400
+
+    Updated training data
+    
+    Updated training data to show text with asking user input in form
+
+[33mcommit b63323a922777d20c15f3e3cea85961d17379794[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 16:15:33 2023 +0400
+
+    Form version 1 working
+    
+    bro i dont know how my code works sometimes but its working now so that all what matters doing testing and modifying.
+
+[33mcommit ff8345ffa7b36ffdd0f150fc3c17ebe551fdc5e5[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 16:09:15 2023 +0400
+
+    Form not working
+    
+    form storing slots but not giving the list of events
+
+[33mcommit 24cd106d117e06b5f7b9adaf5113e802bcb4538b[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 14:08:24 2023 +0400
+
+    First Form
+    
+    Adding the first form to list all events hopefully it works
+
+[33mcommit ad6deb51ec60865bac773414134993029c60888c[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 20 10:47:20 2023 +0400
+
+    Adding Forms
+    
+    Creating more structured conversations adding paths to help user gain more information more easily.
+
+[33mcommit f3e81793af7809aec63779795689d20cc766c0df[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Tue Sep 19 18:25:13 2023 +0400
+
+    The javascript is not passing
+    
+    The javascript is not passing so sad tbh
+
+[33mcommit 60c2df1a8340a9b7c18c01d4f6467e4e51af0035[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Tue Sep 19 16:59:13 2023 +0400
+
+    changes through index.html
+    
+    trying to pass javascript through index.html so commiting
+
+[33mcommit 307df27fa9b7917bffb4c7398fd1d3d6d7497cb6[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Tue Sep 19 15:00:34 2023 +0400
+
+    adding responses for flow
+    
+    Conversational Flow
+    
+    responses and intents updated
+    no forms yet
+
+[33mcommit 823422d04d7d7479ddc3899d45b51482a189451c[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Tue Sep 19 14:15:18 2023 +0400
+
+    Trying to add date
+
+[33mcommit f084acb8dd2103bad68ad39ec2fd1efdb4dfef41[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Mon Sep 18 19:00:59 2023 +0400
+
+    Adding relative date
+    
+    relative date:
+    
+    next week
+    next month
+    tommorow
+
+[33mcommit 36291cb6ee98a869de3ba6b17092bb7ec29400ed[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Mon Sep 18 18:56:42 2023 +0400
+
+    Trying to add date
+
+[33mcommit a2440a7032a2fcb00c7668cf0c268ec815324699[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Mon Sep 18 16:04:18 2023 +0400
+
+    troubleshooting
+    
+    I am removing the range thing as it is not working we can ask the user to user for min and max value in form of a form, cuz this aint working.
+
+[33mcommit 35eee0ace9b00512622d5d88a8541ccc1f11857c[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Mon Sep 18 15:02:37 2023 +0400
+
+    adding coursels to price
+
+[33mcommit d49af103b621ed40f9797c598ab45e426e8ea1f8[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Mon Sep 18 11:54:09 2023 +0400
+
+    list price working v1
+    
+    list events by price working parameters: minprice, maxprice
+    
+    need to add range
+    no coursel
+
+[33mcommit d899ab87a865b4fc06327b043973b854581f2e84[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Fri Sep 15 19:06:40 2023 +0400
+
+    new training model
+    
+    crispy bazaar
+
+[33mcommit d4cf6eb4414709f3ba4b7aeb6e7d990702ca50ae[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Fri Sep 15 18:58:18 2023 +0400
+
+    MAX_PRICE no coursel
+    
+    First version of price working, so the bot is giving the list of events based on max  price in  text form so no coursel yet,
+
+[33mcommit 6a2ea6f8be2bb28945a3f989660b745eca61c586[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Fri Sep 15 11:09:55 2023 +0400
+
+    Starting day commit
+
+[33mcommit 7a2713d0bb929b85aad6d15e4428ae79c9ad7ac7[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 14 18:47:34 2023 +0400
+
+    nothing major
+    
+    nothing major
+
+[33mcommit 8268634ba3bd4c39d35987740a02a6e47066f27f[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 14 17:47:06 2023 +0400
+
+    DONT KNOW
+    
+    So most of the
+
+[33mcommit 4b70ac169e84637f2a3fac5a92229efa5218d104[m
+Merge: 39ffd0f 0654843
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 14 12:28:42 2023 +0400
+
+    Merge branch 'main' of https://github.com/EhteshamBahoo/Tic8M8_Bot
+
+[33mcommit 39ffd0f6a7bd8b3003c001b2f235dc96a14cd6ee[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Thu Sep 14 12:27:18 2023 +0400
+
+    Coursels Working
+    
+    Coursels are working and giving the list of events based on city and category (no date range and no price range); the only problem is that the contact button is giving the list again instead of giving the contact info, but I will look into it, good enough for now.
+
+[33mcommit 0654843e5ed08bb50cbc137551c757b77db3c142[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 18:53:47 2023 +0400
+
+    Create README.md
+    
+    Basic Information about the project
+
+[33mcommit 9f34a38f49cf56eed0fbe4c1da789312fb753b22[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 18:39:08 2023 +0400
+
+    Update domain.yml
+
+[33mcommit 35172a26afab9bb12b1a90d73478da9c220c9e47[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 18:38:29 2023 +0400
+
+    List all with coursel but pagination error
+    
+    So i combined the code with the coursel element and its working but i think i put it like in wrong way into loop or something but updating to be safee
+
+[33mcommit 6f25c594dea3c1310b13294829247a0bc4040632[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 17:36:19 2023 +0400
+
+    List All function working without UI
+    
+    List all function is working the problem was that the slots were filled already after the first input so it was not giving new lists so what i did was, i created a new action which empties the slots and created a rule that after user asks for list empty it and now it works.
+
+[33mcommit 949cab182323feddca177e71485016b15c9b32dd[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 16:22:51 2023 +0400
+
+    First commit
+    
+    Things working:
+    Give Event Information
+    List events based on the city
+    connected with API
+
+[33mcommit 864c6fcad808414daf3d3318a11a0030e5c177cf[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 15:44:08 2023 +0400
+
+    Update .gitignore
+
+[33mcommit ec87e930ba9b2c5912672117b146b8b89909b830[m
+Author: Ehtesham Bahoo <57722688+EhteshamBahoo@users.noreply.github.com>
+Date:   Wed Sep 13 15:38:04 2023 +0400
+
+    Initial commit

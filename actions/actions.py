@@ -6,6 +6,8 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from dateutil import parser
+from rasa.core.actions.forms import FormAction
+
 
 class EventAPI:
     def __init__(self):
@@ -38,18 +40,7 @@ class ActionClearEventFilters(Action):
         
         return slot_resets
 
-### PAssing js
-class ActionShowAlert(Action):
-    def name(self):
-        return "action_show_alert"
-
-    def run(self, dispatcher, tracker, domain):
-        # Send a message to trigger the JavaScript alert
-        dispatcher.utter_message(text="show_alert")
-        return []
-
-
-###empty all slot action end
+##empty all slot action end
 
 '''
 Logic for sign up page if php passed the certain id then dont send
@@ -62,34 +53,67 @@ Logic for sign up page if php passed the certain id then dont send
 
 # Define a custom form to gather the required slots
 
-class ActionEventSearch(FormValidationAction):
+class EventSearchForm(FormAction):
     def name(self) -> Text:
-        return "action_event_search"
+        return "event_search_form"
 
-    def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        return []
+    @staticmethod
+    def required_slots(tracker: Tracker) -> List[Text]:
+        # Define the order in which you want to ask the questions
+        return ["event_city", "event_category", "max_price"]
 
-    def run(
+    def slot_mappings(self) -> Dict[Text, Any]:
+        return {
+            "event_city": self.from_text(intent="inform"),
+            "event_category": self.from_text(intent="inform"),
+            "max_price": self.from_text(intent="inform"),
+        }
+
+    def validate_event_city(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+        if not value:
+            dispatcher.utter_message("Please provide the city for the event.")
+            return {"event_city": None}
+        return {"event_city": value}
+
+    def validate_event_category(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+        if not value:
+            dispatcher.utter_message("Please specify the category of the event.")
+            return {"event_category": None}
+        return {"event_category": value}
+
+    def validate_max_price(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+        if not value:
+            dispatcher.utter_message("What is your maximum budget for the event?")
+            return {"max_price": None}
+        return {"max_price": value}
+
+    def submit(
         self,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        intent = tracker.latest_message['intent'].get('name')
         event_city = tracker.get_slot("event_city")
         event_category = tracker.get_slot("event_category")
         max_price = tracker.get_slot("max_price")
-
-        if intent == "affirm" or intent == "event_inform":
-            if not event_city:
-                dispatcher.utter_message("Please provide the city for the event.")
-                return [SlotSet("requested_slot", "event_city")]
-            elif not event_category:
-                dispatcher.utter_message("Please specify the category of the event.")
-                return [SlotSet("requested_slot", "event_category")]
-            elif not max_price:
-                dispatcher.utter_message("What is your maximum budget for the event?")
-                return [SlotSet("requested_slot", "max_price")]
 
         params = {
             "city": event_city,
@@ -118,6 +142,23 @@ class ActionEventSearch(FormValidationAction):
             )
 
         return []
+
+class ActionEventSearch(Action):
+    def name(self) -> Text:
+        return "action_event_search"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        # You can access the collected slots here if needed
+        event_city = tracker.get_slot("event_city")
+        event_category = tracker.get_slot("event_category")
+        max_price = tracker.get_slot("max_price")
+
+        # Your code to search for events based on the collected slots
+
+        return []
+
 
 
 #### combined coursel version 2
