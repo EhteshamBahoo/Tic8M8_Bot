@@ -2,7 +2,7 @@ import requests
 from typing import (
     Any, Text, Dict, List
     )
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 import datetime
@@ -573,27 +573,14 @@ class ActionListEventsByDate(Action):
 """Form Actions"""
 
 #main
-class EventSearchForm(FormAction):
+class ActionEventSearch(FormValidationAction):
     def name(self) -> Text:
-        return "event_search_form"
+        return "event_search_criteria"
 
-    @staticmethod
-    def required_slots(tracker: Tracker) -> List[Text]:
-        return ["event_city", "event_category", "max_price"] #add "start_date", "end_date", "min_price",
+    def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pass
 
-    # Customize slot validation if needed
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
-        return {
-            "event_city": self.from_text(),
-            "event_category": self.from_text(),
-            # "start_date": self.from_text(),
-            # "end_date": self.from_text(),
-            # "min_price": self.from_text(),
-            "max_price": self.from_text(),
-        }
-
-    # Implement the submit method to fetch and display data
-    def submit(
+    def run(
         self,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
@@ -601,18 +588,11 @@ class EventSearchForm(FormAction):
     ) -> List[Dict[Text, Any]]:
         event_city = tracker.get_slot("event_city")
         event_category = tracker.get_slot("event_category")
-        # start_date = tracker.get_slot("start_date")
-        # end_date = tracker.get_slot("end_date")
-        # min_price = tracker.get_slot("min_price")
         max_price = tracker.get_slot("max_price")
 
-        # Prepare parameters for the API call based on the slots
         params = {
             "city": event_city,
             "category": event_category,
-            # "startdate": start_date,
-            # "enddate": end_date,
-            # "minprice": min_price,
             "maxprice": max_price,
         }
 
@@ -621,58 +601,122 @@ class EventSearchForm(FormAction):
 
         if events:
             event_list = []
-            coursel_elements = []
 
             for event in events:
                 event_name = event.get("event_name", "N/A")
                 event_location = event.get("street", "N/A")
-                image_name = event.get("image_name", "N/A")
-                externallink = event.get("externallink", "N/A")
-
-                coursel_element = {
-                    "title": event_name,
-                    "subtitle": event_location,
-                    "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
-                    "buttons": [
-                        {
-                            "title": "Contact Information",
-                            "payload": f"Contact Information for {event_name}",
-                            "type": "postback",
-                        },
-                        {
-                            "title": "More Info",
-                            "payload": f"More Information of {event_name}",
-                            "type": "postback",
-                        },
-                        {
-                            "title": "More Details",
-                            "url": externallink,
-                            "type": "web_url",
-                        },
-                    ],
-                }
-                coursel_elements.append(coursel_element)
 
                 event_info = f"Event: {event_name} at address: {event_location}"
                 event_list.append(event_info)
 
-            response_message = "Here are the events based on your criteria:\n\n" + "\n".join(
-                event_list
-            )
-
-            coursel_message = {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": coursel_elements,
-                },
-            }
-
+            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
             dispatcher.utter_message(response_message)
-            dispatcher.utter_message(attachment=coursel_message)
         else:
             dispatcher.utter_message(
-                "There are no events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+                "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+            )
+
+        return []
+
+
+class ActionEventSearch(FormValidationAction):
+    def name(self) -> Text:
+        return "event_search_criteria"
+
+    async def required_slots(
+        self,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Text]:
+        # Define the order in which slots should be asked
+        return ["event_city", "event_category", "max_price"]
+
+    def slot_mappings(self) -> Dict[Text, Any]:
+        return {
+            "event_city": [
+                self.from_entity(entity="event_city"),
+                self.from_text(intent="event_inform"),  # Allow users to provide the city in conversation
+            ],
+            "event_category": [
+                self.from_entity(entity="event_category"),
+                self.from_text(intent="event_inform"),  # Allow users to provide the category in conversation
+            ],
+            "max_price": [
+                self.from_entity(entity="max_price"),
+                self.from_text(intent="event_inform"),  # Allow users to provide the max price in conversation
+            ],
+        }
+
+    async def validate_event_city(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        if not slot_value:
+            dispatcher.utter_message("Which city are you looking for events in?")
+            return {"event_city": None}
+        return {"event_city": slot_value}
+
+    async def validate_event_category(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        if not slot_value:
+            dispatcher.utter_message("What category of events are you interested in?")
+            return {"event_category": None}
+        return {"event_category": slot_value}
+
+    async def validate_max_price(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        if not slot_value:
+            dispatcher.utter_message("What is your maximum budget for tickets?")
+            return {"max_price": None}
+        return {"max_price": slot_value}
+
+    async def submit(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        event_city = tracker.get_slot("event_city")
+        event_category = tracker.get_slot("event_category")
+        max_price = tracker.get_slot("max_price")
+
+        params = {
+            "city": event_city,
+            "category": event_category,
+            "maxprice": max_price,
+        }
+
+        event_api = EventAPI()
+        events = event_api.get_events(params)
+
+        if events:
+            event_list = []
+
+            for event in events:
+                event_name = event.get("event_name", "N/A")
+                event_location = event.get("street", "N/A")
+
+                event_info = f"Event: {event_name} at address: {event_location}"
+                event_list.append(event_info)
+
+            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
+            dispatcher.utter_message(response_message)
+        else:
+            dispatcher.utter_message(
+                "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
             )
 
         return []

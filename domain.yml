@@ -38,7 +38,7 @@ entities:
 - event_email
 - event_phonenumber
 forms:
-  list_events_form:
+  event_search_criteria:
     required_slots:
     - event_city
     - event_category
@@ -169,16 +169,16 @@ responses:
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
   utter_do_you_need_help:
   - text: Do you want me to help you find an event?
-  utter_which_emirate:
+  utter_ask_event_city:
   - text: Which emirate are you looking to book the event?
-  utter_which_category:
+  utter_ask_event_category:
   - text: Which type of event are you looking for?
     buttons:
     - title: Concert
       payload: concert
     - title: Sport/Fitness
       payload: sport
-  utter_max_price:
+  utter_ask_max_price:
   - text: What is your maximum price range?
   utter_asking_event_name:
   - text: What is the name of the event you are looking for
@@ -200,25 +200,17 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- utter_which_category
-- utter_which_emirate
-- utter_max_price
-- event_search_criteria
-- utter_did_that_help
-- action_list_events_by_maxprice
-- action_show_alert
-- action_set_start_date
-- action_list_events_by_price_range
-- action_list_events_by_minprice
-- action_set_date
-- action_list_events_by_startdate
-- action_set_end_date
-- action_list_all_events
 - action_clear_event_filters
-- action_list_events_by_price
-- action_get_event_link
+- action_show_alert
+- action_event_search
+- action_list_all_events
+- action_list_events_by_maxprice
+- action_list_events_by_minprice
+- action_list_events_by_price_range
+- action_list_events_by_startdate
 - action_get_event_location
 - action_get_event_date
+- action_get_event_link
 - action_get_event_contact_info
 - utter_greet
 session_config:

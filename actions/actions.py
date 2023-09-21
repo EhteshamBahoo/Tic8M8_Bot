@@ -60,12 +60,13 @@ Logic for sign up page if php passed the certain id then dont send
 
 
 # Define a custom form to gather the required slots
+
 class ActionEventSearch(FormValidationAction):
     def name(self) -> Text:
-        return "event_search_criteria"
+        return "action_event_search"
 
     def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        pass
+        return []
 
     def run(
         self,
@@ -73,9 +74,21 @@ class ActionEventSearch(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
+        intent = tracker.latest_message['intent'].get('name')
         event_city = tracker.get_slot("event_city")
         event_category = tracker.get_slot("event_category")
         max_price = tracker.get_slot("max_price")
+
+        if intent == "affirm" or intent == "event_inform":
+            if not event_city:
+                dispatcher.utter_message("Please provide the city for the event.")
+                return [SlotSet("requested_slot", "event_city")]
+            elif not event_category:
+                dispatcher.utter_message("Please specify the category of the event.")
+                return [SlotSet("requested_slot", "event_category")]
+            elif not max_price:
+                dispatcher.utter_message("What is your maximum budget for the event?")
+                return [SlotSet("requested_slot", "max_price")]
 
         params = {
             "city": event_city,
@@ -105,8 +118,6 @@ class ActionEventSearch(FormValidationAction):
 
         return []
 
-
-""" end """
 
 #### combined coursel version 2
 #### List events city and category

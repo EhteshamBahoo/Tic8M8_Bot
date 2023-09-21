@@ -19,10 +19,17 @@ rules:
   - action: utter_sign_UP
 
 
-# - rule: Activate event booking form
+# - rule: Trigger event search when all slots are filled
+#   condition:
+#     - active_loop: event_search_criteria
+#     - slot_was_set:
+#         - requested_slot: null
 #   steps:
-#   - intent: ask_looking_for_event
-#   - action: list_events_form
+#     - action: event_search_criteria
+#     - active_loop: null
+#     - action: action_event_search
+#     - action: action_listen
+
 
 
 

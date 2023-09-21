@@ -51,12 +51,7 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
     - by the way, are you a human?
-- intent: looking_event
-  examples: |
-    - I am looking for an event
-    - i want to book an event
-    - what events are happening
-    - where can I find events
+
 - intent: ask_how_to_book
   examples: |
     - How can I book a ticket for an event?
@@ -181,17 +176,15 @@ nlu:
     - how can i contact the [kerala blasters](event_name)
 - intent: event_inform
   examples: |
-    - list me (sports)(event_category) events happening in [dubai](event_city)
-    - List me [concerts](event_category) happening in [Dubai](event_city).
-    - Can you provide more information about [Kerala Blasters vs Al Wasl FC](event_name) in [Abu Dhabi](event_city)?
-    - How can I contact the organizers of [TECHSPO Dubai 2023](event_name) in [Dubai](event_city)?
-    - Tell me about [food](event_category) festivals in [Sharjah](event_city).
-    - List all [theatre](event_category) events near [Ras Al Khaimah](event_city).
-    - Where is [Disney On Ice: 100 Years of Wonder Abu Dhabi 2023](event_name) happening, and when?
-    - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
-    - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
-    - [dubai](event_city)
-    - [dubai](event_city)
+    - I want to book an event
+    - I am looking for an event
+    - I am loking to book an event
+    - event booking
+    - booking tickets
+    - I am looking to book an event in [dubai](event_city)
+    - I want to book an event in dubai
+
+    
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -282,15 +275,7 @@ nlu:
     - buy tickets of [Global Village](event_name)
     - buy tickets [Global Village](event_name)
     - I want to buy tickets of [TECHSPO Dubai 2023](event_name)
-- intent: ask_looking_for_event
-  examples: |
-    - I want to buy tickets
-    - I am looking for an event
-    - I am loking to book an event
-    - event booking
-    - booking tickets
-    - i want to buy a ticket
-    - I want to buy a ticket
+
 - intent: ask_html
   examples: |
     - show me the html tag
@@ -298,11 +283,7 @@ nlu:
     - html give me
     - html tag
     - give me html
-- intent: ask_date
-  examples: |
-    - I want to choose a date
-    - Please show me the date picker
-    - How do I select a date?
+
 - intent: ask_create_an_account
   examples: |
     - Where do I create an account
