@@ -168,15 +168,12 @@ responses:
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
   utter_do_you_need_help:
   - text: Do you want me to help you find an event?
-  utter_which_emirate:
+  utter_ask_event_city:
   - text: Which emirate are you looking to book the event?
-  utter_which_type:
+  utter_ask_event_category:
   - text: Which type of event are you looking for?
-    buttons:
-    - title: Concert
-      payload: ''
-    - title: Sport/Fitness
-      payload: ''
+  utter_ask_max_price:
+  - text: what is your max price range?
   utter_asking_event_name:
   - text: What is the name of the event you are looking for
   - text: give me the name of the event
@@ -197,7 +194,7 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- event_search_criteria
+- action_event_search_criteria
 - utter_did_that_help
 - action_list_events_by_maxprice
 - action_show_alert

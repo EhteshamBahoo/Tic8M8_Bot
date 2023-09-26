@@ -62,7 +62,7 @@ Logic for sign up page if php passed the certain id then dont send
 # Define a custom form to gather the required slots
 class ActionEventSearch(FormValidationAction):
     def name(self) -> Text:
-        return "event_search_criteria"
+        return "action_event_search_criteria"
 
     def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pass

@@ -51,12 +51,6 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
     - by the way, are you a human?
-- intent: looking_event
-  examples: |
-    - I am looking for an event
-    - i want to book an event
-    - what events are happening
-    - where can I find events
 - intent: ask_how_to_book
   examples: |
     - How can I book a ticket for an event?
@@ -288,8 +282,10 @@ nlu:
     - I am loking to book an event
     - event booking
     - booking tickets
-    - i want to buy a ticket
-    - I want to buy a ticket
+    - I am looking for an event
+    - i want to book an event
+    - what events are happening
+    - where can I find events
 - intent: ask_html
   examples: |
     - show me the html tag

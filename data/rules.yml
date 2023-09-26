@@ -2,11 +2,6 @@ version: "3.1"
 
 rules:
 
-# - rule: Say goodbye anytime the user says goodbye
-#   steps:
-#   - intent: goodbye
-#   - action: utter_goodbye
-
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge
@@ -17,6 +12,22 @@ rules:
   steps:
   - intent: ask_create_an_account
   - action: utter_sign_UP
+
+- rule: Form Activate
+  steps:
+  - intent: ask_looking_for_event
+  - action: list_events_form
+  - active_loop: list_events_form
+
+- rule: Run action
+  steps:
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  # Deactivate the form
+  - action: action_event_search_criteria
+  # - action: action_clear_event_filters
+  # - action: action_listen
 
 
 # - rule: Activate event booking form
