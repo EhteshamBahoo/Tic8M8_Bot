@@ -27,3 +27,4 @@ for list events and event information
 Default for now
 
 Code working for forms
+datepicker not adding
