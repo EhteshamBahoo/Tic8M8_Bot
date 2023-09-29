@@ -8,6 +8,13 @@ rules:
   - action: utter_iamabot
 
 
+- rule: convo start
+  conversation_start: true
+  steps:
+  - action: utter_greet
+  - action: utter_do_you_need_help
+
+
 - rule: Sign up rule
   steps:
   - intent: ask_create_an_account
@@ -19,6 +26,13 @@ rules:
   - action: list_events_form
   - active_loop: list_events_form
 
+- rule: From Activate 2
+  steps:
+  - action: utter_do_you_need_help
+  - intent: affirm
+  - action: list_events_form
+  - active_loop: list_events_form
+
 - rule: Run action
   steps:
   - action: list_events_form
@@ -26,14 +40,22 @@ rules:
     - requested_slot: null
   - active_loop: null  # Deactivate the form
   - action: action_event_search_criteria
-  # - action: action_clear_event_filters
-  # - action: action_listen
+  - action: action_clear_event_filters
+  - action: utter_ask_event_name
+  - action: action_listen
 
+- rule: reset slots
+  steps:
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
 
-# - rule: Activate event booking form
-#   steps:
-#   - intent: ask_looking_for_event
-#   - action: list_events_form
+- rule: more info
+  steps:
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
 
 
 

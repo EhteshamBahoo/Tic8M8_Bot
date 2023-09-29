@@ -228,6 +228,16 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
 
 - story: Form Story 3
@@ -257,8 +267,16 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
-
-
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
 - story: form story 4
   steps:
@@ -293,8 +311,16 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
-
-
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
 
 - story: form 4
@@ -330,6 +356,16 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
 
 - story: form 5
@@ -365,6 +401,17 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
+
 
 
 - story: form 6
@@ -400,4 +447,125 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_event_search_criteria
+  - action: action_clear_event_filters  
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
+
+### comp stories
+
+- story: happy path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: affirm
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+  - intent: action_get_event_date
+  - intent: ask_to_buy_ticket
+  - action: utter_buy_ticket
+  - intent: affirm
+  - active_loop: ticket_booking_form
+
+
+
+- story: happy path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: deny
+  - action: utter_do_you_need_help
+  - intent: affirm
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - requested_slot: event_city
+  - intent: event_inform
+    entities:
+    - event_city: dubai
+  - slot_was_set:
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: event_inform
+    entities:
+    - event_category: Family Fun
+  - slot_was_set:
+    - event_category: Family Fun
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1500'
+  - slot_was_set:
+    - max_price: '1500'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+  - intent: action_get_event_date
+  - intent: ask_to_buy_ticket
+  - action: utter_buy_ticket
+  - intent: affirm
+  - active_loop: ticket_booking_form
+
+
+- story: happy path 3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: deny
+  - action: utter_do_you_need_help
+  - intent: deny
+  - action: utter_checkout_new_events
+  - intent: affirm  # run action_list_new_events
+
+
+
+- story: happy path 4
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: deny
+  - action: utter_do_you_need_help
+  - intent: deny
+  - action: utter_checkout_new_events
+  - intent: deny
+  - action: utter_not_able_to_help

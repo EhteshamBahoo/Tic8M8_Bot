@@ -140,11 +140,13 @@ class ActionListAllEvents(Action):
                 event_location = event.get("street", "N/A")
                 image_name = event.get("image_name", "N/A")
                 externallink = event.get("externallink", "N/A")
+                event_price = event.get("price", "N/A")
 
                 coursel_element = {
-                            "title": event_name,
+                            "title": event_name, 
                             "subtitle": event_location, 
-                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
+                            "price": event_price,
+                            # "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
                                 "buttons": [ 
                                     {
                                     "title": "Contact Information",
@@ -161,6 +163,7 @@ class ActionListAllEvents(Action):
                                     "url": externallink, 
                                     "type": "web_url" 
                                     }
+                                    
                                 ]
                 }
                 coursel_elements.append(coursel_element) # putting a single element into a collection of elements
