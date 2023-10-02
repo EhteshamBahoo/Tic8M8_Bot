@@ -146,7 +146,7 @@ class ActionListAllEvents(Action):
                             "title": event_name, 
                             "subtitle": event_location, 
                             "price": event_price,
-                            # "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
                                 "buttons": [ 
                                     {
                                     "title": "Contact Information",

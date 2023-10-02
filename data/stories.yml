@@ -253,7 +253,7 @@ stories:
   - action: list_events_form
   - slot_was_set:
     - requested_slot: event_category
-  - intent: 
+  - intent: ask_list_all
   - slot_was_set:
     - event_category: exposition
   - action: list_events_form
@@ -321,6 +321,7 @@ stories:
   - slot_was_set:
     - event_category: null
   - action: utter_ask_event_name
+  - intent: event_inform
 
 
 - story: form 4
@@ -366,6 +367,7 @@ stories:
   - slot_was_set:
     - event_category: null
   - action: utter_ask_event_name
+  - intent: event_inform
 
 
 - story: form 5
@@ -475,7 +477,7 @@ stories:
   - intent: ask_eventlocation_by_name
   - action: action_get_event_location
   - intent: ask_eventdate_by_name
-  - intent: action_get_event_date
+  - action: action_get_event_date
   - intent: ask_to_buy_ticket
   - action: utter_buy_ticket
   - intent: affirm

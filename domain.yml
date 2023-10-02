@@ -22,6 +22,7 @@ intents:
 - inform
 - list_events_by_date
 - stop
+- ask_to_buy_ticket
 entities:
 - event_category
 - max_price
@@ -168,26 +169,13 @@ responses:
 
   utter_looking_for:
   - text: Are you looking for a specific event?
-    buttons:
-    - title: Yes
-      payload: /affirm
-    - title: No
-      payload: /deny
   utter_ask_event_name:
   - text: What is the name of the event you are looking for
   - text: give me the name of the event
 
   utter_what_info_need:
   - text: what information do you need about {event_name}.
-    buttons:
-    - title: "Location"
-      payload: "/ask_eventlocation_by_name"
-    - title: "timing"
-      payload: "/ask_eventdate_by_name"
-    - title: "Book Ticket"
-
-    
-
+ 
 
   utter_did_that_help:
   - text: Did I answer your question? 😊
