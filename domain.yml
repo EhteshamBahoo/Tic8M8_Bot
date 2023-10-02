@@ -175,6 +175,12 @@ responses:
 
   utter_what_info_need:
   - text: what information do you need about {event_name}.
+    buttons:
+    - title: "Location"
+      payload: "/ask_eventlocation_by_name"
+    - title: "timing"
+      payload: "/ask_eventdate_by_name"
+    - title: "Book Ticket"
  
 
   utter_did_that_help:

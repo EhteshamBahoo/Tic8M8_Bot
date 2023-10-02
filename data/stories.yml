@@ -2,30 +2,30 @@ version: "3.1"
 
 stories:
 
-- story: Get event location by name
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: ask_eventlocation_by_name
-    - action: action_get_event_location
+# - story: Get event location by name
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: ask_eventlocation_by_name
+#     - action: action_get_event_location
 
-- story: interactive_story_1  # Give this story a unique name
-  steps:
-  - intent: ask_eventlocation_by_name
-    entities:
-    - event_name: Global Village
-  - action: action_get_event_location
+# - story: interactive_story_1  # Give this story a unique name
+#   steps:
+#   - intent: ask_eventlocation_by_name
+#     entities:
+#     - event_name: Global Village
+#   - action: action_get_event_location
 
-- story: Get both
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: ask_eventdate_by_name
-    - slot_was_set:
-        - event_name: "Global Village"
-    - action: action_get_event_date
-    - intent: ask_eventlocation_by_name
-    - action: action_get_event_location
+# - story: Get both
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: ask_eventdate_by_name
+#     - slot_was_set:
+#         - event_name: "Global Village"
+#     - action: action_get_event_date
+#     - intent: ask_eventlocation_by_name
+#     - action: action_get_event_location
 
 - story: interactive_story_10
   steps:

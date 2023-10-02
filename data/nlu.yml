@@ -189,6 +189,12 @@ nlu:
     - [techspo](event_name)
     - [Global Village](event_name)
     - [Abu Dhabi International Boat Show 2023](event_name)
+    - [Formula 1 Etihad](event_name)
+    - [Formula 1 Etihad](event_name)
+    - [Formula 1 Etihad Airways Abu Dhabi Grand Prix 2023](event_name)
+    - [Trevor Noah Live Comedy](event_name)
+    - [Mai Dubai City Half Marathon](event_name)
+    - [Half Marathon](event_name)
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -231,6 +237,11 @@ nlu:
     - [sport](event_category)
     - [dubai](event_city) [sport](event_category)
     - [sport](event_category)
+    - [comedy](event_category)
+    - [festival](event_category)
+    - [Festival](event_category)
+    - [Spectacle](event_category)
+    - [spectacle](event_category)
 - intent: get_events_by_minprice
   examples: |
     - show me events that cost more then [50](min_price) aed?
