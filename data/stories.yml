@@ -253,7 +253,7 @@ stories:
   - action: list_events_form
   - slot_was_set:
     - requested_slot: event_category
-  - intent: ask_list_all
+  - intent: 
   - slot_was_set:
     - event_category: exposition
   - action: list_events_form
@@ -321,7 +321,6 @@ stories:
   - slot_was_set:
     - event_category: null
   - action: utter_ask_event_name
-  - intent: event_inform
 
 
 - story: form 4
@@ -367,7 +366,6 @@ stories:
   - slot_was_set:
     - event_category: null
   - action: utter_ask_event_name
-  - intent: event_inform
 
 
 - story: form 5
@@ -459,7 +457,18 @@ stories:
   - slot_was_set:
     - event_category: null
   - action: utter_ask_event_name
-
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+  - action: action_get_event_date
+  - intent: ask_to_buy_ticket
+  - action: utter_buy_ticket
+  - intent: affirm
+  - active_loop: ticket_booking_form
 
 ### comp stories
 
@@ -483,7 +492,25 @@ stories:
   - intent: affirm
   - active_loop: ticket_booking_form
 
-
+- story: happy p 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: affirm
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - intent: ask_eventdate_by_name
+  - action: action_get_event_date
+  - intent: ask_to_buy_ticket
+  - action: utter_buy_ticket
+  - intent: affirm
+  - active_loop: ticket_booking_form
 
 - story: happy path 2
   steps:
@@ -540,7 +567,7 @@ stories:
   - intent: ask_eventlocation_by_name
   - action: action_get_event_location
   - intent: ask_eventdate_by_name
-  - intent: action_get_event_date
+  - action: action_get_event_date
   - intent: ask_to_buy_ticket
   - action: utter_buy_ticket
   - intent: affirm

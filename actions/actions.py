@@ -357,37 +357,6 @@ class ActionListEventsByPriceRange(Action):
             return []
 
 
-## Date coursel code
-class ActionListEventsByStartDate(Action):
-    def name(self) -> Text:
-        return "action_list_events_by_startdate"
-
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
-    ) -> List[Dict[Text, Any]]:
-        start_date = tracker.get_slot("start_date")  # Extract the start_date from the slot
-
-        if start_date is not None:
-            event_api = EventAPI()  # Create an instance of your EventAPI class
-            params = {"start_date": start_date}
-            events = event_api.get_events(params)
-
-            if events:
-                message = "Events on the specified start date:\n"
-                for event in events:
-                    event_name = event.get("event_name", "N/A")
-                    event_location = event.get("street", "N/A")
-
-                    message += f"- {event_name} at {event_location}\n"
-
-                dispatcher.utter_message(message)
-            else:
-                dispatcher.utter_message("No events found for the specified start date.")
-        else:
-            dispatcher.utter_message("Please provide a valid start date.")
-
-        return []
-
 
 """ -- COursel Code end """
 

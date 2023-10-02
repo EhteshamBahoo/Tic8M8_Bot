@@ -171,16 +171,15 @@ responses:
   - text: Are you looking for a specific event?
   utter_ask_event_name:
   - text: What is the name of the event you are looking for
-  - text: give me the name of the event
+  # - text: give me the name of the event
 
   utter_what_info_need:
   - text: what information do you need about {event_name}.
     buttons:
-    - title: "Location"
-      payload: "/ask_eventlocation_by_name"
-    - title: "timing"
-      payload: "/ask_eventdate_by_name"
-    - title: "Book Ticket"
+    - title: Location
+      payload: /ask_eventlocation_by_name
+    - title: Timing
+      payload: /deny
  
 
   utter_did_that_help:
