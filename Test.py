@@ -626,3 +626,45 @@ class ActionListTicketTypes(Action):
             {"ticket_name": "Student", "ticket_price": 25},
         ]  # Replace with the actual ticket types from your API
         return ticket_types
+    
+
+class ActionGetTicketTypes(Action):
+    def name(self) -> Text:
+        return "action_get_ticket_types"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        event_name = tracker.get_slot("event_name")
+
+        # Assuming you have an EventAPI instance available, fetch the eventdate_id
+        event_api = EventAPI()
+        event_date_id = event_api.get_eventdate_id(event_name)  # Implement this method in your EventAPI class
+
+        if event_date_id is not None:
+            # Use the eventdate_id to fetch ticket types from the ticketType API
+            ticket_types = self.get_ticket_types(event_date_id)  # Implement this method
+
+            if ticket_types:
+                # Create a response message with the ticket types
+                response_message = "Here are the available ticket types for this event:\n\n"
+                response_message += "\n".join(ticket_types)
+                dispatcher.utter_message(response_message)
+            else:
+                dispatcher.utter_message("There are no available ticket types for this event.")
+        else:
+            dispatcher.utter_message("I couldn't find information for that event.")
+
+        return []
+
+    def get_ticket_types(self, event_date_id: str) -> List[str]:
+        # Make a request to the ticketType API using event_date_id to fetch ticket types
+        ticket_type_api_url = f"https://example.com/api/ticketType"  # Replace with the actual URL
+        params = {"id": event_date_id}
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}  # Add any required headers
+
+        response = requests.get(ticket_type_api_url, params=params, headers=headers)
+
+        if response.status_code == 200:
+            ticket_types = response.json().get("ticket_types", [])
+            return ticket_types
+        else:
+            return []
