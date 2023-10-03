@@ -253,6 +253,10 @@ responses:
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
+    
+
+
+
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:

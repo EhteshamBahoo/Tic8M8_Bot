@@ -186,9 +186,11 @@ class ActionListAllEvents(Action):
 
         return []
     
-""" Give ticket type information"""
 
-class ActionGetEventTypes(Action):
+""" end """
+    
+""" Give ticket type information"""
+class ActionGetTicketTypes(Action):
     def name(self) -> Text:
         return "action_get_ticket_types"
 
@@ -200,16 +202,21 @@ class ActionGetEventTypes(Action):
             return []
 
         eventdate_id = self.get_eventdate_id(event_name)
-
+ 
         if eventdate_id is not None:
             event_types = self.get_event_types(eventdate_id)
             if event_types:
-                response_message = "Here are the event types:\n\n"
+                response_message = "Here are the ticket types:\n\n"
                 for event_type in event_types:
                     name = event_type.get("name", "N/A")
                     price = event_type.get("price", "N/A")
-                    response_message += f"Name: {name}, Price: {price}\n"
+                    response_message += f"Name: {name}  \n|  Price: {price}        \n\n"
+                    buttons = [{"title": event_type["name"], "payload": "/affirm" }]
                 dispatcher.utter_message(response_message)
+
+                # Create buttons for each ticket type
+                dispatcher.utter_button_message("Please select a ticket type:", buttons)
+
             else:
                 dispatcher.utter_message("No event types found for the given event.")
         else:

@@ -253,7 +253,7 @@ stories:
   - action: list_events_form
   - slot_was_set:
     - requested_slot: event_category
-  - intent: 
+  - intent: ask_list_all 
   - slot_was_set:
     - event_category: exposition
   - action: list_events_form
