@@ -11,6 +11,7 @@ intents:
 - ask_list_events_city
 - ask_looking_for_event
 - ask_more_info
+- ask_to_buy_ticket
 - bot_challenge
 - deny
 - event_inform
@@ -22,15 +23,14 @@ intents:
 - inform
 - list_events_by_date
 - stop
-- ask_to_buy_ticket
 entities:
+- event_name
 - event_category
 - max_price
 - event_city
 - start_date
 - min_price
 - event_artists
-- event_name
 - event_location
 - event_date
 - end_date
@@ -39,9 +39,6 @@ entities:
 - event_phonenumber
 - ticket_quantity
 - ticket_type
-
-
-
 forms:
   list_events_form:
     required_slots:
@@ -53,7 +50,6 @@ forms:
     - event_name
     - ticket_quantity
     - ticket_type
-
 slots:
   event_name:
     type: text
@@ -160,19 +156,14 @@ slots:
       conditions:
       - active_loop: ticket_booking_form
         requested_slot: ticket_type
-  
-
 responses:
   utter_greet:
   - text: Hey! It's great to see you. 😊 How can I assist you today?
   - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book a venue📖 for yourself ping me. 🌟
-
   utter_looking_for:
   - text: Are you looking for a specific event?
   utter_ask_event_name:
   - text: What is the name of the event you are looking for
-  # - text: give me the name of the event
-
   utter_what_info_need:
   - text: what information do you need about {event_name}.
     buttons:
@@ -180,8 +171,6 @@ responses:
       payload: /ask_eventlocation_by_name
     - title: Timing
       payload: /deny
- 
-
   utter_did_that_help:
   - text: Did I answer your question? 😊
   - text: I hope that was helpful. Is there anything else I can assist you with?
@@ -214,8 +203,6 @@ responses:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
   - text: Love {event_category} events? So do we! Check out what's   coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
-
-
   utter_do_you_need_help:
   - text: Do you want me to help you find an event?
     buttons:
@@ -223,15 +210,12 @@ responses:
       payload: /affirm
     - title: No
       payload: /deny
-
   utter_ask_event_city:
   - text: Which emirate are you looking to book the event?
   utter_ask_event_category:
   - text: Which type of event are you looking for?
   utter_ask_max_price:
   - text: what is your max price range?
-
- 
   utter_checkout_new_events:
   - text: Do you want to checkout some new events I picked?
     buttons:
@@ -239,11 +223,8 @@ responses:
       payload: /affirm
     - title: No
       payload: /deny
-
   utter_not_able_to_help:
   - text: I apologize then I am only able to help you with booking events and finding information about events happening in UAE.
- 
-
   utter_check_another_event:
   - text: Do you want to check another event?
     buttons:
@@ -251,7 +232,6 @@ responses:
       payload: /affirm
     - title: No
       payload: /deny
-
   utter_learn_more:
   - text: Do you want to learn more about {event_name}?
     buttons:
@@ -259,7 +239,6 @@ responses:
       payload: /affirm
     - title: No
       payload: /deny
-
   utter_buy_ticket:
   - text: Do you want to buy tickets for {event_name}?
     buttons:
@@ -267,7 +246,6 @@ responses:
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
-
   utter_add_to_cart:
   - text: sure I will add {ticket_quantity} {ticket_type} tickets for {event_name} please checkout your cart for more inforamtion.
     buttons:
@@ -275,11 +253,10 @@ responses:
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
-
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
-
 actions:
+- action_get_ticket_types
 - action_clear_event_filters
 - action_event_search_criteria
 - utter_did_that_help

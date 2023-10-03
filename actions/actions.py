@@ -106,6 +106,8 @@ class ActionEventSearch(FormValidationAction):
         return []
 
 
+
+
 """ end """
 
 #### combined coursel version 2
@@ -183,6 +185,74 @@ class ActionListAllEvents(Action):
                 dispatcher.utter_message("There arent any events based on your criteria why dont you check our events page we have a whole catalog of events there! 😀") 
 
         return []
+    
+""" Give ticket type information"""
+
+class ActionGetEventTypes(Action):
+    def name(self) -> Text:
+        return "action_get_ticket_types"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        event_name = tracker.get_slot("event_name")
+
+        if not event_name:
+            dispatcher.utter_message("I couldn't find the event name.")
+            return []
+
+        eventdate_id = self.get_eventdate_id(event_name)
+
+        if eventdate_id is not None:
+            event_types = self.get_event_types(eventdate_id)
+            if event_types:
+                response_message = "Here are the event types:\n\n"
+                for event_type in event_types:
+                    name = event_type.get("name", "N/A")
+                    price = event_type.get("price", "N/A")
+                    response_message += f"Name: {name}, Price: {price}\n"
+                dispatcher.utter_message(response_message)
+            else:
+                dispatcher.utter_message("No event types found for the given event.")
+        else:
+            dispatcher.utter_message(f"No event found with the name '{event_name}'.")
+
+        return []
+
+    def get_eventdate_id(self, event_name: Text) -> int:
+        url = "https://dev.tic8m8.com/api/getevents"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+        params = {"name": event_name}
+        
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list) and len(data) > 0:
+                eventdate_id = data[0].get("eventdate_id")
+                return eventdate_id
+        except requests.exceptions.RequestException:
+            pass
+        return None
+
+    def get_event_types(self, eventdate_id: int) -> List[Dict[Text, Any]]:
+        url = "https://dev.tic8m8.com/api/geteventtypes"
+        params = {"eventdate_id": eventdate_id}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list):
+                return data
+        except requests.exceptions.RequestException:
+            pass
+        return []
+
+"""   """
+
 
 # Event List with MAX Price
 class ActionListEventsByMaxPrice(Action):

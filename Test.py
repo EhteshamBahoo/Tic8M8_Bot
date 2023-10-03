@@ -628,43 +628,79 @@ class ActionListTicketTypes(Action):
         return ticket_types
     
 
-class ActionGetTicketTypes(Action):
+class ActionGetEventTypes(Action):
     def name(self) -> Text:
-        return "action_get_ticket_types"
+        return "action_get_event_types"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
+    ) -> List[Dict[Text, Any]]:
+        # Get the event_name from the slot
         event_name = tracker.get_slot("event_name")
 
-        # Assuming you have an EventAPI instance available, fetch the eventdate_id
-        event_api = EventAPI()
-        event_date_id = event_api.get_eventdate_id(event_name)  # Implement this method in your EventAPI class
+        if not event_name:
+            dispatcher.utter_message("Please provide the event name.")
+            return []
 
-        if event_date_id is not None:
-            # Use the eventdate_id to fetch ticket types from the ticketType API
-            ticket_types = self.get_ticket_types(event_date_id)  # Implement this method
+        # Call the API to get eventdate_id
+        eventdate_id = self.get_eventdate_id(event_name)
 
-            if ticket_types:
-                # Create a response message with the ticket types
-                response_message = "Here are the available ticket types for this event:\n\n"
-                response_message += "\n".join(ticket_types)
+        if eventdate_id is not None:
+            dispatcher.utter_message(f"Eventdate ID for '{event_name}': {eventdate_id}")
+
+            # Call the API to get event types using eventdate_id
+            event_types = self.get_event_types(eventdate_id)
+
+            if event_types:
+                response_message = "Event Types:\n"
+                for event_type in event_types:
+                    name = event_type.get("name", "N/A")
+                    price = event_type.get("price", "N/A")
+                    response_message += f"Name: {name}, Price: {price}\n"
+
                 dispatcher.utter_message(response_message)
             else:
-                dispatcher.utter_message("There are no available ticket types for this event.")
+                dispatcher.utter_message("No event types found for the given eventdate_id.")
         else:
-            dispatcher.utter_message("I couldn't find information for that event.")
+            dispatcher.utter_message(f"No eventdate_id found for '{event_name}'.")
 
         return []
 
-    def get_ticket_types(self, event_date_id: str) -> List[str]:
-        # Make a request to the ticketType API using event_date_id to fetch ticket types
-        ticket_type_api_url = f"https://example.com/api/ticketType"  # Replace with the actual URL
-        params = {"id": event_date_id}
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}  # Add any required headers
+    def get_eventdate_id(self, event_name: Text) -> Optional[int]:
+        url = "https://dev.tic8m8.com/api/getevents"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+        params = {"name": event_name}
 
-        response = requests.get(ticket_type_api_url, params=params, headers=headers)
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list) and len(data) > 0:
+                return data[0].get("eventdate_id")
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching eventdate_id: {e}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
-        if response.status_code == 200:
-            ticket_types = response.json().get("ticket_types", [])
-            return ticket_types
-        else:
-            return []
+        return None
+
+    def get_event_types(self, eventdate_id: int) -> List[Dict[Text, Any]]:
+        url = f"https://dev.tic8m8.com/api/geteventtypes?eventdate_id={eventdate_id}"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list) and len(data) > 0:
+                return data
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching event types: {e}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+        return []

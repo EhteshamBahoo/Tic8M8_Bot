@@ -186,11 +186,9 @@ nlu:
     - I'd like to see [experiences](event_category) in [Abu Dhabi](event_city).
     - List [museum](event_category) exhibitions in [Fujairah](event_city) this month.
     - [dubai](event_city)
-    - [dubai](event_city)
     - [techspo](event_name)
     - [Global Village](event_name)
     - [Abu Dhabi International Boat Show 2023](event_name)
-    - [Formula 1 Etihad](event_name)
     - [Formula 1 Etihad](event_name)
     - [Formula 1 Etihad Airways Abu Dhabi Grand Prix 2023](event_name)
     - [Trevor Noah Live Comedy](event_name)
@@ -237,7 +235,6 @@ nlu:
     - list me [sport](event_category) events in [abu dhabi]{"entity": "event_city", "value": "Abu Dhabi"}
     - [sport](event_category)
     - [dubai](event_city) [sport](event_category)
-    - [sport](event_category)
     - [comedy](event_category)
     - [festival](event_category)
     - [Festival](event_category)
@@ -284,7 +281,6 @@ nlu:
     - Show me events from (2023-01-01)[start_date]
     - List events on (2023-09-01)[start_date]
     - list event happening on [2023-09-26](start_date)
-
 - intent: ask_looking_for_event
   examples: |
     - I want to buy tickets
@@ -309,6 +305,29 @@ nlu:
     - sign up
     - how do i sign up
     - create account
+- intent: ask_to_buy_ticket
+  examples: |
+    - I want to buy tickets for [Global Village](event_name)
+    - buy tickets of [Global Village](event_name)
+    - buy tickets [Global Village](event_name)
+    - I want to buy tickets of [TECHSPO Dubai 2023](event_name)
+    - [TECHSPO Dubai 2023](event_name) tickets
+    - I want to buy tickets for [International Trade And Services Expo](event_name)
+    - I want to buy tickets for [forex expo](event_name)
+    - I want to buy tickets for [global village]{"entity": "event_name", "value": "Global Village"}
+    - tickets of [Formula 1 Etihad](event_name)
+    - ticket types of [Formula 1 Etihad](event_name)
+    - What are the type of tickets [Formula 1 Etihad](event_name) has
+
+- intent: give_ticket_quantity
+  examples: |
+    - I want to book [3](ticket_quantity) tickets
+- intent: give_ticket_category
+  examples: |
+    - I want to buy general tickets
+- intent: questions_of_tickets
+  examples: |
+    - tickets
 - synonym: Global Village
   examples: |
     - global village
@@ -321,28 +340,3 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
-
-
-
-### Ticket Booking intents
-
-- intent: ask_to_buy_ticket
-  examples: |
-    - I want to buy tickets for [Global Village](event_name)
-    - buy tickets of [Global Village](event_name)
-    - buy tickets [Global Village](event_name)
-    - I want to buy tickets of [TECHSPO Dubai 2023](event_name)
-
-- intent: give_ticket_quantity
-  examples: |
-    - I want to book [3](ticket_quantity) tickets
-
-
-- intent: give_ticket_category
-  examples: |
-    - I want to buy general tickets
-
-- intent: questions_of_tickets
-  examples: |
-    - tickets
-
