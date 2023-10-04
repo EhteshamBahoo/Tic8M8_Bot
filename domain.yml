@@ -217,6 +217,15 @@ responses:
       payload: /deny
   utter_ask_event_city:
   - text: Which emirate are you looking to book the event?
+    buttons:
+    - title: Dubai
+      payload: '/ask_list_all{"event_city" : "dubai"}'
+    - title: Abu Dhabi
+      payload: '/ask_list_all{"event_city" : "abu dhabi"}'
+    - title: Sharjah
+      payload: '/ask_list_all{"event_city" : "sharjah"}'
+    - title: Fujairah
+      payload: '/ask_list_all{"event_city" : "fujairah"}'
   utter_ask_event_category:
   - text: Which type of event are you looking for?
     buttons:
@@ -234,6 +243,9 @@ responses:
       payload: '/ask_list_all{"event_category" : "Family Fun"}'
   utter_ask_max_price:
   - text: what is your max price range?
+    buttons:
+    - title: Free
+      payload: '/ask_list_all{"max_price" : "free"}'
   utter_checkout_new_events:
   - text: Do you want to checkout some events I picked?
     buttons:
