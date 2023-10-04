@@ -22,7 +22,7 @@ rules:
 
 - rule: Form Activate
   steps:
-  - intent: ask_looking_for_event
+  - intent: ask_list_all
   - action: list_events_form
   - active_loop: list_events_form
 

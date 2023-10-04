@@ -2,31 +2,6 @@ version: "3.1"
 
 stories:
 
-# - story: Get event location by name
-#   steps:
-#     - intent: greet
-#     - action: utter_greet
-#     - intent: ask_eventlocation_by_name
-#     - action: action_get_event_location
-
-# - story: interactive_story_1  # Give this story a unique name
-#   steps:
-#   - intent: ask_eventlocation_by_name
-#     entities:
-#     - event_name: Global Village
-#   - action: action_get_event_location
-
-# - story: Get both
-#   steps:
-#     - intent: greet
-#     - action: utter_greet
-#     - intent: ask_eventdate_by_name
-#     - slot_was_set:
-#         - event_name: "Global Village"
-#     - action: action_get_event_date
-#     - intent: ask_eventlocation_by_name
-#     - action: action_get_event_location
-
 - story: interactive_story_10
   steps:
   - intent: ask_eventlocation_by_name
@@ -69,8 +44,6 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: ask_contact_info
-    entities:
-    - event_name: Global Village
   - slot_was_set:
     - event_name: Global Village
   - action: action_get_event_contact_info
@@ -79,8 +52,6 @@ stories:
   - slot_was_set:
     - event_phonenumber: +971 4 362 4114
   - intent: ask_more_info
-    entities:
-    - event_name: Global Village
   - slot_was_set:
     - event_name: Global Village
   - action: action_get_event_link
@@ -89,110 +60,86 @@ stories:
 
 - story: interactive_story_1
   steps:
-  - intent: ask_list_events_city
+  - intent: ask_list_event_city
   - action: action_list_all_events
-  - intent: ask_list_events_city
-    entities:
-    - events_city: sharjah
+  - intent: ask_list_event_city
+  - slot_was_set:
+    - event_city: sharjah
   - action: action_list_all_events
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_eventlocation_by_name
-    entities:
-    - event_name: forex expo
-  - slot_was_set:
-    - event_name: forex expo
-  - action: action_get_event_location
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_list_all
+#   - slot_was_set:
+#     - event_category: sports
+#   - action: action_list_all_events
+#   - action: action_clear_event_filters
+#   - intent: ask_list_all
+#   - slot_was_set:
+#     - event_category: sports
+#   - action: action_list_all_events
+#   - action: action_clear_event_filters
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_list_all
-    entities:
-    - event_category: sports
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-  - intent: ask_list_all
-    entities:
-    - event_category: sports
-  - action: action_list_all_events
-  - action: action_clear_event_filters
+# - story: clear_events 1
+#   steps:
+#   - intent: ask_list_all
+#   - slot_was_set:
+#     - event_category: sport
+#   - action: action_list_all_events
+#   - action: action_clear_event_filters
+#   - slot_was_set:
+#     - event_city: null
+#   - slot_was_set:
+#     - event_artists: null
+#   - slot_was_set:
+#     - event_date: null
+#   - slot_was_set:
+#     - event_category: null
+#   - intent: ask_list_all
+#     entities:
+#     - event_category: sport
+#     - event_city: Abu Dhabi
+#   - slot_was_set:
+#     - event_city: Abu Dhabi
+#   - slot_was_set:
+#     - event_category: sport
+#   - action: action_list_all_events
+#   - action: action_clear_event_filters
+#   - slot_was_set:
+#     - event_city: null
+#   - slot_was_set: 
+#     - event_artists: null
+#   - slot_was_set:
+#     - event_date: null
+#   - slot_was_set:
+#     - event_category: null
+#   - intent: ask_contact_info
+#   - action: action_get_event_contact_info
+#   - action: action_clear_event_filters
 
-- story: give_coursel
-  steps:
-  - intent: ask_list_all
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-
-- story: give_list
-  steps:
-  - intent: ask_list_all
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-
-
-- story: clear_events 1
-  steps:
-  - intent: ask_list_all
-    entities:
-    - event_category: sport
-  - slot_was_set:
-    - event_category: sport
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-  - slot_was_set:
-    - event_city: null
-  - slot_was_set:
-    - event_artists: null
-  - slot_was_set:
-    - event_date: null
-  - slot_was_set:
-    - event_category: null
-  - intent: ask_list_all
-    entities:
-    - event_category: sport
-    - event_city: Abu Dhabi
-  - slot_was_set:
-    - event_city: Abu Dhabi
-  - slot_was_set:
-    - event_category: sport
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-  - slot_was_set:
-    - event_city: null
-  - slot_was_set: 
-    - event_artists: null
-  - slot_was_set:
-    - event_date: null
-  - slot_was_set:
-    - event_category: null
-  - intent: ask_contact_info
-  - action: action_get_event_contact_info
-  - action: action_clear_event_filters
-
-- story: clear_events 1
-  steps:
-  - intent: ask_list_all
-    entities:
-    - event_category: sport
-    - event_city: Abu Dhabi
-  - slot_was_set:
-    - event_city: Abu Dhabi
-  - slot_was_set:
-    - event_category: sport
-  - action: action_list_all_events
-  - action: action_clear_event_filters
-  - slot_was_set:
-    - event_city: null
-  - slot_was_set:
-    - event_artists: null
-  - slot_was_set:
-    - event_date: null
-  - slot_was_set:
-    - event_category: null
-  - intent: ask_contact_info
-  - action: action_get_event_contact_info
-  - action: action_clear_event_filters
+# - story: clear_events 1
+#   steps:
+#   - intent: ask_list_all
+#     # entities:
+#     # - event_category: sport
+#     # - event_city: Abu Dhabi
+#   - slot_was_set:
+#     - event_city: Abu Dhabi
+#   - slot_was_set:
+#     - event_category: sport
+#   - action: action_list_all_events
+#   - action: action_clear_event_filters
+#   - slot_was_set:
+#     - event_city: null
+#   - slot_was_set:
+#     - event_artists: null
+#   - slot_was_set:
+#     - event_date: null
+#   - slot_was_set:
+#     - event_category: null
+#   - intent: ask_contact_info
+#   - action: action_get_event_contact_info
+#   - action: action_clear_event_filters
 
 - story: Sign up
   steps:
@@ -470,6 +417,141 @@ stories:
   # - action: utter_buy_ticket
   # - intent: affirm
   # - active_loop: ticket_booking_form
+
+- story: Form Story with List All Intent
+  steps:
+  - intent: ask_list_all
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - event_category: sports
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1500'
+  - slot_was_set:
+    - max_price: '1500'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
+
+- story: Form Story with List All Intent
+  steps:
+  - intent: ask_list_all
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - event_category: sports
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1500'
+  - slot_was_set:
+    - max_price: '1500'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
+
+- story: Form Story with Max Price and City
+  steps:
+  - intent: ask_list_all
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - max_price: '1500'
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: inform
+    entities:
+    - event_category: sports
+  - slot_was_set:
+    - event_category: sports
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
+
+- story: Form Story with City Only
+  steps:
+  - intent: ask_list_all
+  - action: list_events_form
+  - active_loop: list_events_form
+  - slot_was_set:
+    - event_city: dubai
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: event_category
+  - intent: inform
+    entities:
+    - event_category: sports
+  - slot_was_set:
+    - event_category: sports
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: max_price
+  - intent: get_events_by_maxprice
+    entities:
+    - max_price: '1500'
+  - slot_was_set:
+    - max_price: '1500'
+  - action: list_events_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_event_search_criteria
+  - action: action_clear_event_filters
+  - slot_was_set:
+    - max_price: null
+  - slot_was_set:
+    - event_city: null
+  - slot_was_set:
+    - event_date: null
+  - slot_was_set:
+    - event_category: null
+  - action: utter_ask_event_name
 
 
 ### comp stories

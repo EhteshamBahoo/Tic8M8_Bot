@@ -81,9 +81,9 @@ slots:
     mappings:
     - type: from_entity
       entity: event_city
-      conditions:
-      - active_loop: list_events_form
-        requested_slot: event_city
+      # conditions:
+      # - active_loop: list_events_form
+      #   requested_slot: event_city
   event_phonenumber:
     type: text
     influence_conversation: true
@@ -114,9 +114,9 @@ slots:
     mappings:
     - type: from_entity
       entity: event_category
-      conditions:
-      - active_loop: list_events_form
-        requested_slot: event_category
+      # conditions:
+      # - active_loop: list_events_form
+      #   requested_slot: event_category
   event_artists:
     type: text
     influence_conversation: true
@@ -135,9 +135,9 @@ slots:
     mappings:
     - type: from_entity
       entity: max_price
-      conditions:
-      - active_loop: list_events_form
-        requested_slot: max_price
+      # conditions:
+      # - active_loop: list_events_form
+      #   requested_slot: max_price
   ticket_quantity:
     type: text
     influence_conversation: true
@@ -158,10 +158,15 @@ slots:
         requested_slot: ticket_type
 responses:
   utter_greet:
-  - text: Hey! It's great to see you. 😊 How can I assist you today?
+  # - text: Hey! It's great to see you. 😊 How can I assist you today?
   - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book a venue📖 for yourself ping me. 🌟
   utter_looking_for:
   - text: Are you looking for a specific event?
+    buttons:
+    - title: Yes
+      payload: /affirm
+    - title: No
+      payload: /deny
   utter_ask_event_name:
   - text: What is the name of the event you are looking for
   utter_what_info_need:
@@ -170,7 +175,7 @@ responses:
     - title: Location
       payload: /ask_eventlocation_by_name
     - title: Timing
-      payload: /deny
+      payload: /ask_eventdate_by_name
   utter_did_that_help:
   - text: Did I answer your question? 😊
   - text: I hope that was helpful. Is there anything else I can assist you with?
@@ -214,10 +219,23 @@ responses:
   - text: Which emirate are you looking to book the event?
   utter_ask_event_category:
   - text: Which type of event are you looking for?
+    buttons:
+    - title: Sport/Fitness
+      payload: '/ask_list_all{"event_category" : "sport"}'
+    - title: Festival/Spectacle
+      payload: '/ask_list_all{"event_category" : "Festival"}'
+    - title: Comedy
+      payload: '/ask_list_all{"event_category" : "comedy"}'
+    - title: Theatre
+      payload: '/ask_list_all{"event_category" : "theatre"}'
+    - title: Exposition
+      payload: '/ask_list_all{"event_category" : "Exposition"}'
+    - title: Family Fun
+      payload: '/ask_list_all{"event_category" : "Family Fun"}'
   utter_ask_max_price:
   - text: what is your max price range?
   utter_checkout_new_events:
-  - text: Do you want to checkout some new events I picked?
+  - text: Do you want to checkout some events I picked?
     buttons:
     - title: Yes
       payload: /affirm

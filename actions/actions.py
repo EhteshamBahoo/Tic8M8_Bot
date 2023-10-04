@@ -124,71 +124,35 @@ class ActionListAllEvents(Action):
         event_category = tracker.get_slot("event_category")
 
         params = {
-            "city": event_city or "",  
+            "city": event_city or "",
             "artists": event_artists or "",
             "startdate": event_date or "",
             "category": event_category or ""
         }
 
         event_api = EventAPI()
-        events = event_api.get_events(params)   
+        events = event_api.get_events(params)
 
         if events:
             event_list = []
-            coursel_elements = []
 
             for event in events:
                 event_name = event.get("event_name", "N/A")
                 event_location = event.get("street", "N/A")
-                image_name = event.get("image_name", "N/A")
-                externallink = event.get("externallink", "N/A")
-                event_price = event.get("price", "N/A")
 
-                coursel_element = {
-                            "title": event_name, 
-                            "subtitle": event_location, 
-                            "price": event_price,
-                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}", 
-                                "buttons": [ 
-                                    {
-                                    "title": "Contact Information",
-                                    "payload": f"Contact Information for {event_name}", 
-                                    "type": "postback"
-                                    },
-                                    {
-                                    "title": "More Info",
-                                    "payload": f"More Information of {event_name}", 
-                                    "type": "postback"
-                                    },
-                                    {
-                                    "title": "More Details",
-                                    "url": externallink, 
-                                    "type": "web_url" 
-                                    }
-                                    
-                                ]
-                }
-                coursel_elements.append(coursel_element) # putting a single element into a collection of elements
+                event_info = f"Event Name: {event_name}\nStreet: {event_location}\n\n"
+                event_list.append(event_info)
 
-            response_message = "Here is the list of events \n\n" + "\n".join(event_list)
-                
-            coursel_message = {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": coursel_elements
-                        }  
-                } 
+            response_message = "Here is the list of events:\n\n" + "\n".join(event_list)
             dispatcher.utter_message(response_message)
-            dispatcher.utter_message(attachment=coursel_message)
         else:
-                dispatcher.utter_message("There arent any events based on your criteria why dont you check our events page we have a whole catalog of events there! 😀") 
+            dispatcher.utter_message("There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀")
 
         return []
-    
+
 
 """ end """
-    
+ 
 """ Give ticket type information"""
 class ActionGetTicketTypes(Action):
     def name(self) -> Text:
