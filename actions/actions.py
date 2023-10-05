@@ -60,12 +60,9 @@ Logic for sign up page if php passed the certain id then dont send
 
 
 # Define a custom form to gather the required slots
-class ActionEventSearch(FormValidationAction):
+class ActionEventSearch(Action):
     def name(self) -> Text:
         return "action_event_search_criteria"
-
-    def validate(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        pass
 
     def run(
         self,
@@ -82,6 +79,8 @@ class ActionEventSearch(FormValidationAction):
             "category": event_category,
         }
 
+        original_max_price = max_price
+
         if max_price is not None and max_price.lower() == "free":
             params["isfree"] = True
         else:
@@ -89,6 +88,12 @@ class ActionEventSearch(FormValidationAction):
 
         event_api = EventAPI()
         events = event_api.get_events(params)
+
+        if not events:
+            # No events found with max_price, remove max_price and search again
+            if "maxprice" in params:
+                del params["maxprice"]
+                events = event_api.get_events(params)
 
         if events:
             coursel_elements = []
@@ -130,6 +135,12 @@ class ActionEventSearch(FormValidationAction):
                     "elements": coursel_elements
                 }
             }
+            
+            if original_max_price:
+                dispatcher.utter_message(
+                    f"There aren't any events based on your criteria. Here are the closest possible events for the chosen category:"
+                )
+
             dispatcher.utter_message(attachment=coursel_message)
         else:
             dispatcher.utter_message(
@@ -137,6 +148,7 @@ class ActionEventSearch(FormValidationAction):
             )
 
         return []
+
 
 
 

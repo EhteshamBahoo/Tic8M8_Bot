@@ -70,8 +70,34 @@ rules:
 
 
 
+# - rule: give dates
+#   steps:
+#   - intent: ask_eventdate_by_name
+#   - action: action_get_event_date
 
+- rule: give Location
+  steps:
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
 
+- rule: trying somtehing
+  steps:
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - action: utter_what_info_need  # Add this line to show utter_what_info_need again
+  - action: action_listen 
+
+- rule: trying somtehing2
+  steps:
+  - intent: ask_eventdate_by_name
+  - action: action_get_event_date
+  - action: utter_what_info_need  # Add this line to show utter_what_info_need again
+
+- rule: trying somtehing 3
+  steps:
+  - intent: ask_to_buy_ticket
+  - action: action_get_ticket_types
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza

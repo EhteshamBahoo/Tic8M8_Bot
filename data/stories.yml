@@ -10,62 +10,62 @@ stories:
   - action: action_get_event_location
 
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_eventlocation_by_name
-    entities:
-    - event_name: Global Village
-  - action: action_get_event_location
-  - intent: ask_eventdate_by_name
-    entities:
-    - event_name: Global Village
-  - action: action_get_event_date
-  - intent: ask_eventdate_by_name
-    entities:
-    - event_name: Global Village
-  - action: action_get_event_date
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_eventlocation_by_name
+#     entities:
+#     - event_name: Global Village
+#   - action: action_get_event_location
+#   - intent: ask_eventdate_by_name
+#     entities:
+#     - event_name: Global Village
+#   - action: action_get_event_date
+#   - intent: ask_eventdate_by_name
+#     entities:
+#     - event_name: Global Village
+#   - action: action_get_event_date
 
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_eventdate_by_name
-    entities:
-    - event_name: Global Village
-  - slot_was_set:
-    - event_name: Global Village
-  - action: action_get_event_date
-  - intent: ask_eventdate_by_name
-    entities:
-    - event_name: Kerala Blasters vs Al Wasl FC
-  - slot_was_set:
-    - event_name: Kerala Blasters vs Al Wasl FC
-  - action: action_get_event_date
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_eventdate_by_name
+#     entities:
+#     - event_name: Global Village
+#   - slot_was_set:
+#     - event_name: Global Village
+#   - action: action_get_event_date
+#   - intent: ask_eventdate_by_name
+#     entities:
+#     - event_name: Kerala Blasters vs Al Wasl FC
+#   - slot_was_set:
+#     - event_name: Kerala Blasters vs Al Wasl FC
+#   - action: action_get_event_date
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_contact_info
-  - slot_was_set:
-    - event_name: Global Village
-  - action: action_get_event_contact_info
-  - slot_was_set:
-    - event_email: info@globalvillage.ae
-  - slot_was_set:
-    - event_phonenumber: +971 4 362 4114
-  - intent: ask_more_info
-  - slot_was_set:
-    - event_name: Global Village
-  - action: action_get_event_link
-  - slot_was_set:
-    - event_link: https://www.globalvillage.ae/en/
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_contact_info
+#   - slot_was_set:
+#     - event_name: Global Village
+#   - action: action_get_event_contact_info
+#   - slot_was_set:
+#     - event_email: info@globalvillage.ae
+#   - slot_was_set:
+#     - event_phonenumber: +971 4 362 4114
+#   - intent: ask_more_info
+#   - slot_was_set:
+#     - event_name: Global Village
+#   - action: action_get_event_link
+#   - slot_was_set:
+#     - event_link: https://www.globalvillage.ae/en/
 
-- story: interactive_story_1
-  steps:
-  - intent: ask_list_event_city
-  - action: action_list_all_events
-  - intent: ask_list_event_city
-  - slot_was_set:
-    - event_city: sharjah
-  - action: action_list_all_events
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_list_event_city
+#   - action: action_list_all_events
+#   - intent: ask_list_event_city
+#   - slot_was_set:
+#     - event_city: sharjah
+#   - action: action_list_all_events
 
 # - story: interactive_story_1
 #   steps:
@@ -408,12 +408,7 @@ stories:
   - slot_was_set:
     - event_name: Global Village
   - action: utter_what_info_need
-  - intent: ask_eventlocation_by_name
-  - action: action_get_event_location
-  - intent: ask_eventdate_by_name
-  - action: action_get_event_date
-  - intent: ask_to_buy_ticket
-  - action: action_get_ticket_types
+
   # - action: utter_buy_ticket
   # - intent: affirm
   # - active_loop: ticket_booking_form
@@ -556,6 +551,29 @@ stories:
 
 ### comp stories
 
+- story: happy path 1aa
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: affirm
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
+  - intent: ask_eventlocation_by_name
+  - action: action_get_event_location
+  - action: utter_what_info_need  # Add this line to show utter_what_info_need again
+  - action: action_listen
+  - intent: ask_eventdate_by_name
+  - action: action_get_event_date
+  - action: utter_what_info_need  # Add this line to show utter_what_info_need again
+  - action: action_listen
+  - intent: ask_to_buy_ticket
+  - action: action_get_ticket_types
+
+
 - story: happy path 1
   steps:
   - intent: greet
@@ -569,35 +587,13 @@ stories:
   - action: utter_what_info_need
   - intent: ask_eventlocation_by_name
   - action: action_get_event_location
-  - intent: ask_eventdate_by_name
-  - action: action_get_event_date
-  - intent: ask_to_buy_ticket
-  - action: action_get_ticket_types
-  # - action: utter_buy_ticket
-  # - intent: affirm
-  # - active_loop: ticket_booking_form
-
-
-- story: happy p 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - action: utter_looking_for
-  - intent: affirm
-  - action: utter_ask_event_name
-  - intent: event_inform
-  - slot_was_set:
-    - event_name: Global Village
   - action: utter_what_info_need
-  - intent: ask_eventlocation_by_name
-  - action: action_get_event_location
   - intent: ask_eventdate_by_name
   - action: action_get_event_date
+  - action: utter_what_info_need
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
-  # - action: utter_buy_ticket
-  # - intent: affirm
-  # - active_loop: ticket_booking_form
+
 
 
 - story: happy path 2
@@ -654,13 +650,14 @@ stories:
   - action: utter_what_info_need
   - intent: ask_eventlocation_by_name
   - action: action_get_event_location
+  - action: utter_what_info_need
+  - action: action_listen
   - intent: ask_eventdate_by_name
   - action: action_get_event_date
+  - action: utter_what_info_need
+  - action: action_listen
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
-  # - action: utter_buy_ticket
-  # - intent: affirm
-  # - active_loop: ticket_booking_form
 
 
 - story: happy path 3

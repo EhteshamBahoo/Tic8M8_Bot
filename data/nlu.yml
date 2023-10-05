@@ -341,3 +341,51 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
+
+
+- intent: out_of_scope_event_info
+  examples: |
+    - Can I bring my child to the event?
+    - is parking free?
+    - yo do u know where the gangsta at?
+    - What's the dress code for the event?
+    - Is this event wheelchair accessible?
+    - Can I buy tickets at the door?
+    - Are pets allowed at the venue?
+    - How long is the event expected to last?
+    - Is there a vegetarian option available at the event?
+    - Do I need to print my ticket, or can I show it on my phone?
+    - Can I get a refund if I can't make it to the event?
+    - What's the policy on bringing outside food or drinks?
+    - Are there any age restrictions for this event?
+    - Is there a designated smoking area at the venue?
+    - Will there be security checks at the entrance?
+    - Can I bring a camera to the event?
+    - Do I need to bring an ID for age verification?
+    - Are there any discounts for students or seniors?
+    - What's the lineup for the musical performances?
+    - Is there a lost and found at the venue?
+    - Can I bring a backpack or bag to the event?
+    - How do I sign up to volunteer at the event?
+    - Are there any restrictions on banners or signs?
+    - Is there an official event hashtag for social media?
+    - Will there be first aid services on-site?
+    - Are there any contests or giveaways at the event?
+    - What's the policy on bringing large groups?
+    - Can I bring my own seating (chairs or blankets)?
+    - Are there any VIP packages available for this event?
+    - Can I bring my own alcoholic beverages?
+    - Is there a coat check service at the venue?
+    - What's the policy on re-entry if I leave the event?
+    - Are there any shuttle services from nearby locations?
+    - Will the event be canceled in case of bad weather?
+    - Can I bring my own musical instruments?
+    - Is there a designated area for breastfeeding mothers?
+    - Are there charging stations for electronic devices?
+    - Can I bring my own art supplies to the event?
+    - What's the policy on bringing service animals?
+    - Is there a schedule or program for the event?
+    - Are there any on-site ATMs for cash withdrawals?
+    - Will there be any interactive activities for kids?
+    - Can I bring my skateboard or bicycle to the event?
+
