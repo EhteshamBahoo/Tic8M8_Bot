@@ -15,6 +15,8 @@ Event information
 List events based on:
     1. event category
     2. event city
+    3. Price
+Book tickets/Add to cart
 
 Event Forms: not applicable
 
@@ -28,3 +30,6 @@ Default for now
 
 Code working for forms
 datepicker not adding
+
+#Planning on adding
+Bert to understand context of the convo
