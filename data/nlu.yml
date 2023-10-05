@@ -92,6 +92,7 @@ nlu:
     - where is [forex expo](event_name)
     - where is [Disney On Ice](event_name): [100 Years of Wonder Abu Dhabi 2023](event_name)
     - where is [Disney On Ice](event_name)
+    - [Disney on ice](event_name)
     - Location
     - location
 - intent: ask_eventdate_by_name

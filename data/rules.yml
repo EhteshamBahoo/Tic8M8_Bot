@@ -10,13 +10,20 @@ rules:
 - rule: greet
   steps:
   - action: utter_greet
-  - action: utter_do_you_need_help
+  - action: utter_looking_for
+
+- rule: 2greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+
 
 - rule: convo start
   conversation_start: true
   steps:
   - action: utter_greet
-  - action: utter_do_you_need_help
+  - action: utter_looking_for
 
 
 - rule: Sign up rule

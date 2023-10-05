@@ -159,7 +159,7 @@ slots:
 responses:
   utter_greet:
   # - text: Hey! It's great to see you. 😊 How can I assist you today?
-  - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book a venue📖 for yourself ping me. 🌟
+  - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book tickets 📖 for yourself ping me. 🌟
   utter_looking_for:
   - text: Are you looking for a specific event?
     buttons:
@@ -176,6 +176,10 @@ responses:
       payload: /ask_eventlocation_by_name
     - title: Timing
       payload: /ask_eventdate_by_name
+    - title: More info
+      payload: /ask_more_info
+    - title: Buy ticket
+      payload: /ask_to_buy_ticket
   utter_did_that_help:
   - text: Did I answer your question? 😊
   - text: I hope that was helpful. Is there anything else I can assist you with?
