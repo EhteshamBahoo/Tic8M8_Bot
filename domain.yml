@@ -23,6 +23,7 @@ intents:
 - inform
 - list_events_by_date
 - stop
+- give_ticket_type
 entities:
 - event_name
 - event_category
@@ -287,8 +288,14 @@ responses:
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
-    
 
+
+
+  utter_not_sure:
+  - text: I am sorry I am not really sure about that why dont you checkout the events page for that information?
+
+  utter_ticket_quantity:
+  - text: How many tickets do you want?
 
 
   utter_sign_UP:

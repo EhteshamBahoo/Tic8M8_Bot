@@ -218,14 +218,19 @@ class ActionGetTicketTypes(Action):
             event_types = self.get_event_types(eventdate_id)
             if event_types:
                 response_message = "Here are the ticket types:\n\n"
+                buttons = []  # Create an empty list for buttons
+
                 for event_type in event_types:
                     name = event_type.get("name", "N/A")
                     price = event_type.get("price", "N/A")
-                    response_message += f"Name: {name}  \n|  Price: {price}        \n\n"
-                    buttons = [{"title": event_type["name"], "payload": "/affirm" }]
+                    response_message += f"Name: {name}  \n||  Price: {price}        \n\n"
+
+                    # Append each ticket type as a button
+                    buttons.append({"title": event_type["name"], "payload": "/give_ticket_type"})
+
                 dispatcher.utter_message(response_message)
 
-                # Create buttons for each ticket type
+                # Send all the buttons at once
                 dispatcher.utter_button_message("Please select a ticket type:", buttons)
 
             else:
@@ -234,6 +239,7 @@ class ActionGetTicketTypes(Action):
             dispatcher.utter_message(f"No event found with the name '{event_name}'.")
 
         return []
+
 
     def get_eventdate_id(self, event_name: Text) -> int:
         url = "https://dev.tic8m8.com/api/getevents"

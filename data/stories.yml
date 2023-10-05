@@ -572,7 +572,10 @@ stories:
   - action: action_listen
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
-
+  - intent: give_ticket_type
+  - slot_was_set:
+    - ticket_type: VIP
+  - action: utter_add_to_cart
 
 - story: happy path 1
   steps:
@@ -593,7 +596,10 @@ stories:
   - action: utter_what_info_need
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
-
+  - intent: give_ticket_type
+  - slot_was_set:
+    - ticket_type: General
+  - action: utter_add_to_cart
 
 
 - story: happy path 2
@@ -658,6 +664,10 @@ stories:
   - action: action_listen
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
+  - intent: give_ticket_type
+  - slot_was_set:
+    - ticket_type: First Class
+  - action: utter_add_to_cart
 
 
 - story: happy path 3
@@ -698,3 +708,8 @@ stories:
   - slot_was_set:
     - event_name: Global Village
   - action: action_get_ticket_types
+  - intent: give_ticket_type
+  - slot_was_set:
+    - ticket_type: First Class
+  - action: utter_add_to_cart
+  

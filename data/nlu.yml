@@ -320,6 +320,28 @@ nlu:
     - ticket types of [Formula 1 Etihad](event_name)
     - What are the type of tickets [Formula 1 Etihad](event_name) has
 
+- intent: give_ticket_type
+  examples: |
+    - I want to buy [bronze](ticket_type) ticket
+    - [bronze](ticket_type)
+    - [platinum](ticket_type)
+    - [gold](ticket_type)
+    - [Value Day Ticket](ticket_type)
+    - [Any Day Ticket](ticket_type)
+    - [Silver](ticket_type)
+    - [General Admission](ticket_type)
+    - [VIP](ticket_type)
+    - [Early Bird](ticket_type)
+    - [VIP](ticket_type)
+    - [General](ticket_type)
+    - [First Class](ticket_type)
+    - [First Class - Left](ticket_type)
+    - [First Class - Right](ticket_type)
+    - [VVIP](ticket_type)
+    - [media](ticket_type)
+    - [Starting From](ticket_type)
+    - I want to book a [First Class](ticket_type)
+
 - intent: give_ticket_quantity
   examples: |
     - I want to book [3](ticket_quantity) tickets
