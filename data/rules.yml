@@ -98,6 +98,22 @@ rules:
   steps:
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
+
+- rule: add to cart sam3
+  steps:
+  - action: action_get_ticket_types
+  - intent: give_ticket_type
+  - slot_was_set:
+    - ticket_type: First Class
+  - action: utter_ticket_quantity
+
+- rule: addto cart sam4
+  steps:
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
+  - action: utter_add_to_cart
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza

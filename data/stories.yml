@@ -575,6 +575,10 @@ stories:
   - intent: give_ticket_type
   - slot_was_set:
     - ticket_type: VIP
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
   - action: utter_add_to_cart
 
 - story: happy path 1
@@ -599,6 +603,10 @@ stories:
   - intent: give_ticket_type
   - slot_was_set:
     - ticket_type: General
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
   - action: utter_add_to_cart
 
 
@@ -667,6 +675,10 @@ stories:
   - intent: give_ticket_type
   - slot_was_set:
     - ticket_type: First Class
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
   - action: utter_add_to_cart
 
 
@@ -711,5 +723,9 @@ stories:
   - intent: give_ticket_type
   - slot_was_set:
     - ticket_type: First Class
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
   - action: utter_add_to_cart
   

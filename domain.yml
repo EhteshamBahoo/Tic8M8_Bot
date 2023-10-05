@@ -145,18 +145,18 @@ slots:
     mappings:
     - type: from_entity
       entity: ticket_quantity
-      conditions:
-      - active_loop: ticket_booking_form
-        requested_slot: ticket_quantity
+      # conditions:
+      # - active_loop: ticket_booking_form
+      #   requested_slot: ticket_quantity
   ticket_type:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: ticket_type
-      conditions:
-      - active_loop: ticket_booking_form
-        requested_slot: ticket_type
+      # conditions:
+      # - active_loop: ticket_booking_form
+      #   requested_slot: ticket_type
 responses:
   utter_greet:
   # - text: Hey! It's great to see you. 😊 How can I assist you today?
