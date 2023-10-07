@@ -19,15 +19,17 @@ intents:
 - get_events_by_eventrange
 - get_events_by_maxprice
 - get_events_by_minprice
+- give_ticket_quantity
+- give_ticket_type
 - greet
 - inform
 - list_events_by_date
 - stop
-- give_ticket_type
 entities:
-- event_name
-- event_category
 - max_price
+- event_name
+- ticket_quantity
+- event_category
 - event_city
 - start_date
 - min_price
@@ -38,7 +40,6 @@ entities:
 - event_link
 - event_email
 - event_phonenumber
-- ticket_quantity
 - ticket_type
 forms:
   list_events_form:
@@ -46,11 +47,11 @@ forms:
     - event_city
     - event_category
     - max_price
-  ticket_booking_form:
-    required_slots:
-    - event_name
-    - ticket_quantity
-    - ticket_type
+  # ticket_booking_form:
+  #   required_slots:
+  #   - event_name
+  #   - ticket_quantity
+  #   - ticket_type
 slots:
   event_name:
     type: text
@@ -82,9 +83,6 @@ slots:
     mappings:
     - type: from_entity
       entity: event_city
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: event_city
   event_phonenumber:
     type: text
     influence_conversation: true
@@ -115,9 +113,6 @@ slots:
     mappings:
     - type: from_entity
       entity: event_category
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: event_category
   event_artists:
     type: text
     influence_conversation: true
@@ -136,30 +131,20 @@ slots:
     mappings:
     - type: from_entity
       entity: max_price
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: max_price
   ticket_quantity:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: ticket_quantity
-      # conditions:
-      # - active_loop: ticket_booking_form
-      #   requested_slot: ticket_quantity
   ticket_type:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: ticket_type
-      # conditions:
-      # - active_loop: ticket_booking_form
-      #   requested_slot: ticket_type
 responses:
   utter_greet:
-  # - text: Hey! It's great to see you. 😊 How can I assist you today?
   - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book tickets 📖 for yourself ping me. 🌟
   utter_looking_for:
   - text: Are you looking for a specific event?
@@ -288,32 +273,28 @@ responses:
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
-
   utter_dont_know:
   - text: I am sorry, I am not sure about that I suggest checking out the {event_name} page for more inforamtion or contact them.
     buttons:
     - title: Contact Info
       payload: /ask_contact_info
     - title: Details
-      payload: /ask_more_info  
-  # utter_recommend_events:
-  # - text: Here are some events that I am recommending to you Have a look and let me know
-
-
-
+      payload: /ask_more_info
   utter_not_sure:
   - text: I am sorry I am not really sure about that why dont you checkout the events page for that information?
-
   utter_ticket_quantity:
   - text: How many tickets do you want?
-
-
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
-- action_list_top_events
+- utter_ticket_quantity
 - action_give_istop_buttons
+- utter_add_to_cart
+- utter_looking_for
+- utter_what_info_need
 - action_get_ticket_types
+- utter_greet
+- action_list_top_events
 - action_clear_event_filters
 - action_event_search_criteria
 - utter_did_that_help
@@ -331,7 +312,6 @@ actions:
 - action_get_event_location
 - action_get_event_date
 - action_get_event_contact_info
-- utter_greet
 - action_relative_date_function
 session_config:
   session_expiration_time: 60

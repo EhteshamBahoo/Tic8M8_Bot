@@ -196,6 +196,7 @@ nlu:
     - [Trevor Noah Live Comedy](event_name)
     - [Mai Dubai City Half Marathon](event_name)
     - [Half Marathon](event_name)
+    - [Global village]{"entity": "event_name", "value": "Global Village"}
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -320,7 +321,6 @@ nlu:
     - tickets of [Formula 1 Etihad](event_name)
     - ticket types of [Formula 1 Etihad](event_name)
     - What are the type of tickets [Formula 1 Etihad](event_name) has
-
 - intent: give_ticket_type
   examples: |
     - I want to buy [bronze](ticket_type) ticket
@@ -333,7 +333,6 @@ nlu:
     - [General Admission](ticket_type)
     - [VIP](ticket_type)
     - [Early Bird](ticket_type)
-    - [VIP](ticket_type)
     - [General](ticket_type)
     - [First Class](ticket_type)
     - [First Class - Left](ticket_type)
@@ -342,32 +341,18 @@ nlu:
     - [media](ticket_type)
     - [Starting From](ticket_type)
     - I want to book a [First Class](ticket_type)
-
 - intent: give_ticket_quantity
   examples: |
     - I want to book [3](ticket_quantity) tickets
     - [3](ticket_quantity)
-    
+    - [3](max_price) tickets
+    - [3](ticket_quantity) tickets
 - intent: give_ticket_category
   examples: |
     - I want to buy general tickets
 - intent: questions_of_tickets
   examples: |
     - tickets
-- synonym: Global Village
-  examples: |
-    - global village
-- synonym: 'Disney On Ice : 100 Year of Wonder Abu Dhabi 2023'
-  examples: |
-    - Disney On Ice: 100 Years of Wonder Abu Dhabi 2023
-- synonym: TECHSPO Dubai 2023
-  examples: |
-    - techspo dubai 2023
-- synonym: Abu Dhabi
-  examples: |
-    - abu dhabi
-
-
 - intent: out_of_scope_event_info
   examples: |
     - Can I bring my child to the event?
@@ -413,7 +398,6 @@ nlu:
     - Are there any on-site ATMs for cash withdrawals?
     - Will there be any interactive activities for kids?
     - Can I bring my skateboard or bicycle to the event?
-    
 - intent: ask_relative_date
   examples: |
     - Any events happening next week?
@@ -446,4 +430,15 @@ nlu:
     - Find me events for the following Saturday.
     - I want to know about events next month.
     - Are there any events in the coming weeks?
-#action_relative_date_function
+- synonym: Global Village
+  examples: |
+    - global village
+- synonym: 'Disney On Ice : 100 Year of Wonder Abu Dhabi 2023'
+  examples: |
+    - Disney On Ice: 100 Years of Wonder Abu Dhabi 2023
+- synonym: TECHSPO Dubai 2023
+  examples: |
+    - techspo dubai 2023
+- synonym: Abu Dhabi
+  examples: |
+    - abu dhabi
