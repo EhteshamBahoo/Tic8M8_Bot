@@ -301,6 +301,7 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_give_istop_buttons
 - action_get_ticket_types
 - action_clear_event_filters
 - action_event_search_criteria

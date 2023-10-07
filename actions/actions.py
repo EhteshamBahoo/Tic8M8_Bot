@@ -157,6 +157,28 @@ class ActionEventSearch(Action):
 
 """ end """
 
+## give istop events as buttons:
+class ActionGiveIstopButtons(Action):
+    def name(self) -> Text:
+        return "action_give_istop_buttons"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Parameters for the EventAPI
+        istop = True
+        params = {
+            "istop": istop
+        }
+        event_api = EventAPI()
+        top_events = event_api.get_events(params)
+        if top_events:
+            top_events = top_events[:4]
+            event_names = [event.get("event_name", "N/A") for event in top_events]
+            buttons = [{"title": event_name, "payload": event_name} for event_name in event_names]
+            dispatcher.utter_message(template="utter_ask_event_name")
+            dispatcher.utter_button_message("Trending Events:", buttons)
+
+        return []
+
 #### combined coursel version 2
 #### List events city and category
 

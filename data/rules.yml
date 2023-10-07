@@ -52,7 +52,7 @@ rules:
   - active_loop: null  # Deactivate the form
   - action: action_event_search_criteria
   - action: action_clear_event_filters
-  - action: utter_ask_event_name
+  - action: action_give_istop_buttons
   - action: action_listen
 
 - rule: reset slots
@@ -62,7 +62,7 @@ rules:
 
 - rule: more info
   steps:
-  - action: utter_ask_event_name
+  - action: action_give_istop_buttons
   - intent: event_inform
   - slot_was_set:
     - event_name: Global Village
@@ -114,6 +114,19 @@ rules:
   - slot_was_set:
     - ticket_quantity: '3'
   - action: utter_add_to_cart
+
+- rule: addto cart sam4
+  steps:
+  - action: utter_ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
+  - action: utter_add_to_cart
+  
+- rule: more informationnn
+  steps:
+  - intent: ask_more_info
+  - action: utter_what_info_need
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza

@@ -345,6 +345,8 @@ nlu:
 - intent: give_ticket_quantity
   examples: |
     - I want to book [3](ticket_quantity) tickets
+    - [3](ticket_quantity)
+    
 - intent: give_ticket_category
   examples: |
     - I want to buy general tickets
