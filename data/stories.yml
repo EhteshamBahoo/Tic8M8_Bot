@@ -184,7 +184,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 
 - story: Form Story 3
@@ -223,7 +223,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 - story: form story 4
   steps:
@@ -267,7 +267,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 
 - story: form 4
@@ -312,7 +312,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 
 - story: form 5
@@ -357,7 +357,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 
 
@@ -403,7 +403,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
   - intent: event_inform
   - slot_was_set:
     - event_name: Global Village
@@ -443,7 +443,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 - story: Form Story with List All Intent
   steps:
@@ -475,7 +475,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 - story: Form Story with Max Price and City
   steps:
@@ -507,7 +507,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 - story: Form Story with City Only
   steps:
@@ -546,7 +546,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
 
 
 ### comp stories
@@ -657,7 +657,7 @@ stories:
     - event_date: null
   - slot_was_set:
     - event_category: null
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
   - intent: event_inform
   - slot_was_set:
     - event_name: Global Village

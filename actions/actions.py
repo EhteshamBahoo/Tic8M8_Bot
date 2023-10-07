@@ -6,6 +6,11 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from dateutil import parser
+import spacy
+from datetime import datetime, timedelta
+import re
+import requests
+
 
 class EventAPI:
     def __init__(self):
@@ -627,3 +632,6 @@ class ActionGetEventContactInfo(Action):
         else:
             dispatcher.utter_message("I couldn't find information for that event.")
             return [SlotSet("event_email", None), SlotSet("event_phonenumber", None)]
+
+####----------------------------------------------------------------
+

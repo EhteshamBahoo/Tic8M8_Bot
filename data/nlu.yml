@@ -175,6 +175,7 @@ nlu:
     - how can I contact [TECHSPO Dubai 2023](event_name)
     - how can i contact [techspo](event_name) [dubai](event_city)
     - how can i contact the [kerala blasters](event_name)
+    - [Sharjah International Book Fair](event_name)
 - intent: event_inform
   examples: |
     - list me (sports)(event_category) events happening in [dubai](event_city)
@@ -412,4 +413,37 @@ nlu:
     - Are there any on-site ATMs for cash withdrawals?
     - Will there be any interactive activities for kids?
     - Can I bring my skateboard or bicycle to the event?
-
+    
+- intent: ask_relative_date
+  examples: |
+    - Any events happening next week?
+    - What events are scheduled for next month?
+    - Are there any events coming up this week?
+    - Tell me if there are any events this month.
+    - Are there any events in the next few days?
+    - What's on the calendar for next Sunday?
+    - Can you find events for next Saturday?
+    - I'm looking for events happening this weekend.
+    - Do you know of any events next week?
+    - What events are planned for the upcoming week?
+    - Find me events for the following Sunday.
+    - I want to know about events for the next month.
+    - Are there any events in the near future?
+    - Please check if there are any events in the coming days.
+    - Find events for this Wednesday.
+    - Any events scheduled for the next few weeks?
+    - Tell me if there are any events this year.
+    - What's happening next Saturday?
+    - Are there any events on this Sunday?
+    - Any events taking place in the next month?
+    - Can you find events for this weekend?
+    - Give me information about events for the next few days.
+    - Find events for the upcoming Sunday.
+    - What events are happening in the near future?
+    - Any events this week?
+    - Are there any events coming up next weekend?
+    - Tell me if there are any events scheduled for this month.
+    - Find me events for the following Saturday.
+    - I want to know about events next month.
+    - Are there any events in the coming weeks?
+#action_relative_date_function

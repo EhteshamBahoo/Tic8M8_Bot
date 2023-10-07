@@ -52,7 +52,7 @@ rules:
   - active_loop: null  # Deactivate the form
   - action: action_event_search_criteria
   - action: action_clear_event_filters
-  - action: action_give_istop_buttons
+  - action: utter_ask_event_name
   - action: action_listen
 
 - rule: reset slots
@@ -68,7 +68,13 @@ rules:
     - event_name: Global Village
   - action: utter_what_info_need
 
-
+- rule: more info
+  steps:
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Global Village
+  - action: utter_what_info_need
 
 # - rule: give dates
 #   steps:
@@ -128,11 +134,32 @@ rules:
   - intent: ask_more_info
   - action: utter_what_info_need
 
+- rule: more informationnn 2
+  steps:
+  - intent: ask_more_info
+  - action: utter_what_info_need
+
 - rule: new events
   steps:
   - action: utter_checkout_new_events
   - intent: affirm
   - action: action_list_top_events
+
+- rule: another rule
+  steps:
+  - action: action_give_istop_buttons
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Sharjah International Book Fair
+  - action: utter_what_info_need
+
+- rule: another rule
+  steps:
+  - action: utter_ask_event_name
+  - intent: event_inform
+  - slot_was_set:
+    - event_name: Sharjah International Book Fair
+  - action: utter_what_info_need
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza

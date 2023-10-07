@@ -289,8 +289,15 @@ responses:
     - title: No
       payload: /deny
 
-  utter_recommend_events:
-  - text: Here are some events that I am recommending to you Have a look and let me know
+  utter_dont_know:
+  - text: I am sorry, I am not sure about that I suggest checking out the {event_name} page for more inforamtion or contact them.
+    buttons:
+    - title: Contact Info
+      payload: /ask_contact_info
+    - title: Details
+      payload: /ask_more_info  
+  # utter_recommend_events:
+  # - text: Here are some events that I am recommending to you Have a look and let me know
 
 
 
@@ -325,6 +332,7 @@ actions:
 - action_get_event_date
 - action_get_event_contact_info
 - utter_greet
+- action_relative_date_function
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
