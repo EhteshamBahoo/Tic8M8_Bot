@@ -122,11 +122,17 @@ rules:
   - slot_was_set:
     - ticket_quantity: '3'
   - action: utter_add_to_cart
-  
+
 - rule: more informationnn
   steps:
   - intent: ask_more_info
   - action: utter_what_info_need
+
+- rule: new events
+  steps:
+  - action: utter_checkout_new_events
+  - intent: affirm
+  - action: action_list_top_events
 # - rule: Activate Pizza Form
 #   steps:
 #   - intent: buy_pizza

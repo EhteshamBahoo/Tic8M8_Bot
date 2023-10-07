@@ -691,7 +691,8 @@ stories:
   - action: utter_do_you_need_help
   - intent: deny
   - action: utter_checkout_new_events
-  - intent: affirm  # run action_list_new_events
+  - intent: affirm
+  - action: action_list_top_events  # run action_list_new_events
 
 
 

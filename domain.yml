@@ -289,6 +289,9 @@ responses:
     - title: No
       payload: /deny
 
+  utter_recommend_events:
+  - text: Here are some events that I am recommending to you Have a look and let me know
+
 
 
   utter_not_sure:
@@ -301,6 +304,7 @@ responses:
   utter_sign_UP:
   - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
 actions:
+- action_list_top_events
 - action_give_istop_buttons
 - action_get_ticket_types
 - action_clear_event_filters

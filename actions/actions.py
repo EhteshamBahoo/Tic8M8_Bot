@@ -365,6 +365,72 @@ class ActionListEventsByMaxPrice(Action):
 
 ## adding coode for min price value search
 
+class ActionListRecommendedIstopEvents(Action):
+    def name(self) -> Text:
+        return "action_list_top_events"
+
+    def run(self, dispatcher: "CollectingDispatcher", 
+            tracker: Tracker, domain: List[Dict[Text, Any]]
+            ) -> List[Dict[Text, Any]]:
+
+
+            event_api = EventAPI()
+            params = {"istop": True}
+            events = event_api.get_events(params)
+
+            if events:
+                    event_list = []
+                    coursel_elements = []
+
+                    for event in events:
+                        event_name = event.get("event_name", "N/A")
+                        event_location = event.get("street", "N/A")
+                        image_name = event.get("image_name", "N/A")
+                        externallink = event.get("externallink", "N/A")
+
+                        coursel_element = {
+                            "title": event_name,
+                            "subtitle": event_location,
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                            "buttons": [
+                                {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Info",
+                                    "payload": f"More Information of {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                }
+                            ]
+                        }
+                        coursel_elements.append(coursel_element)  # Append to carousel elements
+
+                        # event_info = f"Event: {event_name} at address: {event_location}"
+                        # event_list.append(event_info)
+
+                    response_message = "Here are some events that I am recommending to you Have a look and let me know\n\n" + "\n".join(event_list)
+                    dispatcher.utter_message(response_message)
+
+                    coursel_message = {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": coursel_elements
+                        }
+                    }
+                    dispatcher.utter_message(attachment=coursel_message)
+            else:
+                dispatcher.utter_message("No events found within the specified price range.")
+                   
+            return []
+
 
 class ActionListEventsByMinPrice(Action):
     def name(self) -> Text:
