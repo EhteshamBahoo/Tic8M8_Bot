@@ -197,6 +197,7 @@ nlu:
     - [Mai Dubai City Half Marathon](event_name)
     - [Half Marathon](event_name)
     - [Global village]{"entity": "event_name", "value": "Global Village"}
+    - [Mai Dubai City Half Marathon](event_name)
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -347,6 +348,7 @@ nlu:
     - [3](ticket_quantity)
     - [3](max_price) tickets
     - [3](ticket_quantity) tickets
+    - [3](ticket_quantity) tickets
 - intent: give_ticket_category
   examples: |
     - I want to buy general tickets
@@ -433,6 +435,7 @@ nlu:
 - synonym: Global Village
   examples: |
     - global village
+    - Global village
 - synonym: 'Disney On Ice : 100 Year of Wonder Abu Dhabi 2023'
   examples: |
     - Disney On Ice: 100 Years of Wonder Abu Dhabi 2023

@@ -573,12 +573,21 @@ stories:
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
   - intent: give_ticket_type
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
   - slot_was_set:
-    - ticket_type: VIP
-  - action: utter_ticket_quantity
-  - intent: give_ticket_quantity
+    - requested_slot: ticket_type
+  - slot_was_set:
+    - ticket_type: First Class
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_add_to_cart
 
 - story: happy path 1
@@ -601,12 +610,21 @@ stories:
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
   - intent: give_ticket_type
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
   - slot_was_set:
-    - ticket_type: General
-  - action: utter_ticket_quantity
-  - intent: give_ticket_quantity
+    - requested_slot: ticket_type
+  - slot_was_set:
+    - ticket_type: First Class
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_add_to_cart
 
 
@@ -673,12 +691,21 @@ stories:
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
   - intent: give_ticket_type
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_type
   - slot_was_set:
     - ticket_type: First Class
-  - action: utter_ticket_quantity
-  - intent: give_ticket_quantity
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_add_to_cart
 
 
@@ -709,24 +736,74 @@ stories:
   - action: utter_not_able_to_help
 
 
-- story: jaa
+# - story: jaa
+#   steps:
+#   - intent: ask_to_buy_ticket
+#   - action: action_get_ticket_types
+# - story: interactive_story_1
+#   steps:
+#   - intent: ask_to_buy_ticket
+#     entities:
+#     - event_name: Global Village
+#   - slot_was_set:
+#     - event_name: Global Village
+#   - action: action_get_ticket_types
+#   - intent: give_ticket_type
+#   - slot_was_set:
+#     - ticket_type: First Class
+#   - action: utter_ticket_quantity
+#   - intent: give_ticket_quantity
+#   - slot_was_set:
+#     - ticket_quantity: '3'
+#   - action: utter_add_to_cart
+  
+### ticket booking forms
+- story: Ticket booking 1
   steps:
-  - intent: ask_to_buy_ticket
-  - action: action_get_ticket_types
-- story: interactive_story_1
-  steps:
-  - intent: ask_to_buy_ticket
-    entities:
-    - event_name: Global Village
-  - slot_was_set:
-    - event_name: Global Village
-  - action: action_get_ticket_types
   - intent: give_ticket_type
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_type
   - slot_was_set:
     - ticket_type: First Class
-  - action: utter_ticket_quantity
-  - intent: give_ticket_quantity
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_add_to_cart
-  
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_looking_for
+  - intent: affirm
+  - action: action_give_istop_buttons
+  - intent: event_inform
+    entities:
+    - event_name: Mai Dubai City Half Marathon
+  - slot_was_set:
+    - event_name: Mai Dubai City Half Marathon
+  - action: utter_what_info_need
+  - intent: ask_to_buy_ticket
+  - action: action_get_ticket_types
+  - intent: give_ticket_type
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
+    entities:
+    - ticket_quantity: '3'
+  - slot_was_set:
+    - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: ticket_type
+  - action: utter_add_to_cart
