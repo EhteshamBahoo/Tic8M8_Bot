@@ -607,7 +607,7 @@ class ActionGetEventLink(Action):
         if events:
             event = events[0]
             external_link = event.get("externallink", "N/A")
-            dispatcher.utter_message(template="utter_give_list_all", event_name=event_name, event_link=external_link)
+            dispatcher.utter_message(template="utter_give_moreinfo", event_name=event_name, event_link=external_link)
             return [SlotSet("event_link", external_link)]
         else:
             dispatcher.utter_message("I couldn't find information for that event.")

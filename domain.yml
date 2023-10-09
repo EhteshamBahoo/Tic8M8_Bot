@@ -23,6 +23,7 @@ intents:
 - inform
 - list_events_by_date
 - stop
+- out_of_scope_event_info
 - give_ticket_type
 entities:
 - event_name
@@ -178,7 +179,7 @@ responses:
     - title: Timing
       payload: /ask_eventdate_by_name
     - title: More info
-      payload: /ask_more_info
+      payload: /ask_event_link
     - title: Buy ticket
       payload: /ask_to_buy_ticket
   utter_did_that_help:
@@ -190,9 +191,9 @@ responses:
   - text: Just a heads up, I'm a bot, but I'm a bot with personality! How can I assist you?
   - text: I'm your virtual assistant, powered by Habeebi Global. Ask me anything!
   utter_location_by_name:
-  - text: You're in luck! {event_name} is happening at the fabulous {event_location}. 🌟
-  - text: Guess what? {event_name} is taking place at {event_location}. Enjoy!
-  - text: The awesome {event_name} event is at {event_location}. Have a blast!
+  - text: You're in luck! {event_name} is happening at {event_location}. Have fun🌟
+  - text: The {event_name} is taking place at {event_location}. Enjoy!
+  - text: The {event_name} event is at {event_location}. Have a blast!
   utter_date_by_name:
   - text: Mark your calendar! {event_name} is scheduled for {event_date}. 🗓️
   - text: Save the date! {event_name} is happening on {event_date}. Don't miss it! 🗓️
@@ -295,7 +296,7 @@ responses:
     - title: Contact Info
       payload: /ask_contact_info
     - title: Details
-      payload: /ask_more_info  
+      payload: /action_get_event_link
   # utter_recommend_events:
   # - text: Here are some events that I am recommending to you Have a look and let me know
 

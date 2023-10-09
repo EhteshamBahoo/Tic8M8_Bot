@@ -206,3 +206,13 @@ rules:
   steps:
   - intent: out_of_scope_event_info
   - action: utter_dont_know
+
+- rule: ask_event_link
+  steps:
+  - intent: ask_event_link
+  - action: action_get_event_link
+
+- rule: give ticket details
+  steps:
+  - intent: questions_of_tickets
+  - action: action_get_ticket_details

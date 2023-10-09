@@ -361,7 +361,17 @@ nlu:
     - I want to buy general tickets
 - intent: questions_of_tickets
   examples: |
-    - tickets
+    - tell me about [general](ticket_type) ticket?
+    - what is [media](ticket_type)
+    - ticket details
+    - details of tickets
+    - information about [gold](ticket_type) ticket
+    - tell me about [general](ticket_type) ticket?
+    - what is [media](ticket_type) ticket?
+    - Can you provide information about [VIP](ticket_type) tickets?
+    - Give me details of [student](ticket_type) tickets.
+    - Explain the [silver](ticket_type) ticket to me.
+    - ticket details please
 - intent: out_of_scope_event_info
   examples: |
     - Can I bring my child to the event?
@@ -452,3 +462,14 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
+
+- intent:
+  examples: |
+    - Link for [forex expo](event_name)
+    - Link for [global village](event_name)
+    - Link for [Disney On Ice: 100 Years of Wonder](event_name)
+    - Link for [Formula 1 Etihad](event_name)
+    - Link for [Abu Dhabi International Boat Show 2023](event_name)
+    - external link for [International Boat Show 2023](event_name)
+    - Link for [october fest](event_name)
+    - Link for [event name](event_name)
