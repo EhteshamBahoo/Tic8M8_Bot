@@ -111,6 +111,38 @@ rules:
   - intent: give_ticket_type
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
+  - slot_was_set:
+    - ticket_type: First Class
+
+- rule: utter add to cart
+  steps:
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - ticket_type: First Class
+  - slot_was_set:
+    - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
+  - action: ticket_booking_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_add_to_cart
+
+- rule: give ticket quantity
+  steps:
+  - intent: give_ticket_quantity
+  - slot_was_set:
+    - ticket_quantity: '3'
+
+- rule: set ticket type
+  steps:
+  - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - ticket_type: First Class
 # - rule: addto cart sam4
 #   steps:
 #   - action: utter_ticket_quantity
@@ -166,6 +198,11 @@ rules:
   - intent: give_ticket_type
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
+  - slot_was_set:
+    - ticket_type: First Class
 
 
-
+- rule: details scope
+  steps:
+  - intent: out_of_scope_event_info
+  - action: utter_dont_know

@@ -576,12 +576,10 @@ stories:
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
   - slot_was_set:
-    - requested_slot: ticket_type
-  - slot_was_set:
     - ticket_type: First Class
-  - action: ticket_booking_form
   - slot_was_set:
     - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
   - action: ticket_booking_form
@@ -589,7 +587,6 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_add_to_cart
-
 - story: happy path 1
   steps:
   - intent: greet
@@ -610,15 +607,15 @@ stories:
   - intent: ask_to_buy_ticket
   - action: action_get_ticket_types
   - intent: give_ticket_type
-  - action: ticket_booking_form
-  - active_loop: ticket_booking_form
-  - slot_was_set:
-    - requested_slot: ticket_type
   - slot_was_set:
     - ticket_type: First Class
   - action: ticket_booking_form
+  - active_loop: ticket_booking_form
+  - slot_was_set:
+    - ticket_type: First Class
   - slot_was_set:
     - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
   - action: ticket_booking_form
@@ -694,12 +691,10 @@ stories:
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
   - slot_was_set:
-    - requested_slot: ticket_type
-  - slot_was_set:
-    - ticket_type: First Class
-  - action: ticket_booking_form
+    - ticket_type: Platinum
   - slot_was_set:
     - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
   - action: ticket_booking_form
@@ -764,12 +759,10 @@ stories:
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
   - slot_was_set:
-    - requested_slot: ticket_type
-  - slot_was_set:
-    - ticket_type: First Class
-  - action: ticket_booking_form
+    - ticket_type: Starting From
   - slot_was_set:
     - requested_slot: ticket_quantity
+  - intent: give_ticket_quantity
   - slot_was_set:
     - ticket_quantity: '3'
   - action: ticket_booking_form
@@ -786,8 +779,6 @@ stories:
   - intent: affirm
   - action: action_give_istop_buttons
   - intent: event_inform
-    entities:
-    - event_name: Mai Dubai City Half Marathon
   - slot_was_set:
     - event_name: Mai Dubai City Half Marathon
   - action: utter_what_info_need
@@ -797,13 +788,56 @@ stories:
   - action: ticket_booking_form
   - active_loop: ticket_booking_form
   - slot_was_set:
+    - ticket_type: First Class
+  - slot_was_set:
     - requested_slot: ticket_quantity
   - intent: give_ticket_quantity
-    entities:
-    - ticket_quantity: '3'
   - slot_was_set:
     - ticket_quantity: '3'
   - action: ticket_booking_form
   - slot_was_set:
-    - requested_slot: ticket_type
+    - requested_slot: null
+  - active_loop: null
   - action: utter_add_to_cart
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - action: utter_looking_for
+#   - intent: affirm
+#   - action: action_give_istop_buttons
+#   - intent: event_inform
+#     entities:
+#     - event_name: Abu Dhabi International Boat Show 2023
+#   - slot_was_set:
+#     - event_name: Abu Dhabi International Boat Show 2023
+#   - action: utter_what_info_need
+#   - intent: ask_to_buy_ticket
+#   - action: action_get_ticket_types
+#   - intent: give_ticket_type
+#   - action: ticket_booking_form
+#   - active_loop: ticket_booking_form
+#   - slot_was_set:
+#     - requested_slot: ticket_quantity
+#   - intent: give_ticket_quantity
+#     entities:
+#     - ticket_quantity: '3'
+#   - slot_was_set:
+#     - ticket_quantity: '3'
+#   - action: ticket_booking_form
+#   - slot_was_set:
+#     - requested_slot: ticket_type
+#   - action: ticket_booking_form
+#   - slot_was_set:
+#     - requested_slot: ticket_type
+#   - intent: give_ticket_type
+#     entities:
+#     - ticket_type: Starting From
+#   - slot_was_set:
+#     - ticket_type: Starting From
+#   - action: ticket_booking_form
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_add_to_cart

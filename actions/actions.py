@@ -234,39 +234,41 @@ class ActionGetTicketTypes(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         event_name = tracker.get_slot("event_name")
+        ticket_type_name = tracker.latest_message.get("payload", {}).get("ticket_type", "N/A")
 
         if not event_name:
             dispatcher.utter_message("I couldn't find the event name.")
             return []
 
         eventdate_id = self.get_eventdate_id(event_name)
- 
+
         if eventdate_id is not None:
-            event_types = self.get_event_types(eventdate_id)
-            if event_types:
+            ticket_types = self.get_ticket_types(eventdate_id)
+            if ticket_types:
                 response_message = "Here are the ticket types:\n\n"
                 buttons = []  # Create an empty list for buttons
 
-                for event_type in event_types:
-                    name = event_type.get("name", "N/A")
-                    price = event_type.get("price", "N/A")
+                for ticket_type in ticket_types:
+                    name = ticket_type.get("name", "N/A")
+                    price = ticket_type.get("price", "N/A")
                     response_message += f"Name: {name}  \n||  Price: {price}        \n\n"
 
-                    # Append each ticket type as a button
-                    buttons.append({"title": event_type["name"], "payload": "/give_ticket_type"})
+                    # Append each ticket type as a button with the payload
+                    buttons.append({"title": name, "payload": f"/give_ticket_type{{\"ticket_type\":\"{name}\"}}"})
 
                 dispatcher.utter_message(response_message)
 
                 # Send all the buttons at once
                 dispatcher.utter_button_message("Please select a ticket type:", buttons)
 
+                # Set the selected ticket type to the slot
+                return [SlotSet("ticket_type", ticket_type_name)]
             else:
                 dispatcher.utter_message("No event types found for the given event.")
         else:
             dispatcher.utter_message(f"No event found with the name '{event_name}'.")
 
         return []
-
 
     def get_eventdate_id(self, event_name: Text) -> int:
         url = "https://dev.tic8m8.com/api/getevents"
@@ -286,7 +288,7 @@ class ActionGetTicketTypes(Action):
             pass
         return None
 
-    def get_event_types(self, eventdate_id: int) -> List[Dict[Text, Any]]:
+    def get_ticket_types(self, eventdate_id: int) -> List[Dict[Text, Any]]:
         url = "https://dev.tic8m8.com/api/geteventtypes"
         params = {"eventdate_id": eventdate_id}
         headers = {
