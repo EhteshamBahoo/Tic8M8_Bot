@@ -50,6 +50,8 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
     - by the way, are you a human?
+    - u a bot
+    - bot are you?
 - intent: ask_how_to_book
   examples: |
     - How can I book a ticket for an event?
@@ -175,6 +177,7 @@ nlu:
     - how can I contact [TECHSPO Dubai 2023](event_name)
     - how can i contact [techspo](event_name) [dubai](event_city)
     - how can i contact the [kerala blasters](event_name)
+    - [Sharjah International Book Fair](event_name)
     - [Sharjah International Book Fair](event_name)
 - intent: event_inform
   examples: |
@@ -463,7 +466,7 @@ nlu:
   examples: |
     - abu dhabi
 
-- intent:
+- intent: ask_event_link
   examples: |
     - Link for [forex expo](event_name)
     - Link for [global village](event_name)

@@ -94,12 +94,6 @@ class ActionEventSearch(Action):
         event_api = EventAPI()
         events = event_api.get_events(params)
 
-        if not events:
-            # No events found with max_price, remove max_price and search again
-            if "maxprice" in params:
-                del params["maxprice"]
-                events = event_api.get_events(params)
-
         if events:
             coursel_elements = []
 
@@ -120,8 +114,8 @@ class ActionEventSearch(Action):
                             "type": "postback"
                         },
                         {
-                            "title": "More Info",
-                            "payload": f"More Information of {event_name}",
+                            "title": "More Information",
+                            "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
                             "type": "postback"
                         },
                         {
@@ -141,16 +135,67 @@ class ActionEventSearch(Action):
                 }
             }
             
-            if original_max_price:
-                dispatcher.utter_message(
-                    f"There aren't any events based on your criteria. Here are the closest possible events for the chosen category:"
-                )
-
+            dispatcher.utter_message(
+                "Here is the list of events based on your criteria:"
+            )
             dispatcher.utter_message(attachment=coursel_message)
         else:
-            dispatcher.utter_message(
-                "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
-            )
+            if "maxprice" in params:
+                del params["maxprice"]
+                events_without_max_price = event_api.get_events(params)
+                if events_without_max_price:
+                    coursel_elements = []
+
+                    for event in events_without_max_price:
+                        event_name = event.get("event_name", "N/A")
+                        event_location = event.get("street", "N/A")
+                        image_name = event.get("image_name", "N/A")
+                        externallink = event.get("externallink", "N/A")
+
+                        coursel_element = {
+                            "title": event_name,
+                            "subtitle": event_location,
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                            "buttons": [
+                                {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Information",
+                                    "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                }
+                            ]
+                        }
+                        coursel_elements.append(coursel_element)
+
+                    coursel_message = {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": coursel_elements
+                        }
+                    }
+                    
+                    dispatcher.utter_message(
+                        "There aren't any events based on your criteria. Here are the closest possible events for the chosen category:"
+                    )
+                    dispatcher.utter_message(attachment=coursel_message)
+                else:
+                    dispatcher.utter_message(
+                        "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+                    )
+            else:
+                dispatcher.utter_message(
+                    "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+                )
 
         return []
 
@@ -342,8 +387,8 @@ class ActionListEventsByMaxPrice(Action):
                                 "type": "postback"
                             },
                             {
-                                "title": "More Info",
-                                "payload": f"More Information of {event_name}",
+                                "title": "More Information",
+                                "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
                                 "type": "postback"
                             },
                             {
@@ -406,8 +451,8 @@ class ActionListRecommendedIstopEvents(Action):
                                     "type": "postback"
                                 },
                                 {
-                                    "title": "More Info",
-                                    "payload": f"More Information of {event_name}",
+                                    "title": "More Information",
+                                    "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
                                     "type": "postback"
                                 },
                                 {
@@ -474,8 +519,8 @@ class ActionListEventsByMinPrice(Action):
                                     "type": "postback"
                                 },
                                 {
-                                    "title": "More Info",
-                                    "payload": f"More Information of {event_name}",
+                                    "title": "More Information",
+                                    "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
                                     "type": "postback"
                                 },
                                 {
@@ -635,5 +680,74 @@ class ActionGetEventContactInfo(Action):
             dispatcher.utter_message("I couldn't find information for that event.")
             return [SlotSet("event_email", None), SlotSet("event_phonenumber", None)]
 
+
+class ActionGetTicketDetails(Action):
+    def name(self) -> Text:
+        return "action_get_ticket_details"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        event_name = tracker.get_slot("ticket_type")
+        ticket_type_name = tracker.latest_message.get("payload", {}).get("ticket_type", "N/A")
+
+        if not event_name:
+            dispatcher.utter_message("I couldn't find the event name.")
+            return []
+
+        eventdate_id = self.get_eventdate_id(event_name)
+
+        if eventdate_id is not None:
+            ticket_type = self.get_ticket_type(eventdate_id, ticket_type_name)
+            if ticket_type:
+                name = ticket_type.get("name", "N/A")
+                price = ticket_type.get("price", "N/A")
+                description = ticket_type.get("description", "N/A")
+
+                response_message = f"Ticket Name: {name}\nDescription: {description}"
+                dispatcher.utter_message(response_message)
+
+                # Set the selected ticket type to the slot
+                return [SlotSet("ticket_type", name)]
+            else:
+                dispatcher.utter_message(f"No information found for the ticket type '{ticket_type_name}'.")
+        else:
+            dispatcher.utter_message(f"No event found with the name '{event_name}'.")
+
+        return []
+
+    def get_eventdate_id(self, event_name: Text) -> int:
+        url = "https://dev.tic8m8.com/api/getevents"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+        params = {"name": event_name}
+        
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list) and len(data) > 0:
+                eventdate_id = data[0].get("eventdate_id")
+                return eventdate_id
+        except requests.exceptions.RequestException:
+            pass
+        return None
+
+    def get_ticket_type(self, eventdate_id: int, ticket_type_name: Text) -> Dict[Text, Any]:
+        url = "https://dev.tic8m8.com/api/geteventtypes"
+        params = {"eventdate_id": eventdate_id}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
+        }
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, list):
+                for ticket_type in data:
+                    if ticket_type.get("name") == ticket_type_name:
+                        return ticket_type
+        except requests.exceptions.RequestException:
+            pass
+        return {}
 ####----------------------------------------------------------------
 
