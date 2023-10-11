@@ -271,7 +271,7 @@ class ActionListAllEvents(Action):
 
 
 """ end """
-    
+
 """ Give ticket type information"""
 class ActionGetTicketTypes(Action):
     def name(self) -> Text:

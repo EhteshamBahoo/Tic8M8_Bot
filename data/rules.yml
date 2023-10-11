@@ -240,7 +240,7 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: Give contact information
+- rule: Give contact information  
   steps:
   - intent: ask_contact_info
   - action: action_get_event_contact_info

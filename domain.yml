@@ -162,40 +162,39 @@ slots:
       #   requested_slot: ticket_type
 responses:
   utter_greet:
-  # - text: Hey! It's great to see you. 😊 How can I assist you today?
-  - text: Hey there 😊! my name is eight I am your virtual assistant, if you want to find an event 🌐 or book tickets 📖 for yourself ping me. 🌟
+  - text: Hey there! 😊 I'm Eight, your virtual assistant. Ready to discover exciting events and book tickets? 🌟
   utter_looking_for:
-  - text: Are you looking for a specific event?
+  - text: Are you searching for a specific event?
     buttons:
     - title: Yes
       payload: /affirm
     - title: No
       payload: /deny
   utter_ask_event_name:
-  - text: What is the name of the event you are looking for
+  - text: What's the name of the event you're interested in?
   utter_what_info_need:
-  - text: what information do you need about {event_name}.
+  - text: What kind of info are you looking for about {event_name}?
     buttons:
     - title: Location
       payload: /ask_eventlocation_by_name
     - title: Timing
       payload: /ask_eventdate_by_name
-    - title: More info
+    - title: More Info
       payload: /ask_event_link
-    - title: Buy ticket
+    - title: Buy Tickets
       payload: /ask_to_buy_ticket
   utter_did_that_help:
   - text: Did I answer your question? 😊
-  - text: I hope that was helpful. Is there anything else I can assist you with?
+  - text: I hope that was helpful. What else can I assist you with?
   - text: If you have more questions, feel free to ask. I'm here to help!
   utter_iamabot:
-  - text: I'm your friendly neighbourhood chatbot, here to make your day brighter! 😄
-  - text: Just a heads up, I'm a bot, but I'm a bot with personality! How can I assist you?
+  - text: I'm Eight, your friendly chatbot here to brighten your day! 😄
+  - text: Just a heads up, I'm a bot, but a bot with personality! How can I assist you today?
   - text: I'm your virtual assistant, powered by Habeebi Global. Ask me anything!
   utter_location_by_name:
-  - text: You're in luck! {event_name} is happening at {event_location}. Have fun🌟
-  - text: The {event_name} is taking place at {event_location}. Enjoy!
-  - text: The {event_name} event is at {event_location}. Have a blast!
+  - text: Good news! {event_name} is happening at {event_location}. Enjoy the event! 🌟
+  - text: The {event_name} event is taking place at {event_location}. Have a great time!
+  - text: You're in luck! {event_name} is at {event_location}. Have a blast!
   utter_date_by_name:
   - text: Mark your calendar! {event_name} is scheduled for {event_date}. 🗓️
   - text: Save the date! {event_name} is happening on {event_date}. Don't miss it! 🗓️
@@ -203,7 +202,7 @@ responses:
   utter_give_moreinfo:
   - text: Exciting news! You can find more details about {event_name} at {event_link}. 🌐
   - text: For more information about {event_name}, head over to {event_link}. It's all there!
-  - text: 'Want to dive deeper into {event_name}? Click here: {event_link}. 📖'
+  - text: 'Want to dive deeper into {event_name}? Click here {event_link}. 📖'
   utter_give_contactinfo:
   - text: Got questions? You can reach out to {event_name} at {event_email} or {event_phonenumber}. We're here to help! 📞📧
   - text: Need to get in touch with {event_name}? Contact them at {event_email} 📧 or {event_phonenumber} 📞. Happy to assist!
@@ -214,7 +213,7 @@ responses:
   - text: Events galore in {event_city}! Discover the latest happenings right here. 🏙️
   utter_list_events_category:
   - text: Interested in {event_category} events? You're in the right place! 🎶🍕🎾
-  - text: Love {event_category} events? So do we! Check out what's   coming up. 😍
+  - text: Love {event_category} events? So do we! Check out what's coming up. 😍
   - text: Let's dive into {event_category} events! You're in for a treat. 🎉🎨
   utter_do_you_need_help:
   - text: Do you want me to help you find an event?
@@ -224,7 +223,7 @@ responses:
     - title: No
       payload: /deny
   utter_ask_event_city:
-  - text: Which emirate are you looking to book the event?
+  - text: Which emirate are you looking to book an event in?
     buttons:
     - title: Dubai
       payload: '/ask_list_all{"event_city" : "dubai"}'
@@ -235,7 +234,7 @@ responses:
     - title: Fujairah
       payload: '/ask_list_all{"event_city" : "fujairah"}'
   utter_ask_event_category:
-  - text: Which type of event are you looking for?
+  - text: What type of event are you looking for?
     buttons:
     - title: Sport/Fitness
       payload: '/ask_list_all{"event_category" : "sport"}'
@@ -250,69 +249,61 @@ responses:
     - title: Family Fun
       payload: '/ask_list_all{"event_category" : "Family Fun"}'
   utter_ask_max_price:
-  - text: what is your max price range?
+  - text: What's your max price range?
     buttons:
     - title: Free
       payload: '/ask_list_all{"max_price" : "free"}'
   utter_checkout_new_events:
-  - text: Do you want to checkout some events I picked?
+  - text: Ready to explore some of my event picks?
     buttons:
     - title: Yes
       payload: /affirm
     - title: No
       payload: /deny
   utter_not_able_to_help:
-  - text: I apologize then I am only able to help you with booking events and finding information about events happening in UAE.
+  - text: My apologies, I can only help with booking events and providing information about events in the UAE.
   utter_check_another_event:
-  - text: Do you want to check another event?
+  - text: Want to check out another event?
     buttons:
     - title: Yes
       payload: /affirm
     - title: No
       payload: /deny
   utter_learn_more:
-  - text: Do you want to learn more about {event_name}?
+  - text: Interested in learning more about {event_name}?
     buttons:
     - title: Yes
       payload: /affirm
     - title: No
       payload: /deny
   utter_buy_ticket:
-  - text: Do you want to buy tickets for {event_name}?
+  - text: Ready to purchase tickets for {event_name}?
     buttons:
     - title: Yes
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
   utter_add_to_cart:
-  - text: sure I will add {ticket_quantity} {ticket_type} tickets for {event_name} please checkout your cart for more inforamtion.
+  - text: You got it! I'll add {ticket_quantity} {ticket_type} tickets for {event_name}. Feel free to check out your cart for more info.
     buttons:
     - title: Yes
       payload: /ask_to_buy_ticket
     - title: No
       payload: /deny
-
   utter_dont_know:
-  - text: I am sorry, I am not sure about that I suggest checking out the {event_name} page for more inforamtion or contact them.
+  - text: I'm sorry, I don't have that information. I recommend visiting the {event_name} page for more details or reaching out to them.
     buttons:
     - title: Contact Info
-      payload: '/ask_contact_info{"event_name" : "event_name"}'
+      payload: /ask_contact_info
     - title: Details
-      payload: '/ask_event_link{"event_name" : "event_name"}'
-  # utter_recommend_events:
-  # - text: Here are some events that I am recommending to you Have a look and let me know
-
-
-
+      payload: /ask_event_link
   utter_not_sure:
-  - text: I am sorry I am not really sure about that why dont you checkout the events page for that information?
-
+  - text: I'm not entirely sure about that. You might find the information you're looking for on the events page.
   utter_ask_ticket_quantity:
-  - text: How many tickets do you want?
-
-
+  - text: How many tickets would you like?
   utter_sign_UP:
-  - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee), to join Tic8m8 😃.
+  - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee) to join Tic8m8! 😃
+
 actions:
 - action_list_top_events
 - action_give_istop_buttons
