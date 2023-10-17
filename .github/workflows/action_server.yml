@@ -19,8 +19,8 @@ jobs:
       # Full list of parameters: https://github.com/RasaHQ/action-server-gha/tree/master#input-arguments
       with:
         docker_image_name: 'account_username/repository_name'
-        docker_registry_login: ${{ ehtesham9023 }}
-        docker_registry_password: ${{ docker1101 }}
+        docker_registry_login: ${{ 'ehtesham9023' }}
+        docker_registry_password: ${{ 'docker1101' }}
         # More details about github context:
         # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context
         #
