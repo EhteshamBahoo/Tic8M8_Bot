@@ -1,0 +1,5 @@
+rasa
+spacy
+requests
+typing
+datetime
