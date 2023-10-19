@@ -200,7 +200,6 @@ nlu:
     - [Mai Dubai City Half Marathon](event_name)
     - [Half Marathon](event_name)
     - [Global village]{"entity": "event_name", "value": "Global Village"}
-    - [Abu Dhabi International Boat Show 2023](event_name)
 - intent: ask_list_all
   examples: |
     - list me all [food](event_category) events
@@ -358,7 +357,6 @@ nlu:
     - [2](ticket_quantity)
     - [2](ticket_quantity) tickets
     - [1](ticket_quantity) ticket
-    - [3](ticket_quantity)
 - intent: give_ticket_category
   examples: |
     - I want to buy general tickets
@@ -369,7 +367,6 @@ nlu:
     - ticket details
     - details of tickets
     - information about [gold](ticket_type) ticket
-    - tell me about [general](ticket_type) ticket?
     - what is [media](ticket_type) ticket?
     - Can you provide information about [VIP](ticket_type) tickets?
     - Give me details of [student](ticket_type) tickets.
@@ -452,6 +449,16 @@ nlu:
     - Find me events for the following Saturday.
     - I want to know about events next month.
     - Are there any events in the coming weeks?
+- intent: ask_event_link
+  examples: |
+    - Link for [forex expo](event_name)
+    - Link for [global village](event_name)
+    - Link for [Disney On Ice: 100 Years of Wonder](event_name)
+    - Link for [Formula 1 Etihad](event_name)
+    - Link for [Abu Dhabi International Boat Show 2023](event_name)
+    - external link for [International Boat Show 2023](event_name)
+    - Link for [october fest](event_name)
+    - Link for [event name](event_name)
 - synonym: Global Village
   examples: |
     - global village
@@ -465,14 +472,6 @@ nlu:
 - synonym: Abu Dhabi
   examples: |
     - abu dhabi
-
-- intent: ask_event_link
+- synonym: Starting From
   examples: |
-    - Link for [forex expo](event_name)
-    - Link for [global village](event_name)
-    - Link for [Disney On Ice: 100 Years of Wonder](event_name)
-    - Link for [Formula 1 Etihad](event_name)
-    - Link for [Abu Dhabi International Boat Show 2023](event_name)
-    - external link for [International Boat Show 2023](event_name)
-    - Link for [october fest](event_name)
-    - Link for [event name](event_name)
+    - Starting from

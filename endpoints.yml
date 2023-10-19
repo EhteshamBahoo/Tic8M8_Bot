@@ -37,9 +37,9 @@ tracker_store:
    type: SQL
    dialect: "mysql+pymysql"  
    url: "localhost"  
-   db: "conver_tic8m8"  
+   db: "convo_tci8m8"  
    username: "root"  
-   password: "" 
+   password: "9023" 
 
    # Mysql@localhost:3306
 #    type: redis

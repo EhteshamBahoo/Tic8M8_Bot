@@ -73,13 +73,7 @@ class BytePairFeaturizer(DenseFeaturizer, GraphComponent):
         )
 
     @classmethod
-    def create(
-        cls,
-        config: Dict[Text, Any],
-        model_storage: ModelStorage,
-        resource: Resource,
-        execution_context: ExecutionContext,
-    ) -> GraphComponent:
+    def create(cls, config: Dict[Text, Any], model_storage: ModelStorage, resource: Resource, execution_context: ExecutionContext,) -> GraphComponent:
         """Creates a new component (see parent class for full docstring)."""
         return cls(config, execution_context.node_name)
 
@@ -146,3 +140,8 @@ class BytePairFeaturizer(DenseFeaturizer, GraphComponent):
             )
         if not config["vs"]:
             raise ValueError("BytePairFeaturizer needs a vector size setting via `vs`.")
+
+    @classmethod
+    def extract_response(cls, response, config: Dict[Text, Any]) -> None:
+        if not response["lang"]:
+            raise ValueError("BytePairFeaturizer needs language setting via `lang`.")

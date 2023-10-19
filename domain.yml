@@ -4,6 +4,7 @@ intents:
 - ask_contact_info
 - ask_create_an_account
 - ask_date
+- ask_event_link
 - ask_eventdate_by_name
 - ask_eventlocation_by_name
 - ask_list_all
@@ -19,14 +20,13 @@ intents:
 - get_events_by_eventrange
 - get_events_by_maxprice
 - get_events_by_minprice
+- give_ticket_type
 - greet
 - inform
 - list_events_by_date
-- stop
 - out_of_scope_event_info
-- give_ticket_type
-- ask_event_link
 - questions_of_tickets
+- stop
 entities:
 - event_name
 - event_category
@@ -85,9 +85,6 @@ slots:
     mappings:
     - type: from_entity
       entity: event_city
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: event_city
   event_phonenumber:
     type: text
     influence_conversation: true
@@ -118,9 +115,6 @@ slots:
     mappings:
     - type: from_entity
       entity: event_category
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: event_category
   event_artists:
     type: text
     influence_conversation: true
@@ -139,34 +133,23 @@ slots:
     mappings:
     - type: from_entity
       entity: max_price
-      # conditions:
-      # - active_loop: list_events_form
-      #   requested_slot: max_price
   ticket_quantity:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: ticket_quantity
-      # conditions:
-      # - active_loop: ticket_booking_form
-      #   requested_slot: ticket_quantity
   ticket_type:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: ticket_type
-      # conditions:
-      # - active_loop: ticket_booking_form
-      #   requested_slot: ticket_type
 responses:
   utter_greet:
   - text: Hey there! 😊 I'm Eight, your virtual assistant. Ready to discover exciting events and book tickets? 🌟
- 
   utter_looking_for:
   - text: Are you searching for a specific event?
- 
     buttons:
     - title: Yes
       payload: /affirm
@@ -174,10 +157,8 @@ responses:
       payload: /deny
   utter_ask_event_name:
   - text: What's the name of the event you're interested in?
- 
   utter_what_info_need:
   - text: What kind of info are you looking for about {event_name}?
- 
     buttons:
     - title: Location
       payload: /ask_eventlocation_by_name
@@ -206,7 +187,7 @@ responses:
   utter_give_moreinfo:
   - text: Exciting news! You can find more details about {event_name} at {event_link}. 🌐
   - text: For more information about {event_name}, head over to {event_link}. It's all there!
-  - text: 'Want to dive deeper into {event_name}? Click here {event_link}. 📖'
+  - text: Want to dive deeper into {event_name}? Click here {event_link}. 📖
   utter_give_contactinfo:
   - text: Got questions? You can reach out to {event_name} at {event_email} or {event_phonenumber}. We're here to help! 📞📧
   - text: Need to get in touch with {event_name}? Contact them at {event_email} 📧 or {event_phonenumber} 📞. Happy to assist!
@@ -254,7 +235,6 @@ responses:
       payload: '/ask_list_all{"event_category" : "Family Fun"}'
   utter_ask_max_price:
   - text: What's your max price range?
- 
     buttons:
     - title: Free
       payload: '/ask_list_all{"max_price" : "free"}'
@@ -267,7 +247,6 @@ responses:
       payload: /deny
   utter_not_able_to_help:
   - text: My apologies, I can only help with booking events and providing information about events in the UAE.
- 
   utter_check_another_event:
   - text: Want to check out another event?
     buttons:
@@ -305,17 +284,17 @@ responses:
       payload: /ask_event_link
   utter_not_sure:
   - text: I'm not entirely sure about that. You might find the information you're looking for on the events page.
- 
   utter_ask_ticket_quantity:
   - text: How many tickets would you like?
- 
   utter_sign_UP:
-  - text: "Hey, [Click Here](https://tic8m8.com/en/signup/attendee) to join Tic8m8! 😃"
- 
-
+  - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee) to join Tic8m8! 😃
 actions:
-- action_list_top_events
 - action_give_istop_buttons
+- utter_greet
+- action_get_event_date
+- utter_looking_for
+- utter_what_info_need
+- action_list_top_events
 - action_get_ticket_types
 - action_clear_event_filters
 - action_event_search_criteria
@@ -332,9 +311,7 @@ actions:
 - action_list_events_by_price
 - action_get_event_link
 - action_get_event_location
-- action_get_event_date
 - action_get_event_contact_info
-- utter_greet
 - action_relative_date_function
 - action_get_ticket_details
 session_config:
