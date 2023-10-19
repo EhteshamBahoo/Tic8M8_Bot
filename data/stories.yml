@@ -673,3 +673,4 @@ stories:
   - action: action_get_event_date
   - slot_was_set:
     - event_date: '2023-11-01 08:00:00'
+  - action: utter_what_info_need
