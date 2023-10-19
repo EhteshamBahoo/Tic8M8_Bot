@@ -13,11 +13,35 @@
 action_endpoint:
  url: "http://localhost:5055/webhook"
 
+# nlg:
+#   type: rasa_plus.ml.LLMResponseRephraser
+#   rephrase_all: true
+#   llm: 
+#   model_name: text-davinci-003
+#   prompt: |
+#     The following is a conversation with
+#     an AI assistant. The assistant is helpful, creative, clever, and very friendly.
+#     Rephrase the suggest AI response staying close to the original message and retaining
+#     its meaning. Use simple english.
+#     Context / previous conversation with the user:
+#     {{history}}
+#     {{current_input}}
+#     Suggested AI Response: {{suggested_response}}
+#     Rephrased AI Response:
+
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
 # https://rasa.com/docs/rasa/tracker-stores
 
-#tracker_store:
+tracker_store:
+   type: SQL
+   dialect: "mysql+pymysql"  
+   url: "localhost"  
+   db: "conver_tic8m8"  
+   username: "root"  
+   password: "" 
+
+   # Mysql@localhost:3306
 #    type: redis
 #    url: <host of the redis instance, e.g. localhost>
 #    port: <port of your redis instance, usually 6379>

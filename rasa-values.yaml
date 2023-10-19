@@ -3,4 +3,4 @@ rasa-action-server:
     # -- Determine if external URL is used
     enabled: true
     # -- URL to Rasa Action Server
-    url: "http://localhost:5055/webhook"
+    url: "http://rasa-action-server/webhook"

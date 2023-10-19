@@ -1,9 +1,7 @@
 import requests
 
-# Function to get ticket_id based on event name and ticket type
 def get_ticket_id(event_name, ticket_type):
-    # Replace with your actual API logic to fetch the ticket_id based on event_name and ticket_type
-    # Example logic:
+
     eventdate_id = get_eventdate_id(event_name)
     if eventdate_id is not None:
         event_types = get_event_types(eventdate_id)
@@ -12,10 +10,15 @@ def get_ticket_id(event_name, ticket_type):
                 return event_type.get("id")
     return None
 
-# Function to get eventdate_id for a given event_name (example implementation)
+def get_user_id(user_id):
+
+    user_id = get_user_id(user_id)
+    if user_id is not None:
+        
+        return[]
+
 def get_eventdate_id(event_name):
-    # Replace with your actual logic to fetch eventdate_id based on event_name
-    # Example logic:
+
     url = "https://dev.tic8m8.com/api/getevents"
     params = {"name": event_name}
     headers = {
@@ -31,10 +34,8 @@ def get_eventdate_id(event_name):
         pass
     return None
 
-# Function to get event types for a given eventdate_id (example implementation)
 def get_event_types(eventdate_id):
-    # Replace with your actual logic to fetch event types based on eventdate_id
-    # Example logic:
+
     url = "https://dev.tic8m8.com/api/geteventtypes"
     params = {"eventdate_id": eventdate_id}
     headers = {
@@ -50,10 +51,8 @@ def get_event_types(eventdate_id):
         pass
     return []
 
-# Function to add tickets to the cart
 def add_tickets_to_cart(user_id, event_name, ticket_type, ticket_quantity):
-    # Replace with your actual cart API endpoint and payload structure
-    cart_api_url = "https://example.com/cart/add"
+    cart_api_url = ""
     ticket_id = get_ticket_id(event_name, ticket_type)
     if ticket_id is not None:
         cart_payload = {
@@ -71,7 +70,6 @@ def add_tickets_to_cart(user_id, event_name, ticket_type, ticket_quantity):
         except requests.exceptions.RequestException as e:
             print("There was an error while processing your request. Please try again later.")
 
-# Example usage
 if __name__ == "__main__":
     user_id = "12345"
     event_name = input("Enter the event name: ")

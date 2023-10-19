@@ -163,8 +163,10 @@ slots:
 responses:
   utter_greet:
   - text: Hey there! 😊 I'm Eight, your virtual assistant. Ready to discover exciting events and book tickets? 🌟
+ 
   utter_looking_for:
   - text: Are you searching for a specific event?
+ 
     buttons:
     - title: Yes
       payload: /affirm
@@ -172,8 +174,10 @@ responses:
       payload: /deny
   utter_ask_event_name:
   - text: What's the name of the event you're interested in?
+ 
   utter_what_info_need:
   - text: What kind of info are you looking for about {event_name}?
+ 
     buttons:
     - title: Location
       payload: /ask_eventlocation_by_name
@@ -250,6 +254,7 @@ responses:
       payload: '/ask_list_all{"event_category" : "Family Fun"}'
   utter_ask_max_price:
   - text: What's your max price range?
+ 
     buttons:
     - title: Free
       payload: '/ask_list_all{"max_price" : "free"}'
@@ -262,6 +267,7 @@ responses:
       payload: /deny
   utter_not_able_to_help:
   - text: My apologies, I can only help with booking events and providing information about events in the UAE.
+ 
   utter_check_another_event:
   - text: Want to check out another event?
     buttons:
@@ -299,10 +305,13 @@ responses:
       payload: /ask_event_link
   utter_not_sure:
   - text: I'm not entirely sure about that. You might find the information you're looking for on the events page.
+ 
   utter_ask_ticket_quantity:
   - text: How many tickets would you like?
+ 
   utter_sign_UP:
-  - text: Hey, [Click Here](https://tic8m8.com/en/signup/attendee) to join Tic8m8! 😃
+  - text: "Hey, [Click Here](https://tic8m8.com/en/signup/attendee) to join Tic8m8! 😃"
+ 
 
 actions:
 - action_list_top_events
