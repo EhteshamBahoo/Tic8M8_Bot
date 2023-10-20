@@ -106,6 +106,8 @@ rules:
   - action: action_get_event_link
   - action: utter_what_info_need
 
+
+
 - rule: trying somtehing 3
   steps:
   - intent: ask_to_buy_ticket

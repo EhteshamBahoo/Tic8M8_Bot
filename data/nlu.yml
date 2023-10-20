@@ -177,8 +177,6 @@ nlu:
     - how can I contact [TECHSPO Dubai 2023](event_name)
     - how can i contact [techspo](event_name) [dubai](event_city)
     - how can i contact the [kerala blasters](event_name)
-    - [Sharjah International Book Fair](event_name)
-    - [Sharjah International Book Fair](event_name)
 - intent: event_inform
   examples: |
     - list me (sports)(event_category) events happening in [dubai](event_city)
