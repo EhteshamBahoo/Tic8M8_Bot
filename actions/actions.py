@@ -193,6 +193,58 @@ class ActionEventSearch(Action):
                     dispatcher.utter_message(
                         "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
                     )
+            elif "category" in params:
+                del params["category"]
+                events_without_category = event_api.get_events(params)
+                if events_without_category:
+                    coursel_elements = []
+
+                    for event in events_without_category:
+                        event_name = event.get("event_name", "N/A")
+                        event_location = event.get("street", "N/A")
+                        image_name = event.get("image_name", "N/A")
+                        externallink = event.get("externallink", "N/A")
+
+                        coursel_element = {
+                            "title": event_name,
+                            "subtitle": event_location,
+                            "image_url": f"https://tic8m8.com/uploads/events/{image_name}",
+                            "buttons": [
+                                {
+                                    "title": "Contact Information",
+                                    "payload": f"Contact Information for {event_name}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Information",
+                                    "payload": f"/ask_more_info{{\"event_name\":\"{event_name}\"}}",
+                                    "type": "postback"
+                                },
+                                {
+                                    "title": "More Details",
+                                    "url": externallink,
+                                    "type": "web_url"
+                                }
+                            ]
+                        }
+                        coursel_elements.append(coursel_element)
+
+                    coursel_message = {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": coursel_elements
+                        }
+                    }
+                    
+                    dispatcher.utter_message(
+                        "There aren't any events based on your criteria. Here are the closest possible events."
+                    )
+                    dispatcher.utter_message(attachment=coursel_message)
+                else:
+                    dispatcher.utter_message(
+                        "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
+                    )
             else:
                 dispatcher.utter_message(
                     "There aren't any events based on your criteria. Why don't you check our events page? We have a whole catalog of events there! 😀"
