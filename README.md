@@ -35,4 +35,6 @@ need to add api connection for tickets
 
 # Planning on adding
 Bert to understand context of the convo
+Adding Rasa NLG for rephraser
+using nlg server
 
