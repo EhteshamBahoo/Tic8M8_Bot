@@ -233,6 +233,8 @@ responses:
       payload: '/ask_list_all{"event_category" : "Exposition"}'
     - title: Family Fun
       payload: '/ask_list_all{"event_category" : "Family Fun"}'
+    - title: Any Category
+      payload: '/ask_list_all{"event_category" : "any_category"}'
   utter_ask_max_price:
   - text: What's your max price range?
     buttons:

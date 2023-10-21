@@ -80,10 +80,12 @@ class ActionEventSearch(Action):
 
         params = {
             "city": event_city,
-            "category": event_category,
         }
 
         original_max_price = max_price
+
+        if event_category.lower() != "any_category":
+            params["category"] = event_category
 
         if max_price is not None and max_price.lower() == "free":
             params["isfree"] = True
